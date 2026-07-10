@@ -122,10 +122,24 @@
 
                     <!-- Botón agregar al carrito -->
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary btn-lg"
-                                th:disabled="${inventario == null or inventario.stockDisponible <= 0}">
-                            <i class="fa-solid fa-cart-shopping me-2"></i>Agregar al carrito
-                        </button>
+                        <th:block th:if="${inventario != null and inventario.stockDisponible > 0}">
+                            <form th:action="@{/carrito/agregar}" method="post"
+                                  class="d-flex align-items-center gap-2">
+                                <input type="hidden" name="productoId" th:value="${producto.id}"/>
+                                <input type="number" name="cantidad" value="1" min="1"
+                                       th:max="${inventario.stockDisponible}"
+                                       class="form-control" style="width:90px;"
+                                       aria-label="Cantidad"/>
+                                <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
+                                    <i class="fa-solid fa-cart-shopping me-2"></i>Agregar al carrito
+                                </button>
+                            </form>
+                        </th:block>
+                        <th:block th:unless="${inventario != null and inventario.stockDisponible > 0}">
+                            <button class="btn btn-primary btn-lg" disabled>
+                                <i class="fa-solid fa-cart-shopping me-2"></i>Sin stock
+                            </button>
+                        </th:block>
                         <a th:href="@{/}" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-arrow-left me-1"></i>Volver al inicio
                         </a>

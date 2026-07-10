@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
+import com.proyecto.toolboxcr.domain.MetodoEnvio;
+import com.proyecto.toolboxcr.domain.DireccionEnvio;
 
 @Entity
 @Table(name = "PEDIDO")
@@ -36,6 +38,14 @@ public class Pedido {
     private BigDecimal descuentoTotal;
 
     private BigDecimal total;
+
+    @ManyToOne
+    @JoinColumn(name = "metodo_envio_id")
+    private MetodoEnvio metodoEnvio;
+
+    @ManyToOne
+    @JoinColumn(name = "direccion_envio_id")
+    private DireccionEnvio direccionEnvio;
 
     @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
     private List<DetallePedido> detalles = new ArrayList<>();

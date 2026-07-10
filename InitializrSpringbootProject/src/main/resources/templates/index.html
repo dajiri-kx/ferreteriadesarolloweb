@@ -78,10 +78,20 @@
                                 <span th:if="${p.activo}" class="badge bg-success">Disponible</span>
                                 <span th:unless="${p.activo}" class="badge bg-danger">No disponible</span>
                                 <!-- CB03 boton para ver ficha -->
-                                <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
-                                   class="btn btn-primary btn-sm w-100 mt-2">
-                                    <i class="fa-solid fa-eye"></i> Ver ficha
-                                </a>
+                                <div class="d-flex gap-2 mt-2">
+                                    <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
+                                       class="btn btn-outline-primary btn-sm flex-grow-1">
+                                        <i class="fa-solid fa-eye"></i> Ver ficha
+                                    </a>
+                                    <form th:action="@{/carrito/agregar}" method="post" class="d-inline">
+                                        <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                        <input type="hidden" name="cantidad" value="1"/>
+                                        <button type="submit" class="btn btn-primary btn-sm"
+                                                th:disabled="${!p.activo}">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

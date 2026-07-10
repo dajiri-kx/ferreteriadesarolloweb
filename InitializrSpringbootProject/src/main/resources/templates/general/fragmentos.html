@@ -53,7 +53,7 @@
                     <li class="nav-item px-2 ms-1">
                         <a class="btn btn-primary btn-nav-carrito position-relative" th:href="@{/carrito}">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="nav-cart-badge">0</span>
+                            <span class="nav-cart-badge" th:text="${session.carritoCount ?: 0}">0</span>
                         </a>
                     </li>
                     <!-- Sin sesión -->
