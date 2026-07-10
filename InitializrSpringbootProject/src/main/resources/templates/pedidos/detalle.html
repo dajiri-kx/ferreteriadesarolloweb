@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+            <!-- Encabezado -->
+            <div class="row mb-4 align-items-center">
+                <div class="col-md-8">
+                    <h3 class="mb-0">
+                        <i class="fa-solid fa-receipt" style="color: #E8641A;"></i>
+                        Pedido&nbsp;<strong th:text="${pedido.numeroOrden}"></strong>
+                    </h3>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a th:href="@{/perfil/pedidos}" class="btn btn-outline-secondary btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> [[#{pedido.volver}]]
+                    </a>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <!-- Info del pedido -->
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header card-header-naranja">
+                            <i class="fa-solid fa-circle-info"></i> Información del Pedido
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2">
+                                <strong>[[#{pedido.fecha}]]:</strong>
+                                <span th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></span>
+                            </p>
+                            <p class="mb-0">
+                                <strong>[[#{pedido.estado}]]:</strong>&nbsp;
+                                <section th:replace="~{pedidos/fragmentos :: badgeEstado(${pedido.estado})}"></section>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Resumen de totales -->
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header card-header-naranja">
+                            <i class="fa-solid fa-coins"></i> Resumen
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-1">
+                                Subtotal:
+                                <span class="float-end"
+                                      th:text="${'₡ ' + #numbers.formatDecimal(pedido.subtotal, 1, 'COMMA', 2, 'POINT')}">
+                                </span>
+                            </p>
+                            <p class="mb-1">
+                                Envío:
+                                <span class="float-end"
+                                      th:text="${'₡ ' + #numbers.formatDecimal(pedido.costoEnvio, 1, 'COMMA', 2, 'POINT')}">
+                                </span>
+                            </p>
+                            <p class="mb-1 text-success"
+                               th:if="${pedido.descuentoTotal != null and pedido.descuentoTotal.compareTo(T(java.math.BigDecimal).ZERO) > 0}">
+                                Descuento:
+                                <span class="float-end"
+                                      th:text="${'-₡ ' + #numbers.formatDecimal(pedido.descuentoTotal, 1, 'COMMA', 2, 'POINT')}">
+                                </span>
+                            </p>
+                            <hr/>
+                            <p class="fw-bold fs-5 mb-0">
+                                Total:
+                                <span class="float-end"
+                                      th:text="${'₡ ' + #numbers.formatDecimal(pedido.total, 1, 'COMMA', 2, 'POINT')}">
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de productos -->
+            <div class="card">
+                <div class="card-header card-header-naranja">
+                    <i class="fa-solid fa-list"></i> Productos del Pedido
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>[[#{pedido.producto}]]</th>
+                                    <th class="text-center">[[#{pedido.cantidad}]]</th>
+                                    <th class="text-end">[[#{pedido.precioUnitario}]]</th>
+                                    <th class="text-end">[[#{pedido.subtotalItem}]]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item : ${detalles}">
+                                    <td th:text="${item.producto.nombre}"></td>
+                                    <td class="text-center" th:text="${item.cantidad}"></td>
+                                    <td class="text-end"
+                                        th:text="${'₡ ' + #numbers.formatDecimal(item.precioUnitario, 1, 'COMMA', 2, 'POINT')}">
+                                    </td>
+                                    <td class="text-end fw-bold"
+                                        th:text="${'₡ ' + #numbers.formatDecimal(item.subtotal, 1, 'COMMA', 2, 'POINT')}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

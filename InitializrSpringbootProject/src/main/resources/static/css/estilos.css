@@ -1,0 +1,293 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+    --naranja: #E8641A;
+    --naranja-oscuro: #bf4e0e;
+    --negro: #1a1a1a;
+    --negro-suave: #2d2d2d;
+    --texto-claro: #ffffff;
+}
+
+/* ===== GENERAL ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: var(--negro) !important;
+}
+.navbar-brand {
+    color: var(--naranja) !important;
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+.navbar-brand:hover {
+    color: var(--naranja-oscuro) !important;
+}
+.nav-link {
+    color: var(--texto-claro) !important;
+    transition: color 0.2s;
+}
+.nav-link:hover {
+    color: var(--naranja) !important;
+}
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+.dropdown-menu {
+    border-top: 3px solid var(--naranja);
+}
+.dropdown-item:hover {
+    background-color: #fff3ec;
+    color: var(--naranja-oscuro);
+}
+
+/* ===== HEADER BANNER ===== */
+#main-header {
+    background-color: var(--naranja);
+    color: var(--texto-claro);
+}
+#main-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* ===== BOTONES ===== */
+.btn-primary {
+    background-color: var(--naranja) !important;
+    border-color: var(--naranja) !important;
+    color: white !important;
+}
+.btn-primary:hover {
+    background-color: var(--naranja-oscuro) !important;
+    border-color: var(--naranja-oscuro) !important;
+}
+.btn-outline-primary {
+    color: var(--naranja) !important;
+    border-color: var(--naranja) !important;
+}
+.btn-outline-primary:hover {
+    background-color: var(--naranja) !important;
+    border-color: var(--naranja) !important;
+    color: white !important;
+}
+
+/* ===== CARD HEADERS NARANJA ===== */
+.card-header-naranja {
+    background-color: var(--naranja);
+    color: white;
+}
+
+/* ===== TABLAS ===== */
+.table thead th {
+    background-color: var(--negro);
+    color: white;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: var(--negro) !important;
+    color: var(--texto-claro) !important;
+    margin-top: 3rem;
+}
+
+/* ===== BADGES DE ESTADO PEDIDO ===== */
+.badge-pendiente  { background-color: #6c757d; }
+.badge-preparando { background-color: #0d6efd; }
+.badge-enviado    { background-color: var(--naranja); }
+.badge-entregado  { background-color: #198754; }
+.badge-cancelado  { background-color: #dc3545; }
+.badge-predeterminada { background-color: var(--naranja); font-size: 0.72rem; }
+
+/* ===== CARD AUTH (login / registro) ===== */
+.card-auth {
+    max-width: 500px;
+    margin: 60px auto;
+    border-top: 4px solid var(--naranja);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+}
+
+/* ===== BARRA DE FUERZA DE CONTRASEÑA ===== */
+.strength-bar {
+    height: 5px;
+    border-radius: 3px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    width: 0%;
+}
+
+/* ===== HOMEPAGE — HERO ===== */
+.hero-section {
+    background: linear-gradient(135deg, #1a1a1a 60%, #2d1a00 100%);
+    color: #ffffff;
+    padding: 5rem 0 4rem;
+}
+.hero-section .hero-icon {
+    font-size: 5rem;
+    color: var(--naranja);
+    display: block;
+    margin-bottom: 1.25rem;
+}
+.hero-section h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.15;
+}
+.hero-section .lead {
+    color: #cccccc;
+    font-size: 1.15rem;
+}
+
+/* ===== HOMEPAGE — BÚSQUEDA ===== */
+.search-section {
+    padding: 2.5rem 0;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+.search-section .input-group {
+    max-width: 680px;
+    margin: 0 auto;
+}
+.search-section .form-control {
+    border-right: none;
+    font-size: 1rem;
+    padding: .6rem 1rem;
+}
+.search-section .btn {
+    border-left: none;
+    padding: .6rem 1.4rem;
+}
+
+/* ===== HOMEPAGE — CATEGORÍAS ===== */
+.cat-card {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.75rem .5rem 1.25rem;
+    text-align: center;
+    transition: border-color .2s, background-color .2s;
+    text-decoration: none;
+    color: var(--negro);
+    display: block;
+}
+.cat-card:hover {
+    border-color: var(--naranja);
+    background-color: #fff3ec;
+    color: var(--negro);
+}
+.cat-card .cat-icon {
+    font-size: 2.4rem;
+    color: var(--naranja);
+    margin-bottom: .6rem;
+}
+.cat-card .cat-label {
+    font-weight: 600;
+    font-size: .95rem;
+}
+
+/* ===== HOMEPAGE — OFERTAS ===== */
+.oferta-badge {
+    background: var(--naranja);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 2px 7px;
+    letter-spacing: .3px;
+}
+.precio-original {
+    text-decoration: line-through;
+    color: #999;
+    font-size: .9rem;
+}
+.precio-oferta {
+    color: var(--naranja);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.card-producto {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow .2s;
+}
+.card-producto:hover {
+    box-shadow: 0 4px 18px rgba(232, 100, 26, 0.18);
+}
+.card-producto .placeholder-img {
+    background: #2d2d2d;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: var(--naranja);
+}
+
+/* ===== HOMEPAGE — PANEL CUENTA ===== */
+.cuenta-card {
+    border-left: 4px solid var(--naranja);
+    border-radius: 8px;
+    transition: box-shadow .2s;
+    text-decoration: none;
+    color: var(--negro);
+    display: block;
+}
+.cuenta-card:hover {
+    box-shadow: 0 4px 14px rgba(232, 100, 26, 0.2);
+    color: var(--negro);
+}
+.cuenta-card .cuenta-icon {
+    font-size: 2rem;
+    color: var(--naranja);
+}
+
+/* ===== HOMEPAGE — CTA REGISTRO ===== */
+.cta-section {
+    background: var(--naranja);
+    color: #ffffff;
+    padding: 4rem 0;
+}
+.cta-section h2 {
+    font-weight: 800;
+    font-size: 2rem;
+}
+.cta-section .lead {
+    color: rgba(255, 255, 255, .85);
+}
+
+/* ===== NAVBAR — BOTONES ===== */
+.btn-nav {
+    font-size: 0.9rem;
+    padding: 0.45rem 1.1rem;
+    line-height: 1.5;
+}
+.btn-nav-carrito {
+    font-size: 1rem;
+    padding: 0.5rem 1.1rem;
+    line-height: 1.5;
+}
+.navbar .nav-link {
+    font-size: 0.95rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* ===== NAVBAR — BADGE CARRITO ===== */
+.nav-cart-badge {
+    position: absolute;
+    top: 2px;
+    right: -2px;
+    background: var(--naranja);
+    color: #fff;
+    font-size: .6rem;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}

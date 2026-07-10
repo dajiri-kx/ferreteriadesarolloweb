@@ -5,7 +5,7 @@
 package com.proyecto.toolboxcr.service;
 
 import com.proyecto.toolboxcr.domain.Producto;
-import com.proyecto.toolboxcr.repository.ProductoRepository;
+import com.proyecto.toolboxcr.repositorio.ProductoRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
