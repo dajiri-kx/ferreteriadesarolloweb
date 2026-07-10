@@ -50,18 +50,16 @@
             </div>
         </section>
         <!-- ===================== RESULTADOS DE BÚSQUEDA (CB-02) ===================== -->
-        <section class="py-4" th:if="${resultados != null}">
+               <section class="py-4" th:if="${resultados != null}">
             <div class="container">
                 <h4 class="fw-bold mb-3">
                     <i class="fa-solid fa-magnifying-glass me-2"></i>
                     <span th:text="${totalResultados}"></span> resultado(s) para
                     "<span th:text="${q}"></span>"
                 </h4>
-
                 <div th:if="${resultados.empty}" class="alert alert-warning">
                     No se encontraron productos con ese nombre o código SKU.
                 </div>
-
                 <div class="row g-4" th:unless="${resultados.empty}">
                     <div class="col-12 col-sm-6 col-lg-4" th:each="p : ${resultados}">
                         <div class="card-producto">
@@ -79,6 +77,11 @@
                                 </div>
                                 <span th:if="${p.activo}" class="badge bg-success">Disponible</span>
                                 <span th:unless="${p.activo}" class="badge bg-danger">No disponible</span>
+                                <!-- CB03 boton para ver ficha -->
+                                <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
+                                   class="btn btn-primary btn-sm w-100 mt-2">
+                                    <i class="fa-solid fa-eye"></i> Ver ficha
+                                </a>
                             </div>
                         </div>
                     </div>

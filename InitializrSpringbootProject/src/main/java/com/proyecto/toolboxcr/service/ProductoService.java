@@ -193,4 +193,13 @@ public class ProductoService {
         return productoRepository.buscarPorNombreOSkuODescripcion(q.trim());
     }
 
+    @Transactional(readOnly = true)
+    public List<Producto> listarPorCategoria(Long categoriaId) {
+        return productoRepository.findAll().stream()
+                .filter(p -> p.isActivo() && p.getCategoria() != null
+                && p.getCategoria().getId().equals(categoriaId))
+                .limit(4)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
 }
