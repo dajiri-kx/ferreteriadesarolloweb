@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <!-- ===================== 1. HERO ===================== -->
+        <section class="hero-section">
+            <div class="container text-center">
+                <h1>[[#{index.bienvenida}]]</h1>
+                <p class="lead mt-3 mb-4">[[#{index.descripcion}]]</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <!-- Sin sesión -->
+                    <th:block th:if="${session.usuarioLogueado == null}">
+                        <a th:href="@{/registro}" class="btn btn-primary btn-lg px-4">
+                            <i class="fa-solid fa-user-plus"></i> [[#{index.cta.registro}]]
+                        </a>
+                        <a th:href="@{/login}" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fa-solid fa-right-to-bracket"></i> [[#{index.cta.login}]]
+                        </a>
+                    </th:block>
+                    <!-- Con sesión -->
+                    <th:block th:unless="${session.usuarioLogueado == null}">
+                        <a th:href="@{/perfil/pedidos}" class="btn btn-primary btn-lg px-4">
+                            <i class="fa-solid fa-box-open"></i> [[#{index.verPedidos}]]
+                        </a>
+                        <a th:href="@{/perfil/direcciones}" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fa-solid fa-location-dot"></i> [[#{index.verDirecciones}]]
+                        </a>
+                    </th:block>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 2. BÚSQUEDA (stub CB-02) ===================== -->
+        <section class="search-section">
+            <div class="container">
+                <form th:action="@{/catalogo/buscar}" method="get">
+                    <div class="input-group shadow-sm">
+                        <input type="text" name="q" class="form-control form-control-lg"
+                               th:placeholder="#{index.buscar}" autocomplete="off"/>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            [[#{index.buscarBtn}]]
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ===================== 3. CATEGORÍAS (stub CB-01) ===================== -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="fw-bold mb-4 text-center">[[#{index.categorias}]]</h2>
+                <div class="row g-3 justify-content-center">
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <a th:href="@{/catalogo(categoria='herramientas')}" class="cat-card">
+                            <div class="cat-icon"><i class="fa-solid fa-wrench"></i></div>
+                            <div class="cat-label">[[#{index.cat.herramientas}]]</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <a th:href="@{/catalogo(categoria='plomeria')}" class="cat-card">
+                            <div class="cat-icon"><i class="fa-solid fa-faucet"></i></div>
+                            <div class="cat-label">[[#{index.cat.plomeria}]]</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <a th:href="@{/catalogo(categoria='electrico')}" class="cat-card">
+                            <div class="cat-icon"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="cat-label">[[#{index.cat.electrico}]]</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <a th:href="@{/catalogo(categoria='pintura')}" class="cat-card">
+                            <div class="cat-icon"><i class="fa-solid fa-paint-roller"></i></div>
+                            <div class="cat-label">[[#{index.cat.pintura}]]</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <a th:href="@{/catalogo(categoria='jardineria')}" class="cat-card">
+                            <div class="cat-icon"><i class="fa-solid fa-seedling"></i></div>
+                            <div class="cat-label">[[#{index.cat.jardineria}]]</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <a th:href="@{/catalogo(categoria='seguridad')}" class="cat-card">
+                            <div class="cat-icon"><i class="fa-solid fa-lock"></i></div>
+                            <div class="cat-label">[[#{index.cat.seguridad}]]</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 4. OFERTAS (stub CB-05) ===================== -->
+        <section class="py-5">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+                    <h2 class="fw-bold mb-0">[[#{index.ofertas}]]</h2>
+                    <a th:href="@{/catalogo/ofertas}" class="btn btn-outline-primary">
+                        [[#{index.ofertas.verTodas}]] <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+                <div class="row g-4">
+                    <!-- Producto 1 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card-producto">
+                            <div class="placeholder-img">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                            </div>
+                            <div class="p-3">
+                                <span class="oferta-badge">-25%</span>
+                                <h6 class="mt-2 mb-1 fw-semibold">[[#{index.placeholder.producto1}]]</h6>
+                                <p class="text-muted small mb-2">Herramienta de alta durabilidad.</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="precio-original">&#8353;18.990</span>
+                                    <span class="precio-oferta">&#8353;14.242</span>
+                                </div>
+                                <a th:href="@{/catalogo}" class="btn btn-primary btn-sm w-100 mt-2">
+                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Producto 2 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card-producto">
+                            <div class="placeholder-img">
+                                <i class="fa-solid fa-hammer"></i>
+                            </div>
+                            <div class="p-3">
+                                <span class="oferta-badge">-15%</span>
+                                <h6 class="mt-2 mb-1 fw-semibold">[[#{index.placeholder.producto2}]]</h6>
+                                <p class="text-muted small mb-2">Herramienta de alta durabilidad.</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="precio-original">&#8353;9.500</span>
+                                    <span class="precio-oferta">&#8353;8.075</span>
+                                </div>
+                                <a th:href="@{/catalogo}" class="btn btn-primary btn-sm w-100 mt-2">
+                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Producto 3 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card-producto">
+                            <div class="placeholder-img">
+                                <i class="fa-solid fa-paint-brush"></i>
+                            </div>
+                            <div class="p-3">
+                                <span class="oferta-badge">-20%</span>
+                                <h6 class="mt-2 mb-1 fw-semibold">[[#{index.placeholder.producto3}]]</h6>
+                                <p class="text-muted small mb-2">Herramienta de alta durabilidad.</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="precio-original">&#8353;6.200</span>
+                                    <span class="precio-oferta">&#8353;4.960</span>
+                                </div>
+                                <a th:href="@{/catalogo}" class="btn btn-primary btn-sm w-100 mt-2">
+                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 5. PANEL CUENTA (si logueado — CU-03, CU-04) ===================== -->
+        <section class="py-5 bg-light" th:if="${session.usuarioLogueado != null}">
+            <div class="container">
+                <h2 class="fw-bold mb-1">[[#{index.cuenta.titulo}]]</h2>
+                <p class="text-muted mb-4">[[#{index.cuenta.desc}]]</p>
+                <div class="row g-3">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <a th:href="@{/perfil/direcciones}" class="cuenta-card card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="cuenta-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <div class="fw-semibold">[[#{index.verDirecciones}]]</div>
+                                <div class="text-muted small">[[#{plantilla.direcciones}]]</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <a th:href="@{/perfil/pedidos}" class="cuenta-card card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="cuenta-icon"><i class="fa-solid fa-box-open"></i></div>
+                            <div>
+                                <div class="fw-semibold">[[#{index.verPedidos}]]</div>
+                                <div class="text-muted small">[[#{plantilla.pedidos}]]</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 6. CTA REGISTRO (si NO logueado — CU-01, CU-02) ===================== -->
+        <section class="cta-section" th:unless="${session.usuarioLogueado != null}">
+            <div class="container text-center">
+                <h2>[[#{index.cta.titulo}]]</h2>
+                <p class="lead mt-2 mb-4">[[#{index.cta.desc}]]</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a th:href="@{/registro}" class="btn btn-dark btn-lg px-4">
+                        <i class="fa-solid fa-user-plus"></i> [[#{index.cta.registro}]]
+                    </a>
+                    <a th:href="@{/login}" class="btn btn-outline-dark btn-lg px-4">
+                        <i class="fa-solid fa-right-to-bracket"></i> [[#{index.cta.login}]]
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

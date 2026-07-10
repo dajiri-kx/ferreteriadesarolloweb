@@ -1,0 +1,21 @@
+<!-- Badge de estado del pedido reutilizable -->
+<span th:fragment="badgeEstado(estado)">
+    <span th:switch="${estado}">
+        <span th:case="'pendiente'"  class="badge badge-pendiente">
+            <i class="fa-solid fa-clock"></i> Pendiente
+        </span>
+        <span th:case="'preparando'" class="badge badge-preparando">
+            <i class="fa-solid fa-box"></i> Preparando
+        </span>
+        <span th:case="'enviado'"    class="badge badge-enviado">
+            <i class="fa-solid fa-truck"></i> Enviado
+        </span>
+        <span th:case="'entregado'"  class="badge badge-entregado">
+            <i class="fa-solid fa-circle-check"></i> Entregado
+        </span>
+        <span th:case="'cancelado'"  class="badge badge-cancelado">
+            <i class="fa-solid fa-ban"></i> Cancelado
+        </span>
+        <span th:case="*" class="badge bg-secondary">[[${estado}]]</span>
+    </span>
+</span>

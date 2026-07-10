@@ -1,0 +1,74 @@
+<!-- Modal Bootstrap para agregar / editar una dirección de envío -->
+<div th:fragment="modalDireccion"
+     class="modal fade" id="modalDireccion" tabindex="-1"
+     aria-labelledby="modalDireccionLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header card-header-naranja">
+                <h5 class="modal-title text-white" id="modalDireccionLabel">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="modalDireccionTitulo">Nueva Dirección</span>
+                </h5>
+                <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <form th:action="@{/perfil/direcciones/guardar}" method="post"
+                  class="needs-validation" novalidate>
+                <div class="modal-body">
+
+                    <!-- ID oculto para edición -->
+                    <input type="hidden" id="dirId" name="id"/>
+
+                    <div class="mb-3">
+                        <label for="alias" class="form-label">[[#{direccion.alias}]]</label>
+                        <input type="text" class="form-control" id="alias" name="alias"
+                               maxlength="60" placeholder="Casa, Trabajo, etc."/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="direccionInput" class="form-label">
+                            [[#{direccion.direccion}]] <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="direccionInput"
+                               name="direccion" required maxlength="255"
+                               placeholder="Calle, número, provincia..."/>
+                        <div class="invalid-feedback">La dirección es obligatoria.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="codigoPostal" class="form-label">
+                            [[#{direccion.codigoPostal}]] <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="codigoPostal"
+                               name="codigoPostal" required
+                               pattern="\d{4,10}" maxlength="15"
+                               placeholder="10101"/>
+                        <div class="invalid-feedback">
+                            Ingrese un código postal válido (4–10 dígitos).
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                               id="esPredeterminada" name="esPredeterminada" value="true"/>
+                        <label class="form-check-label" for="esPredeterminada">
+                            <i class="fa-solid fa-star" style="color: #E8641A;"></i>
+                            [[#{direccion.predeterminada}]]
+                        </label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">[[#{accion.cancelar}]]</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-floppy-disk"></i> [[#{accion.guardar}]]
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
