@@ -23,7 +23,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "producto")
+@Table(name = "PRODUCTO")
 public class Producto {
 
     @Id

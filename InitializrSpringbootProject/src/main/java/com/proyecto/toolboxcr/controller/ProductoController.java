@@ -1,5 +1,6 @@
 package com.proyecto.toolboxcr.controller;
 
+import com.proyecto.toolboxcr.domain.Categoria;
 import com.proyecto.toolboxcr.domain.Producto;
 import com.proyecto.toolboxcr.service.CategoriaService;
 import com.proyecto.toolboxcr.service.InventarioService;
@@ -24,8 +25,8 @@ public class ProductoController {
     private final InventarioService inventarioService;
 
     public ProductoController(ProductoService productoService,
-                               CategoriaService categoriaService,
-                               InventarioService inventarioService) {
+            CategoriaService categoriaService,
+            InventarioService inventarioService) {
         this.productoService = productoService;
         this.categoriaService = categoriaService;
         this.inventarioService = inventarioService;
@@ -48,11 +49,20 @@ public class ProductoController {
 
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Producto producto,
-                           @RequestParam(required = false) MultipartFile imagenFile,
-                           @RequestParam(required = false, defaultValue = "0") Integer stockInicial,
-                           @RequestParam(required = false, defaultValue = "5") Integer umbralInicial,
-                           RedirectAttributes redirectAttrs) {
+            @RequestParam("categoriaId") Long categoriaId,
+            @RequestParam(required = false) MultipartFile imagenFile,
+            @RequestParam(required = false, defaultValue = "0") Integer stockInicial,
+            @RequestParam(required = false, defaultValue = "5") Integer umbralInicial,
+            RedirectAttributes redirectAttrs) {
+
+        Categoria categoria = categoriaService.obtenerPorId(categoriaId);
+        if (categoria == null) {
+            redirectAttrs.addFlashAttribute("error", "Debe seleccionar una categoría válida.");
+            return "redirect:/producto/nuevo";
+        }
+
         boolean esNuevo = (producto.getId() == null);
+        producto.setCategoria(categoria);
         producto.setActivo(true);
         productoService.guardar(producto, imagenFile);
 
@@ -118,5 +128,8 @@ public class ProductoController {
             redirectAttrs.addFlashAttribute("error", "El archivo CSV tiene un formato inválido.");
         }
         return "redirect:/producto/listado";
+
     }
+    
+
 }

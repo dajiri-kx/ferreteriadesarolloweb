@@ -18,5 +18,11 @@ public class CategoriaService {
     @Transactional(readOnly = true)
     public List<Categoria> listarCategorias() {
         return categoriaRepository.findAllByOrderByNombreAsc();
+
+    }
+
+    @Transactional(readOnly = true)
+    public Categoria obtenerPorId(Long id) {
+        return categoriaRepository.findById(id).orElse(null);
     }
 }

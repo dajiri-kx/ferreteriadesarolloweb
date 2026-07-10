@@ -173,7 +173,7 @@ public class ProductoService {
         return new ResultadoCarga(exitosos, errores);
     }
 
-    // Clase interna simple para devolver el resultado de la carga al controller
+    // Clase interna para devolver el resultado de la carga al controller
     public static class ResultadoCarga {
 
         public final int exitosos;
