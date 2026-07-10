@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="post" th:action="@{/producto/guardar}"
+                          th:object="${producto}" class="was-validated" enctype="multipart/form-data">
+                        <input type="hidden" name="id" th:field="*{id}"/>
+
+                        <div class="row py-3 mb-3 bg-light rounded">
+                            <div class="col-md-6 d-grid">
+                                <a th:href="@{/producto/listado}" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                                </a>
+                            </div>
+                            <div class="col-md-6 d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header"><h5>[[#{producto.agregar}]]</h5></div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label>[[#{producto.sku}]]</label>
+                                    <input type="text" name="sku" th:field="*{sku}" maxlength="40"
+                                           class="form-control" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label>[[#{producto.nombre}]]</label>
+                                    <input type="text" name="nombre" th:field="*{nombre}" maxlength="150"
+                                           class="form-control" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label>[[#{producto.descripcion}]]</label>
+                                    <textarea name="descripcion" th:field="*{descripcion}" rows="3"
+                                              class="form-control"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label>[[#{producto.precio}]]</label>
+                                    <input type="number" step="0.01" min="0" name="precio" th:field="*{precio}"
+                                           class="form-control" required="true"/>
+                                    <div class="mb-3">
+                                        <label>[[#{producto.categoria}]]</label>
+                                        <select name="categoriaId" class="form-select" required>
+                                            <option value="">Seleccione una categoría</option>
+                                            <option th:each="c : ${categorias}"
+                                                    th:value="${c.id}"
+                                                    th:text="${c.nombre}"
+                                                    th:selected="${producto.categoria != null and producto.categoria.id == c.id}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label>[[#{producto.marca}]]</label>
+                                            <input type="text" name="marca" th:field="*{marca}" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>[[#{producto.material}]]</label>
+                                            <input type="text" name="material" th:field="*{material}" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>[[#{producto.dimensiones}]]</label>
+                                            <input type="text" name="dimensiones" th:field="*{dimensiones}" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <!-- Solo aparece al crear (no tiene sentido re-inicializar inventario al editar) -->
+                                    <div class="row" th:if="${producto.id == null}">
+                                        <div class="col-md-6 mb-3">
+                                            <label>[[#{inventario.stockInicial}]]</label>
+                                            <input type="number" min="0" name="stockInicial" value="0" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>[[#{inventario.umbralMinimo}]]</label>
+                                            <input type="number" min="0" name="umbralInicial" value="5" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>[[#{producto.imagen}]]</label>
+                                        <input type="file" name="imagenFile" class="form-control" accept="image/*"/>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

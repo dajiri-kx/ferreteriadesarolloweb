@@ -49,7 +49,55 @@
                 </form>
             </div>
         </section>
-
+        <!-- ===================== RESULTADOS DE BÚSQUEDA (CB-02) ===================== -->
+               <section class="py-4" th:if="${resultados != null}">
+            <div class="container">
+                <h4 class="fw-bold mb-3">
+                    <i class="fa-solid fa-magnifying-glass me-2"></i>
+                    <span th:text="${totalResultados}"></span> resultado(s) para
+                    "<span th:text="${q}"></span>"
+                </h4>
+                <div th:if="${resultados.empty}" class="alert alert-warning">
+                    No se encontraron productos con ese nombre o código SKU.
+                </div>
+                <div class="row g-4" th:unless="${resultados.empty}">
+                    <div class="col-12 col-sm-6 col-lg-4" th:each="p : ${resultados}">
+                        <div class="card-producto">
+                            <div class="placeholder-img">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                            </div>
+                            <div class="p-3">
+                                <span class="badge bg-secondary mb-1" th:text="${p.sku}"></span>
+                                <h6 class="mt-1 mb-1 fw-semibold" th:text="${p.nombre}"></h6>
+                                <p class="text-muted small mb-2" th:text="${p.descripcion}"></p>
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="precio-oferta"
+                                          th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}">
+                                    </span>
+                                </div>
+                                <span th:if="${p.activo}" class="badge bg-success">Disponible</span>
+                                <span th:unless="${p.activo}" class="badge bg-danger">No disponible</span>
+                                <!-- CB03 boton para ver ficha -->
+                                <div class="d-flex gap-2 mt-2">
+                                    <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
+                                       class="btn btn-outline-primary btn-sm flex-grow-1">
+                                        <i class="fa-solid fa-eye"></i> Ver ficha
+                                    </a>
+                                    <form th:action="@{/carrito/agregar}" method="post" class="d-inline">
+                                        <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                        <input type="hidden" name="cantidad" value="1"/>
+                                        <button type="submit" class="btn btn-primary btn-sm"
+                                                th:disabled="${!p.activo}">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- ===================== 3. CATEGORÍAS (stub CB-01) ===================== -->
         <section class="py-5 bg-light">
             <div class="container">

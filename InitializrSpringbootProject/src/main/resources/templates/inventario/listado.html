@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+            <h3 class="mb-3">
+                <i class="fa-solid fa-warehouse" style="color:#E8641A;"></i> [[#{inventario.titulo}]]
+            </h3>
+
+            <!-- Alertas pendientes -->
+            <div class="alert alert-warning" th:if="${!alertasPendientes.empty}">
+                <h5><i class="fa-solid fa-triangle-exclamation"></i> [[#{inventario.alertas}]]</h5>
+                <table class="table table-sm mb-0">
+                    <thead>
+                        <tr>
+                            <th>[[#{producto.nombre}]]</th>
+                            <th>[[#{inventario.stockAlMomento}]]</th>
+                            <th>[[#{inventario.umbralMinimo}]]</th>
+                            <th>[[#{inventario.fechaAlerta}]]</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="a : ${alertasPendientes}">
+                            <td>[[${a.producto.nombre}]]</td>
+                            <td>[[${a.stockAlMomento}]]</td>
+                            <td>[[${a.umbralMinimo}]]</td>
+                            <td>[[${#temporals.format(a.fechaAlerta, 'dd/MM/yyyy HH:mm')}]]</td>
+                            <td>
+                                <form th:action="@{/inventario/atenderAlerta}" method="post">
+                                    <input type="hidden" name="idAlerta" th:value="${a.id}"/>
+                                    <button type="submit" class="btn btn-sm btn-outline-success">
+                                        [[#{inventario.marcarRevisada}]]
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Listado general de stock -->
+            <div class="card">
+                <div class="card-header"><h5>[[#{inventario.titulo}]]</h5></div>
+                <div class="card-body">
+                    <div th:if="${inventarios != null and !inventarios.empty}">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>[[#{producto.sku}]]</th>
+                                    <th>[[#{producto.nombre}]]</th>
+                                    <th>[[#{inventario.stockDisponible}]]</th>
+                                    <th>[[#{inventario.umbralMinimo}]]</th>
+                                    <th>[[#{inventario.fechaActualizacion}]]</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="i : ${inventarios}"
+                                    th:classappend="${i.stockDisponible <= i.umbralMinimo} ? 'table-danger' : ''">
+                                    <td>[[${i.producto.sku}]]</td>
+                                    <td>[[${i.producto.nombre}]]</td>
+                                    <td>[[${i.stockDisponible}]]</td>
+                                    <td>[[${i.umbralMinimo}]]</td>
+                                    <td>[[${i.fechaActualizacion != null ? #temporals.format(i.fechaActualizacion,'dd/MM/yyyy HH:mm') : '-'}]]</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalAjuste"
+                                                th:data-bs-id="${i.producto.id}"
+                                                th:data-bs-nombre="${i.producto.nombre}"
+                                                th:data-bs-stock="${i.stockDisponible}"
+                                                th:data-bs-umbral="${i.umbralMinimo}">
+                                            <i class="fa-solid fa-sliders"></i> [[#{inventario.ajustar}]]
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center p-2" th:if="${inventarios == null or inventarios.empty}">
+                        <span>[[#{lista.vacia}]]</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal: ajustar stock manualmente -->
+        <div class="modal fade" id="modalAjuste" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form th:action="@{/inventario/ajustar}" method="post">
+                        <input type="hidden" name="idProducto" id="ajusteIdProducto"/>
+                        <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title">[[#{inventario.ajustar}]] — <span id="ajusteNombre"></span></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label>[[#{inventario.stockDisponible}]]</label>
+                                <input type="number" min="0" name="nuevoStock" id="ajusteStock" class="form-control" required="true"/>
+                            </div>
+                            <div class="mb-3">
+                                <label>[[#{inventario.umbralMinimo}]]</label>
+                                <input type="number" min="0" name="nuevoUmbral" id="ajusteUmbral" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label>[[#{inventario.motivo}]]</label>
+                                <textarea name="motivo" rows="2" class="form-control" required="true"
+                                          placeholder="Ej: conteo físico, producto dañado, ingreso de compra..."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">[[#{accion.guardar}]]</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">[[#{accion.cerrar}]]</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                const modal = document.getElementById('modalAjuste');
+                modal.addEventListener('show.bs.modal', function (event) {
+                    const button = event.relatedTarget;
+                    document.getElementById('ajusteIdProducto').value = button.getAttribute('data-bs-id');
+                    document.getElementById('ajusteNombre').textContent = button.getAttribute('data-bs-nombre');
+                    document.getElementById('ajusteStock').value = button.getAttribute('data-bs-stock');
+                    document.getElementById('ajusteUmbral').value = button.getAttribute('data-bs-umbral');
+                });
+            });
+        </script>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

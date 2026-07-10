@@ -56,7 +56,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/perfil/**");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/perfil/**", "/carrito/**");
     }
 
     @Bean("messageSource")

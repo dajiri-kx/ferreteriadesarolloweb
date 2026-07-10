@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4 mb-5">
+
+            <h2 class="fw-bold mb-4">
+                <i class="fa-solid fa-cart-shopping me-2"></i>[[#{carrito.titulo}]]
+            </h2>
+
+            <!-- Carrito vacío -->
+            <div th:if="${items.empty}" class="text-center py-5">
+                <i class="fa-solid fa-cart-shopping fa-4x text-muted mb-3"></i>
+                <p class="text-muted fs-5">[[#{carrito.vacio}]]</p>
+                <a th:href="@{/}" class="btn btn-primary mt-2">
+                    <i class="fa-solid fa-arrow-left me-1"></i>[[#{carrito.irCatalogo}]]
+                </a>
+            </div>
+
+            <!-- Tabla de ítems -->
+            <div th:unless="${items.empty}">
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>[[#{carrito.producto}]]</th>
+                                <th class="text-end">[[#{carrito.precioUnitario}]]</th>
+                                <th class="text-center" style="width:160px;">[[#{carrito.cantidad}]]</th>
+                                <th class="text-end">[[#{carrito.subtotal}]]</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="item : ${items}">
+                                <!-- Nombre del producto -->
+                                <td>
+                                    <span class="fw-semibold" th:text="${item.producto.nombre}"></span><br/>
+                                    <small class="text-muted" th:text="${item.producto.sku}"></small>
+                                </td>
+                                <!-- Precio unitario -->
+                                <td class="text-end"
+                                    th:text="'₡' + ${#numbers.formatDecimal(item.producto.precio, 1, 'COMMA', 0, 'POINT')}">
+                                </td>
+                                <!-- Cantidad con form de actualización -->
+                                <td class="text-center">
+                                    <form th:action="@{/carrito/actualizar}" method="post"
+                                          class="d-flex align-items-center justify-content-center gap-1">
+                                        <input type="hidden" name="itemId" th:value="${item.id}"/>
+                                        <button type="submit" name="cantidad"
+                                                th:value="${item.cantidad - 1}"
+                                                class="btn btn-outline-secondary btn-sm px-2">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                        <span class="fw-bold mx-1" th:text="${item.cantidad}"></span>
+                                        <button type="submit" name="cantidad"
+                                                th:value="${item.cantidad + 1}"
+                                                class="btn btn-outline-secondary btn-sm px-2">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                <!-- Subtotal -->
+                                <td class="text-end fw-semibold"
+                                    th:text="'₡' + ${#numbers.formatDecimal(item.subtotal, 1, 'COMMA', 0, 'POINT')}">
+                                </td>
+                                <!-- Eliminar -->
+                                <td class="text-end">
+                                    <form th:action="@{/carrito/eliminar}" method="post">
+                                        <input type="hidden" name="itemId" th:value="${item.id}"/>
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                title="Eliminar">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Resumen total -->
+                <div class="row justify-content-end mt-3">
+                    <div class="col-12 col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between fs-5 fw-bold">
+                                    <span>[[#{carrito.total}]]</span>
+                                    <span th:text="'₡' + ${#numbers.formatDecimal(subtotal, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </div>
+                                <p class="text-muted small mt-1 mb-3">[[#{carrito.totalNota}]]</p>
+                                <a th:href="@{/carrito/checkout}" class="btn btn-primary w-100">
+                                    <i class="fa-solid fa-truck me-2"></i>[[#{carrito.irCheckout}]]
+                                </a>
+                                <a th:href="@{/}" class="btn btn-outline-secondary w-100 mt-2">
+                                    <i class="fa-solid fa-arrow-left me-1"></i>[[#{carrito.seguirComprando}]]
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
