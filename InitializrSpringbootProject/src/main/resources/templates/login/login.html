@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container">
+            <div class="card card-auth">
+                <div class="card-header card-header-naranja text-center py-3">
+                    <h4 class="mb-0">
+                        <i class="fa-solid fa-lock"></i> [[#{login.titulo}]]
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form th:action="@{/login}" method="post"
+                          class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="correo" class="form-label fw-semibold">
+                                [[#{login.correo}]]
+                            </label>
+                            <input type="email" class="form-control" id="correo" name="correo"
+                                   required placeholder="tu@correo.com"/>
+                            <div class="invalid-feedback">Ingrese un correo válido.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contrasena" class="form-label fw-semibold">
+                                [[#{login.contrasena}]]
+                            </label>
+                            <input type="password" class="form-control" id="contrasena"
+                                   name="contrasena" required/>
+                            <div class="invalid-feedback">Ingrese su contraseña.</div>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa-solid fa-right-to-bracket"></i> [[#{login.ingresar}]]
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3 bg-white">
+                    <small class="text-muted">
+                        [[#{login.noTieneCuenta}]]
+                        <a th:href="@{/registro}" style="color: #E8641A; text-decoration: none; font-weight: 600;">
+                            [[#{plantilla.registro}]]
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
