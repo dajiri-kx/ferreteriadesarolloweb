@@ -113,7 +113,7 @@ public class ProductoService {
     // sku,nombre,descripcion,precio,idCategoria,marca,material,dimensiones
     @Transactional
     public ResultadoCarga importarCsv(MultipartFile archivoCsv)
-        throws IOException, com.opencsv.exceptions.CsvException {
+            throws IOException, com.opencsv.exceptions.CsvException {
         int exitosos = 0;
         List<String> errores = new ArrayList<>();
 
@@ -184,4 +184,13 @@ public class ProductoService {
             this.errores = errores;
         }
     }
+
+    @Transactional(readOnly = true)
+    public List<Producto> buscar(String q) {
+        if (q == null || q.isBlank()) {
+            return new ArrayList<>();
+        }
+        return productoRepository.buscarPorNombreOSkuODescripcion(q.trim());
+    }
+
 }
