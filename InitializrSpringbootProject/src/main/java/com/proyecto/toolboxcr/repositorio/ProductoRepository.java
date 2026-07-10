@@ -21,5 +21,8 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     boolean existsBySku(String sku);
     
     List<Producto> findByActivoTrue();
+    
+    // Consulta derivada para buscar por SKU sin importar mayúsculas/minúsculas (carga CSV)
+    boolean existsBySkuIgnoreCase(String sku);
 }
 
