@@ -1,0 +1,131 @@
+<!-- Fragmento #1 — head: CSS y JS para todas las páginas -->
+<head th:fragment="head">
+    <title>ToolboxCR</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"  rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/all.css}"         rel="stylesheet"/>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+    <script th:src="@{/js/rutinas.js}" defer></script>
+</head>
+
+<!-- Fragmento #2 — header: barra de navegación -->
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg py-3">
+        <div class="container">
+            <a th:href="@{/}" class="navbar-brand">
+                <i class="fa-solid fa-toolbox"></i> [[#{aplicacion.titulo}]] <i class="fa-solid fa-hammer ms-1"></i>
+            </a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- Izquierda: navegación principal -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item px-2">
+                        <a class="nav-link" th:href="@{/catalogo}">
+                            <i class="fa-solid fa-layer-group"></i> [[#{nav.catalogo}]]
+                        </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" th:href="@{/catalogo/productos}">
+                            <i class="fa-solid fa-boxes-stacked"></i> [[#{nav.productos}]]
+                        </a>
+                    </li>
+                </ul>
+                <!-- Derecha: carrito + sesión -->
+                <ul class="navbar-nav">
+                    <!-- Carrito -->
+                    <li class="nav-item px-2 ms-1">
+                        <a class="btn btn-primary btn-nav-carrito position-relative" th:href="@{/carrito}">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="nav-cart-badge">0</span>
+                        </a>
+                    </li>
+                    <!-- Sin sesión -->
+                    <li class="nav-item px-2" th:if="${session.usuarioLogueado == null}">
+                        <a class="nav-link" th:href="@{/login}">
+                            <i class="fa-solid fa-right-to-bracket"></i> [[#{plantilla.login}]]
+                        </a>
+                    </li>
+                    <li class="nav-item px-1" th:if="${session.usuarioLogueado == null}">
+                        <a class="btn btn-primary btn-nav px-3" th:href="@{/registro}">
+                            [[#{plantilla.registro}]]
+                        </a>
+                    </li>
+                    <!-- Con sesión -->
+                    <li class="nav-item dropdown" th:if="${session.usuarioLogueado != null}">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                           href="#" role="button" aria-expanded="false">
+                            <i class="fa-solid fa-user-circle"></i>
+                            [[${session.usuarioLogueado.nombre}]]
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" th:href="@{/perfil/direcciones}">
+                                    <i class="fa-solid fa-location-dot"></i> [[#{plantilla.direcciones}]]
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/perfil/pedidos}">
+                                    <i class="fa-solid fa-box-open"></i> [[#{plantilla.pedidos}]]
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"/></li>
+                            <li>
+                                <a class="dropdown-item text-danger" th:href="@{/logout}">
+                                    <i class="fa-solid fa-right-from-bracket"></i> [[#{plantilla.cerrarSesion}]]
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Fragmento #3 — footer -->
+<footer th:fragment="footer" class="p-3 mt-5">
+    <p class="lead text-center mb-0">[[#{plantilla.derechos}]] &copy;</p>
+</footer>
+
+<!-- Fragmento #4 — Toast de mensajes (error / éxito) -->
+<section th:fragment="mostrarToast">
+    <div aria-live="polite" aria-atomic="true"
+         class="position-fixed top-50 start-50 translate-middle" style="z-index: 1080;">
+
+        <div th:if="${error}" class="toast show"
+             role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+            <div class="toast-header text-white bg-danger">
+                <i class="fa-solid fa-bomb"></i>&nbsp;
+                <strong class="me-auto"> [[#{error}]]</strong>
+            </div>
+            <div class="toast-body">
+                <p>[[${error}]]</p>
+                <div class="mt-2 pt-2 border-top text-center">
+                    <button type="button" class="btn btn-secondary btn-sm"
+                            data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${todoOk}" class="toast show"
+             role="status" aria-live="polite" aria-atomic="true" data-bs-autohide="true">
+            <div class="toast-header text-white bg-success">
+                <i class="fa-solid fa-square-check"></i>&nbsp;
+                <strong class="me-auto"> [[#{atencion}]]</strong>
+            </div>
+            <div class="toast-body">
+                <p>[[${todoOk}]]</p>
+                <div class="mt-2 pt-2 border-top text-center">
+                    <button type="button" class="btn btn-secondary btn-sm"
+                            data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
