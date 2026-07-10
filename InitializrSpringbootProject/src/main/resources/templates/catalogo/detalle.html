@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4 mb-5">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a th:href="@{/}">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active" th:text="${producto.nombre}"></li>
+                </ol>
+            </nav>
+
+            <div class="row g-4">
+
+                <!-- Columna izquierda: imágenes -->
+                <div class="col-md-5">
+                    <div th:if="${imagenes != null and !imagenes.empty}">
+                        <!-- Imagen principal -->
+                        <div class="mb-3">
+                            <img th:src="${imagenes[0].urlImagen}"
+                                 id="imagenPrincipal"
+                                 class="img-fluid rounded shadow"
+                                 style="width:100%; height:350px; object-fit:cover;"
+                                 th:alt="${producto.nombre}"/>
+                        </div>
+                        <!-- Miniaturas -->
+                        <div class="d-flex gap-2 flex-wrap" th:if="${imagenes.size() > 1}">
+                            <img th:each="img : ${imagenes}"
+                                 th:src="${img.urlImagen}"
+                                 th:alt="${producto.nombre}"
+                                 class="img-thumbnail"
+                                 style="width:80px; height:80px; object-fit:cover; cursor:pointer;"
+                                 th:onclick="|document.getElementById('imagenPrincipal').src='${img.urlImagen}'|"/>
+                        </div>
+                    </div>
+                    <!-- Por si no hay imágenes -->
+                    <div th:if="${imagenes == null or imagenes.empty}"
+                         class="placeholder-img d-flex align-items-center justify-content-center rounded"
+                         style="height:350px; background:#f0f0f0;">
+                        <i class="fa-solid fa-screwdriver-wrench fa-4x text-muted"></i>
+                    </div>
+                </div>
+
+                <!-- Columna derecha con la información -->
+                <div class="col-md-7">
+                    <span class="badge bg-secondary mb-2" th:text="${producto.sku}"></span>
+                    <h2 class="fw-bold" th:text="${producto.nombre}"></h2>
+
+                    <p class="text-muted" 
+                       th:text="${producto.categoria != null ? producto.categoria.nombre : ''}">
+                    </p>
+
+                    <!-- El precio -->
+                    <div class="mb-3">
+                        <span class="fs-3 fw-bold text-primary"
+                              th:text="'₡' + ${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 0, 'POINT')}">
+                        </span>
+                        <span th:if="${producto.precioOferta != null}" class="ms-2">
+                            <span class="text-decoration-line-through text-muted fs-5"
+                                  th:text="'₡' + ${#numbers.formatDecimal(producto.precioOferta, 1, 'COMMA', 0, 'POINT')}">
+                            </span>
+                        </span>
+                    </div>
+
+                    <!-- Disponibilidad en tiempo real -->
+                    <div class="mb-3">
+                        <div th:if="${inventario != null}">
+                            <span th:if="${inventario.stockDisponible > 0}"
+                                  class="badge bg-success fs-6">
+                                <i class="fa-solid fa-check me-1"></i>
+                                Disponible — [[${inventario.stockDisponible}]] unidades
+                            </span>
+                            <span th:unless="${inventario.stockDisponible > 0}"
+                                  class="badge bg-danger fs-6">
+                                <i class="fa-solid fa-xmark me-1"></i>
+                                Sin stock
+                            </span>
+                        </div>
+                        <div th:unless="${inventario != null}">
+                            <span class="badge bg-warning text-dark fs-6">Sin información de stock</span>
+                        </div>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="mb-4" th:if="${producto.descripcion != null}">
+                        <h5 class="fw-semibold">Descripción</h5>
+                        <p th:text="${producto.descripcion}"></p>
+                    </div>
+
+                    <!-- Especificaciones técnicas -->
+                    <div class="mb-4">
+                        <h5 class="fw-semibold">Especificaciones técnicas</h5>
+                        <table class="table table-bordered table-sm">
+                            <tbody>
+                                <tr th:if="${producto.marca != null and !producto.marca.isBlank()}">
+                                    <th class="bg-light" style="width:40%">Marca</th>
+                                    <td th:text="${producto.marca}"></td>
+                                </tr>
+                                <tr th:if="${producto.material != null and !producto.material.isBlank()}">
+                                    <th class="bg-light">Material</th>
+                                    <td th:text="${producto.material}"></td>
+                                </tr>
+                                <tr th:if="${producto.dimensiones != null and !producto.dimensiones.isBlank()}">
+                                    <th class="bg-light">Dimensiones</th>
+                                    <td th:text="${producto.dimensiones}"></td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">SKU</th>
+                                    <td th:text="${producto.sku}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Botón agregar al carrito -->
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary btn-lg"
+                                th:disabled="${inventario == null or inventario.stockDisponible <= 0}">
+                            <i class="fa-solid fa-cart-shopping me-2"></i>Agregar al carrito
+                        </button>
+                        <a th:href="@{/}" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-arrow-left me-1"></i>Volver al inicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productos relacionados -->
+            <div class="mt-5" th:if="${relacionados != null and !relacionados.empty}">
+                <h4 class="fw-bold mb-3">Productos relacionados</h4>
+                <div class="row g-3">
+                    <div class="col-12 col-sm-6 col-lg-4" th:each="r : ${relacionados}">
+                        <div class="card-producto">
+                            <div class="placeholder-img d-flex align-items-center justify-content-center"
+                                 style="height:150px; background:#f0f0f0;">
+                                <i class="fa-solid fa-screwdriver-wrench fa-2x text-muted"></i>
+                            </div>
+                            <div class="p-3">
+                                <span class="badge bg-secondary mb-1" th:text="${r.sku}"></span>
+                                <h6 class="mt-1 mb-1 fw-semibold" th:text="${r.nombre}"></h6>
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="precio-oferta"
+                                          th:text="'₡' + ${#numbers.formatDecimal(r.precio, 1, 'COMMA', 0, 'POINT')}">
+                                    </span>
+                                </div>
+                                <a th:href="@{/catalogo/producto/{id}(id=${r.id})}"
+                                   class="btn btn-outline-primary btn-sm w-100">
+                                    <i class="fa-solid fa-eye"></i> Ver ficha
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
