@@ -28,7 +28,19 @@
                         <a class="nav-link" th:href="@{/catalogo}">
                             <i class="fa-solid fa-layer-group"></i> [[#{nav.catalogo}]]
                         </a>
+                        
                     </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" th:href="@{/producto/listado}">
+                            <i class="fa-solid fa-list-check"></i> [[#{nav.gestionarProductos}]]
+                        </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" th:href="@{/inventario/listado}">
+                            <i class="fa-solid fa-warehouse"></i> [[#{nav.inventario}]]
+                        </a>
+                    </li>
+                    
                     <li class="nav-item px-2">
                         <a class="nav-link" th:href="@{/catalogo/productos}">
                             <i class="fa-solid fa-boxes-stacked"></i> [[#{nav.productos}]]
