@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container">
+            <div class="card card-auth" style="max-width: 520px;">
+                <div class="card-header card-header-naranja text-center py-3">
+                    <h4 class="mb-0">
+                        <i class="fa-solid fa-user-plus"></i> [[#{registro.titulo}]]
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form th:action="@{/registro}" method="post"
+                          class="needs-validation" novalidate>
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label fw-semibold">
+                                [[#{registro.nombre}]]
+                            </label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                   required minlength="2" maxlength="120"
+                                   placeholder="Juan Pérez"/>
+                            <div class="invalid-feedback">
+                                Ingrese su nombre (mínimo 2 caracteres).
+                            </div>
+                        </div>
+                        <!-- Correo -->
+                        <div class="mb-3">
+                            <label for="correo" class="form-label fw-semibold">
+                                [[#{registro.correo}]]
+                            </label>
+                            <input type="email" class="form-control" id="correo" name="correo"
+                                   required placeholder="tu@correo.com"/>
+                            <div class="invalid-feedback">Ingrese un correo válido.</div>
+                        </div>
+                        <!-- Contraseña + barra de fuerza -->
+                        <div class="mb-1">
+                            <label for="contrasena" class="form-label fw-semibold">
+                                [[#{registro.contrasena}]]
+                            </label>
+                            <input type="password" class="form-control" id="contrasena"
+                                   name="contrasena" required minlength="8"/>
+                            <div class="progress mt-1" style="height: 5px;">
+                                <div id="strength-bar" class="strength-bar"></div>
+                            </div>
+                            <small id="contrasena-feedback" class="form-text"></small>
+                            <div class="invalid-feedback">
+                                La contraseña debe tener mínimo 8 caracteres, un número y un símbolo.
+                            </div>
+                        </div>
+                        <!-- Teléfono -->
+                        <div class="mb-3 mt-3">
+                            <label for="telefono" class="form-label fw-semibold">
+                                [[#{registro.telefono}]]
+                            </label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono"
+                                   maxlength="20" placeholder="8888-8888"/>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa-solid fa-user-plus"></i> [[#{accion.registrarse}]]
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3 bg-white">
+                    <small class="text-muted">
+                        ¿Ya tienes cuenta?
+                        <a th:href="@{/login}" style="color: #E8641A; text-decoration: none; font-weight: 600;">
+                            [[#{plantilla.login}]]
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
