@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+            <!-- Encabezado -->
+            <div class="row py-3 mb-3 bg-light rounded align-items-center">
+                <div class="col">
+                    <h3 class="mb-0">
+                        <i class="fa-solid fa-box-open" style="color: #E8641A;"></i>
+                        [[#{pedido.titulo}]]
+                    </h3>
+                </div>
+            </div>
+
+            <!-- Sin pedidos -->
+            <div th:if="${#lists.isEmpty(pedidos)}" class="alert alert-info">
+                <i class="fa-solid fa-circle-info"></i>
+                No tienes pedidos registrados aún.
+            </div>
+
+            <!-- Tabla de pedidos -->
+            <div class="table-responsive" th:unless="${#lists.isEmpty(pedidos)}">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>[[#{pedido.numero}]]</th>
+                            <th>[[#{pedido.fecha}]]</th>
+                            <th>[[#{pedido.estado}]]</th>
+                            <th class="text-end">[[#{pedido.total}]]</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pedido : ${pedidos}">
+                            <td>
+                                <strong th:text="${pedido.numeroOrden}"></strong>
+                            </td>
+                            <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></td>
+                            <td>
+                                <section th:replace="~{pedidos/fragmentos :: badgeEstado(${pedido.estado})}"></section>
+                            </td>
+                            <td class="text-end fw-bold"
+                                th:text="${'₡ ' + #numbers.formatDecimal(pedido.total, 1, 'COMMA', 2, 'POINT')}">
+                            </td>
+                            <td class="text-center">
+                                <a th:href="@{/perfil/pedidos/{id}(id=${pedido.id})}"
+                                   class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-eye"></i> [[#{pedido.detalle}]]
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
