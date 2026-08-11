@@ -4,6 +4,7 @@ import com.proyecto.toolboxcr.domain.Producto;
 import com.proyecto.toolboxcr.repositorio.InventarioRepository;
 import com.proyecto.toolboxcr.repositorio.ProductoImagenRepository;
 import com.proyecto.toolboxcr.service.ProductoService;
+import com.proyecto.toolboxcr.service.CategoriaService;
 import java.text.Normalizer;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,20 +13,36 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class CatalogoController {
 
     private final ProductoService productoService;
+    private final CategoriaService categoriaService;
     private final InventarioRepository inventarioRepository;
     private final ProductoImagenRepository productoImagenRepository;
 
     public CatalogoController(ProductoService productoService,
+            CategoriaService categoriaService,
             InventarioRepository inventarioRepository,
             ProductoImagenRepository productoImagenRepository) {
         this.productoService = productoService;
+        this.categoriaService = categoriaService;
         this.inventarioRepository = inventarioRepository;
         this.productoImagenRepository = productoImagenRepository;
+    }
+
+    @ModelAttribute("categorias")
+    public List<com.proyecto.toolboxcr.domain.Categoria> getCategorias() {
+        return categoriaService.listarCategorias();
+    }
+
+    @ModelAttribute("ofertas")
+    public List<Producto> getOfertas() {
+        return productoService.listarProductosActivos().stream()
+                .filter(p -> p.getPrecioOferta() != null)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/")
@@ -66,6 +83,17 @@ public class CatalogoController {
             model.addAttribute("totalResultados", resultados.size());
         }
         model.addAttribute("q", q);
+        return "index";
+    }
+
+    @GetMapping("/catalogo/ofertas")
+    public String ofertas(Model model) {
+        List<Producto> resultados = productoService.listarProductosActivos().stream()
+                .filter(p -> p.getPrecioOferta() != null)
+                .collect(Collectors.toList());
+        model.addAttribute("resultados", resultados);
+        model.addAttribute("totalResultados", resultados.size());
+        model.addAttribute("q", "Ofertas");
         return "index";
     }
 

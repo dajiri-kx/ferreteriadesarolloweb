@@ -73,4 +73,7 @@ public class Producto {
 
     @Column(name = "fecha_creacion", insertable = false, updatable = false)
     private LocalDateTime fechaCreacion;
+
+    @jakarta.persistence.OneToMany(mappedBy = "producto", fetch = jakarta.persistence.FetchType.LAZY)
+    private java.util.List<ProductoImagen> imagenes;
 }

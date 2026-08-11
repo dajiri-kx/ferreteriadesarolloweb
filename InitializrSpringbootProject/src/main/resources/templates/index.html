@@ -64,16 +64,28 @@
                     <div class="col-12 col-sm-6 col-lg-4" th:each="p : ${resultados}">
                         <div class="card-producto">
                             <div class="placeholder-img">
-                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                                <img th:if="${p.imagenes != null and !p.imagenes.empty}"
+                                     th:src="${p.imagenes[0].urlImagen}"
+                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                     th:alt="${p.nombre}"/>
+                                <i th:if="${p.imagenes == null or p.imagenes.empty}"
+                                   class="fa-solid fa-screwdriver-wrench"></i>
                             </div>
                             <div class="p-3">
                                 <span class="badge bg-secondary mb-1" th:text="${p.sku}"></span>
                                 <h6 class="mt-1 mb-1 fw-semibold" th:text="${p.nombre}"></h6>
                                 <p class="text-muted small mb-2" th:text="${p.descripcion}"></p>
                                 <div class="d-flex align-items-center gap-2 mb-2">
-                                    <span class="precio-oferta"
-                                          th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}">
-                                    </span>
+                                    <th:block th:if="${p.precioOferta != null}">
+                                        <span class="precio-original text-decoration-line-through text-muted small"
+                                              th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                        <span class="precio-oferta fw-bold text-danger"
+                                              th:text="'₡' + ${#numbers.formatDecimal(p.precioOferta, 1, 'COMMA', 0, 'POINT')}"></span>
+                                    </th:block>
+                                    <th:block th:unless="${p.precioOferta != null}">
+                                        <span class="precio-oferta"
+                                              th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                    </th:block>
                                 </div>
                                 <span th:if="${p.activo}" class="badge bg-success">Disponible</span>
                                 <span th:unless="${p.activo}" class="badge bg-danger">No disponible</span>
@@ -103,40 +115,20 @@
             <div class="container">
                 <h2 class="fw-bold mb-4 text-center">[[#{index.categorias}]]</h2>
                 <div class="row g-3 justify-content-center">
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <a th:href="@{/catalogo(categoria='herramientas')}" class="cat-card">
-                            <div class="cat-icon"><i class="fa-solid fa-wrench"></i></div>
-                            <div class="cat-label">[[#{index.cat.herramientas}]]</div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <a th:href="@{/catalogo(categoria='plomeria')}" class="cat-card">
-                            <div class="cat-icon"><i class="fa-solid fa-faucet"></i></div>
-                            <div class="cat-label">[[#{index.cat.plomeria}]]</div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <a th:href="@{/catalogo(categoria='electrico')}" class="cat-card">
-                            <div class="cat-icon"><i class="fa-solid fa-bolt"></i></div>
-                            <div class="cat-label">[[#{index.cat.electrico}]]</div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <a th:href="@{/catalogo(categoria='pintura')}" class="cat-card">
-                            <div class="cat-icon"><i class="fa-solid fa-paint-roller"></i></div>
-                            <div class="cat-label">[[#{index.cat.pintura}]]</div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <a th:href="@{/catalogo(categoria='jardineria')}" class="cat-card">
-                            <div class="cat-icon"><i class="fa-solid fa-seedling"></i></div>
-                            <div class="cat-label">[[#{index.cat.jardineria}]]</div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-sm-4 col-md-2">
-                        <a th:href="@{/catalogo(categoria='seguridad')}" class="cat-card">
-                            <div class="cat-icon"><i class="fa-solid fa-lock"></i></div>
-                            <div class="cat-label">[[#{index.cat.seguridad}]]</div>
+                    <div class="col-6 col-sm-4 col-md-2" th:each="cat : ${categorias}">
+                        <a th:href="@{/catalogo(categoria=${cat.nombre})}" class="cat-card">
+                            <div class="cat-icon">
+                                <i th:class="${'fa-solid ' + (
+                                    cat.nombre == 'Herramientas' ? 'fa-wrench' : 
+                                    cat.nombre == 'Plomería' ? 'fa-faucet' : 
+                                    cat.nombre == 'Eléctrico' ? 'fa-bolt' : 
+                                    cat.nombre == 'Pinturas' ? 'fa-paint-roller' : 
+                                    cat.nombre == 'Jardinería' ? 'fa-seedling' : 
+                                    cat.nombre == 'Seguridad' ? 'fa-lock' : 
+                                    cat.nombre == 'Tornillería' ? 'fa-screwdriver' : 'fa-screwdriver-wrench'
+                                    )}"></i>
+                            </div>
+                            <div class="cat-label" th:text="${cat.nombre}"></div>
                         </a>
                     </div>
                 </div>
@@ -152,67 +144,47 @@
                         [[#{index.ofertas.verTodas}]] <i class="fa-solid fa-arrow-right ms-1"></i>
                     </a>
                 </div>
-                <div class="row g-4">
-                    <!-- Producto 1 -->
-                    <div class="col-12 col-sm-6 col-lg-4">
+                <div class="row g-4" th:if="${ofertas != null and !ofertas.empty}">
+                    <div class="col-12 col-sm-6 col-lg-4" th:each="p : ${ofertas}">
                         <div class="card-producto">
                             <div class="placeholder-img">
-                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                                <img th:if="${p.imagenes != null and !p.imagenes.empty}"
+                                     th:src="${p.imagenes[0].urlImagen}"
+                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                     th:alt="${p.nombre}"/>
+                                <i th:if="${p.imagenes == null or p.imagenes.empty}"
+                                   class="fa-solid fa-screwdriver-wrench"></i>
                             </div>
                             <div class="p-3">
-                                <span class="oferta-badge">-25%</span>
-                                <h6 class="mt-2 mb-1 fw-semibold">[[#{index.placeholder.producto1}]]</h6>
-                                <p class="text-muted small mb-2">Herramienta de alta durabilidad.</p>
+                                <span class="oferta-badge" th:if="${p.porcentajeDescuento != null}" 
+                                      th:text="'-' + ${#numbers.formatDecimal(p.porcentajeDescuento, 0, 0)} + '%'"></span>
+                                <h6 class="mt-2 mb-1 fw-semibold" th:text="${p.nombre}"></h6>
+                                <p class="text-muted small mb-2" th:text="${p.descripcion}"></p>
                                 <div class="d-flex align-items-center gap-2">
-                                    <span class="precio-original">&#8353;18.990</span>
-                                    <span class="precio-oferta">&#8353;14.242</span>
+                                    <span class="precio-original text-decoration-line-through text-muted"
+                                          th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                    <span class="precio-oferta fw-bold text-danger"
+                                          th:text="'₡' + ${#numbers.formatDecimal(p.precioOferta, 1, 'COMMA', 0, 'POINT')}"></span>
                                 </div>
-                                <a th:href="@{/catalogo}" class="btn btn-primary btn-sm w-100 mt-2">
-                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
-                                </a>
+                                <div class="d-flex gap-2 mt-3">
+                                    <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
+                                       class="btn btn-outline-primary btn-sm flex-grow-1">
+                                        <i class="fa-solid fa-eye"></i> Ver ficha
+                                    </a>
+                                    <form th:action="@{/carrito/agregar}" method="post" class="d-inline">
+                                        <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                        <input type="hidden" name="cantidad" value="1"/>
+                                        <button type="submit" class="btn btn-primary btn-sm" th:disabled="${!p.activo}">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Producto 2 -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="card-producto">
-                            <div class="placeholder-img">
-                                <i class="fa-solid fa-hammer"></i>
-                            </div>
-                            <div class="p-3">
-                                <span class="oferta-badge">-15%</span>
-                                <h6 class="mt-2 mb-1 fw-semibold">[[#{index.placeholder.producto2}]]</h6>
-                                <p class="text-muted small mb-2">Herramienta de alta durabilidad.</p>
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="precio-original">&#8353;9.500</span>
-                                    <span class="precio-oferta">&#8353;8.075</span>
-                                </div>
-                                <a th:href="@{/catalogo}" class="btn btn-primary btn-sm w-100 mt-2">
-                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Producto 3 -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="card-producto">
-                            <div class="placeholder-img">
-                                <i class="fa-solid fa-paint-brush"></i>
-                            </div>
-                            <div class="p-3">
-                                <span class="oferta-badge">-20%</span>
-                                <h6 class="mt-2 mb-1 fw-semibold">[[#{index.placeholder.producto3}]]</h6>
-                                <p class="text-muted small mb-2">Herramienta de alta durabilidad.</p>
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="precio-original">&#8353;6.200</span>
-                                    <span class="precio-oferta">&#8353;4.960</span>
-                                </div>
-                                <a th:href="@{/catalogo}" class="btn btn-primary btn-sm w-100 mt-2">
-                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="alert alert-info text-center" th:if="${ofertas == null or ofertas.empty}">
+                    No hay ofertas disponibles en este momento.
                 </div>
             </div>
         </section>
