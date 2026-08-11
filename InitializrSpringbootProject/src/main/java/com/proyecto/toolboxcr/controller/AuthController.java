@@ -18,35 +18,16 @@ public class AuthController {
 
     /* CU-02 — Mostrar login */
     @GetMapping("/login")
-    public String mostrarLogin() {
-        return "login/login";
-    }
-
-    /* CU-02 — Procesar login */
-    @PostMapping("/login")
-    public String procesarLogin(@RequestParam String correo,
-                                @RequestParam String contrasena,
-                                HttpSession session,
-                                RedirectAttributes redirectAttrs) {
-        try {
-            Usuario usuario = usuarioService.login(correo, contrasena);
-            session.setAttribute("usuarioLogueado", usuario);
-            return "redirect:/";
-        } catch (IllegalStateException e) {
-            redirectAttrs.addFlashAttribute("error",
-                    "Su cuenta está bloqueada. Intente nuevamente en 15 minutos.");
-            return "redirect:/login";
-        } catch (IllegalArgumentException e) {
-            redirectAttrs.addFlashAttribute("error", e.getMessage());
-            return "redirect:/login";
+    public String mostrarLogin(@RequestParam(value = "error", required = false) String error,
+                               @RequestParam(value = "logout", required = false) String logout,
+                               org.springframework.ui.Model model) {
+        if (error != null) {
+            model.addAttribute("error", "Correo o contraseña incorrectos, o cuenta bloqueada.");
         }
-    }
-
-    /* CU-02 — Cerrar sesión */
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/login";
+        if (logout != null) {
+            model.addAttribute("todoOk", "Ha cerrado sesión correctamente.");
+        }
+        return "login/login";
     }
 
     /* CU-01 — Mostrar formulario de registro */
