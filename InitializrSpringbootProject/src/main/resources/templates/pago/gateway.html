@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head(title='Pasarela de Pago - ToolboxCR')}"></head>
+    <body class="d-flex flex-column min-vh-100 bg-light">
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <main class="container my-5 flex-grow-1">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Título -->
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold text-dark mb-1">
+                            <i class="fa-solid fa-lock text-success me-2"></i>Pago Seguro
+                        </h2>
+                        <p class="text-muted">Selecciona tu método de pago preferido para completar la orden <span class="fw-bold text-primary" th:text="${pedido.numeroOrden}"></span></p>
+                    </div>
+
+                    <!-- Mensajes de error -->
+                    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                        <i class="fa-solid fa-circle-xmark me-2"></i><span th:text="${error}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Tarjeta Resumen Rápido -->
+                    <div class="card shadow-sm border-0 mb-4 rounded-3 bg-white">
+                        <div class="card-body d-flex justify-content-between align-items-center py-3 px-4">
+                            <div>
+                                <span class="text-muted small">Total a pagar:</span>
+                                <h3 class="fw-bold text-primary mb-0">
+                                    Subtotal + Envío: ₡<span th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </h3>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-secondary p-2" th:text="${pedido.metodoEnvio.nombre}"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Opciones de Pago -->
+                    <div class="row g-4">
+                        <!-- Opción 1: Tarjeta de Crédito/Débito (Stripe Simulado) -->
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm border-0 rounded-3 text-center p-4 hover-shadow transition-all bg-white">
+                                <div class="mb-3 text-primary">
+                                    <i class="fa-solid fa-credit-card fa-3x"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark">Tarjeta de Crédito / Débito</h5>
+                                <p class="text-muted small flex-grow-1">Paga de forma instantánea y segura procesando tu tarjeta de crédito o débito a través de Stripe.</p>
+                                <a th:href="@{/pago/stripe/{id}(id=${pedido.id})}" class="btn btn-primary w-100 py-2 fw-semibold mt-3 rounded-3">
+                                    Pagar con Tarjeta <i class="fa-solid fa-chevron-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Opción 2: SINPE Móvil (Transferencia Local) -->
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm border-0 rounded-3 p-4 hover-shadow transition-all bg-white">
+                                <div class="text-center mb-3 text-success">
+                                    <i class="fa-solid fa-mobile-screen-button fa-3x"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark text-center">SINPE Móvil</h5>
+                                <p class="text-muted small text-center mb-3">Realiza la transferencia desde tu celular e ingresa el número de comprobante para su validación.</p>
+
+                                <button class="btn btn-outline-success w-100 py-2 fw-semibold rounded-3 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#sinpeCollapse" aria-expanded="false" aria-controls="sinpeCollapse">
+                                    Ver Instrucciones SINPE <i class="fa-solid fa-chevron-down ms-1"></i>
+                                </button>
+
+                                <div class="collapse" id="sinpeCollapse">
+                                    <div class="p-3 bg-light rounded-3 border mb-3">
+                                        <ol class="small text-muted ps-3 mb-0">
+                                            <li>Envía el monto de <strong>₡<span th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 0, 'POINT')}"></span></strong> al número telefónico: <strong>8888-8888</strong>.</li>
+                                            <li>Destinatario: <strong>Ferretería ToolboxCR S.A.</strong></li>
+                                            <li>En la descripción del SINPE escribe: <strong><span th:text="${pedido.numeroOrden}"></span></strong>.</li>
+                                        </ol>
+                                    </div>
+
+                                    <form th:action="@{/pago/sinpe/procesar}" method="post" class="needs-validation" novalidate>
+                                        <input type="hidden" name="pedidoId" th:value="${pedido.id}" />
+                                        <div class="mb-3">
+                                            <label for="comprobante" class="form-label small fw-bold text-muted">Número de Comprobante / Transacción</label>
+                                            <input type="text" name="comprobante" id="comprobante" class="form-control rounded-3" placeholder="Ej. 1029384756" required pattern="\d{4,20}">
+                                            <div class="invalid-feedback">
+                                                Por favor ingresa un número de comprobante válido (solo números, mínimo 4 dígitos).
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-success w-100 py-2 fw-bold rounded-3">
+                                            <i class="fa-solid fa-circle-check me-1"></i>Confirmar Transferencia
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón Regresar -->
+                    <div class="text-center mt-5">
+                        <a th:href="@{/carrito/resumen/{id}(id=${pedido.id})}" class="text-decoration-none text-muted small fw-semibold">
+                            <i class="fa-solid fa-arrow-left me-1"></i>Volver al resumen de orden
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+        <script>
+            // Habilitar la validación de Bootstrap
+            (function () {
+                'use strict'
+                var forms = document.querySelectorAll('.needs-validation')
+                Array.prototype.slice.call(forms).forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
+    </body>
+</html>

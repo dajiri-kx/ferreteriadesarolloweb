@@ -47,6 +47,21 @@ public class Pedido {
     @JoinColumn(name = "direccion_envio_id")
     private DireccionEnvio direccionEnvio;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cupon_id")
+    private Cupon cupon;
+
     @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
     private List<DetallePedido> detalles = new ArrayList<>();
+
+    @Transient
+    public BigDecimal getIva() {
+        if (subtotal == null) return BigDecimal.ZERO;
+        BigDecimal desc = descuentoTotal != null ? descuentoTotal : BigDecimal.ZERO;
+        BigDecimal base = subtotal.subtract(desc);
+        if (base.compareTo(BigDecimal.ZERO) < 0) {
+            base = BigDecimal.ZERO;
+        }
+        return base.multiply(new BigDecimal("0.13")).setScale(2, java.math.RoundingMode.HALF_UP);
+    }
 }

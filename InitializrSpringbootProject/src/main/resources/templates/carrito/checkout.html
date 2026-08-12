@@ -113,9 +113,18 @@
                                     <span class="text-muted">[[#{checkout.subtotal}]]</span>
                                     <span th:text="'₡' + ${#numbers.formatDecimal(subtotal, 1, 'COMMA', 0, 'POINT')}"></span>
                                 </div>
-                                <div class="d-flex justify-content-between mb-3">
+                                <div th:if="${descuento != null and descuento.compareTo(T(java.math.BigDecimal).ZERO) > 0}" 
+                                     class="d-flex justify-content-between mb-1 text-success fw-semibold">
+                                    <span th:text="'Descuento (Cupón: ' + ${cuponAplicado.codigo} + ')'">Descuento</span>
+                                    <span th:text="'-₡' + ${#numbers.formatDecimal(descuento, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">[[#{checkout.costoEnvio}]]</span>
                                     <span id="costo-envio-display">—</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="text-muted">IVA (13%)</span>
+                                    <span id="iva-display">—</span>
                                 </div>
                                 <hr/>
                                 <div class="d-flex justify-content-between fw-bold fs-5">
@@ -141,19 +150,58 @@
 
         <footer th:replace="~{general/fragmentos :: footer}"></footer>
 
-        <!-- Script para mostrar/ocultar dirección y actualizar total en tiempo real -->
+        <!-- Script para mostrar/ocultar dirección, validar y actualizar total en tiempo real -->
         <script th:inline="javascript">
             const subtotalBase = /*[[${subtotal}]]*/ 0;
+            const descuentoBase = /*[[${descuento}]]*/ 0;
 
             function formatColones(amount) {
                 return '₡' + Number(amount).toLocaleString('es-CR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
             }
 
-            function actualizarResumen(costoEnvio) {
-                const total = parseFloat(subtotalBase) + parseFloat(costoEnvio);
-                document.getElementById('costo-envio-display').textContent =
-                    parseFloat(costoEnvio) === 0 ? '¡Gratis!' : formatColones(costoEnvio);
-                document.getElementById('total-display').textContent = formatColones(total);
+            function obtenerEnvioId() {
+                const checked = document.querySelector('.metodo-envio-radio:checked');
+                return checked ? checked.value : null;
+            }
+
+            function obtenerDireccionId() {
+                const select = document.getElementById('selectDireccion');
+                return select ? select.value : null;
+            }
+
+            function recalcularEnvioYTotal() {
+                const metodoId = obtenerEnvioId();
+                if (!metodoId) return;
+
+                const checkedRadio = document.querySelector('.metodo-envio-radio:checked');
+                const requiere = checkedRadio.dataset.requiere === 'true';
+                const direccionId = requiere ? obtenerDireccionId() : '';
+
+                if (requiere && !direccionId) {
+                    document.getElementById('costo-envio-display').textContent = 'Seleccione dirección';
+                    const netSubtotal = subtotalBase - descuentoBase;
+                    const ivaDefault = Math.round(netSubtotal * 0.13);
+                    document.getElementById('iva-display').textContent = formatColones(ivaDefault);
+                    document.getElementById('total-display').textContent = formatColones(netSubtotal + ivaDefault);
+                    return;
+                }
+
+                fetch(`/carrito/calcular-envio?metodoEnvioId=${metodoId}&direccionId=${direccionId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const costo = data.costoEnvio;
+                            const total = data.total;
+                            const iva = data.iva;
+                            document.getElementById('costo-envio-display').textContent =
+                                parseFloat(costo) === 0 ? '¡Gratis!' : formatColones(costo);
+                            document.getElementById('iva-display').textContent = formatColones(iva);
+                            document.getElementById('total-display').textContent = formatColones(total);
+                        } else {
+                            console.error('Error calculando envío:', data.message);
+                        }
+                    })
+                    .catch(err => console.error('Error de red:', err));
             }
 
             document.querySelectorAll('.metodo-envio-radio').forEach(function (radio) {
@@ -167,12 +215,43 @@
                         selectDireccion.required = requiere;
                     }
 
-                    // Leer costo del label hermano (data attribute inyectado)
-                    const costoAttr = this.closest('label').querySelector('[data-costo]');
-                    // Fallback: buscar en el DOM el costo desde el badge del label
-                    // Usamos un data-costo en el radio directamente
-                    actualizarResumen(this.dataset.costo || 0);
+                    recalcularEnvioYTotal();
                 });
+            });
+
+            const selectDireccion = document.getElementById('selectDireccion');
+            if (selectDireccion) {
+                selectDireccion.addEventListener('change', recalcularEnvioYTotal);
+            }
+
+            // Validación al enviar el formulario
+            document.querySelector('form').addEventListener('submit', function (event) {
+                const radioSeleccionado = document.querySelector('.metodo-envio-radio:checked');
+                if (!radioSeleccionado) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    document.getElementById('metodo-error').style.setProperty('display', 'block', 'important');
+                    return false;
+                } else {
+                    document.getElementById('metodo-error').style.setProperty('display', 'none', 'important');
+                }
+
+                const requiere = radioSeleccionado.dataset.requiere === 'true';
+                const selectDireccion = document.getElementById('selectDireccion');
+                if (requiere && selectDireccion && !selectDireccion.value) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    selectDireccion.classList.add('is-invalid');
+                    return false;
+                } else if (selectDireccion) {
+                    selectDireccion.classList.remove('is-invalid');
+                }
+
+                if (!this.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                this.classList.add('was-validated');
             });
         </script>
     </body>

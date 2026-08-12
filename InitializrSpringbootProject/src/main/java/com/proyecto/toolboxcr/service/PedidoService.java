@@ -37,4 +37,14 @@ public class PedidoService {
     public List<DetallePedido> getDetalles(Pedido pedido) {
         return detalleRepo.findByPedido(pedido);
     }
+
+    /* CC-05 — Cancelar un pedido pendiente (ej. si vuelve a editar el carrito) */
+    @org.springframework.transaction.annotation.Transactional
+    public void cancelarPedido(Long idPedido, Usuario cliente) {
+        Pedido pedido = getDetalle(idPedido, cliente);
+        if ("pendiente".equals(pedido.getEstado())) {
+            pedido.setEstado("cancelado");
+            pedidoRepo.save(pedido);
+        }
+    }
 }

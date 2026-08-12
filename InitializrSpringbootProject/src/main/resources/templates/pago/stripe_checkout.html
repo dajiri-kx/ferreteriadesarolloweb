@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head(title='Stripe Checkout - ToolboxCR')}"></head>
+    <body class="d-flex flex-column min-vh-100 bg-light" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <main class="container my-5 flex-grow-1">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <!-- Contenedor Estilo Stripe -->
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden bg-white">
+                        <!-- Cabecera de marca Stripe -->
+                        <div class="p-4 border-bottom text-center" style="background-color: #635bff; color: white;">
+                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                <i class="fa-brands fa-stripe fa-4x me-2"></i>
+                                <span class="fs-4 fw-semibold border-start ps-2">Checkout</span>
+                            </div>
+                            <p class="mb-0 text-white-50 small">Conexión encriptada de 256 bits</p>
+                        </div>
+
+                        <div class="card-body p-4 p-md-5">
+                            <!-- Detalle de Pago -->
+                            <div class="mb-4">
+                                <span class="text-muted small">Pagar a Ferretería ToolboxCR</span>
+                                <h2 class="fw-bold text-dark mt-1">
+                                    ₡<span th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </h2>
+                                <div class="text-muted small">
+                                    Orden: <span class="fw-semibold text-primary" th:text="${pedido.numeroOrden}"></span>
+                                </div>
+                            </div>
+
+                            <!-- Formulario de Tarjeta -->
+                            <form th:action="@{/pago/stripe/procesar}" method="post" id="stripeForm" class="needs-validation" novalidate>
+                                <input type="hidden" name="pedidoId" th:value="${pedido.id}" />
+
+                                <!-- Nombre del titular -->
+                                <div class="mb-3">
+                                    <label for="cardholderName" class="form-label small fw-bold text-muted">Nombre en la tarjeta</label>
+                                    <input type="text" class="form-control py-2 rounded-3 border-secondary-subtle" id="cardholderName" placeholder="Juan Pérez" required>
+                                    <div class="invalid-feedback">Por favor ingrese el nombre del titular.</div>
+                                </div>
+
+                                <!-- Tarjeta de crédito -->
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label small fw-bold text-muted">Información de la tarjeta</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-white border-end-0 border-secondary-subtle">
+                                            <i class="fa-solid fa-credit-card text-muted"></i>
+                                        </span>
+                                        <input type="text" class="form-control py-2 border-start-0 border-secondary-subtle" id="cardNumber" placeholder="4242 4242 4242 4242" required maxlength="19">
+                                        <div class="invalid-feedback">Por favor ingrese un número de tarjeta válido.</div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 mb-4">
+                                    <div class="col-6">
+                                        <label for="cardExpiry" class="form-label small fw-bold text-muted">Caducidad</label>
+                                        <input type="text" class="form-control py-2 rounded-3 border-secondary-subtle" id="cardExpiry" placeholder="MM/AA" required maxlength="5">
+                                        <div class="invalid-feedback">Requerido.</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="cardCvc" class="form-label small fw-bold text-muted">CVC</label>
+                                        <input type="password" class="form-control py-2 rounded-3 border-secondary-subtle" id="cardCvc" placeholder="123" required maxlength="4">
+                                        <div class="invalid-feedback">Requerido.</div>
+                                    </div>
+                                </div>
+
+                                <!-- SECCIÓN DE SIMULACIÓN (Dinamismo interactivo) -->
+                                <div class="p-3 bg-light rounded-3 border border-warning mb-4">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fa-solid fa-flask text-warning me-2 fs-5"></i>
+                                        <span class="fw-bold text-dark small">Entorno de Pruebas de Stripe</span>
+                                    </div>
+                                    <p class="text-muted small mb-2">Selecciona el resultado que deseas simular para esta transacción:</p>
+                                    
+                                    <div class="mb-2">
+                                        <label for="simularExitoSelect" class="form-label small fw-semibold text-muted">Resultado de Simulación</label>
+                                        <select class="form-select form-select-sm rounded-3 border-warning-subtle" id="simularExitoSelect" onchange="toggleFalloInput(this.value)">
+                                            <option value="true">Transacción Exitosa (Success)</option>
+                                            <option value="false_insuficientes">Fallo: Fondos Insuficientes</option>
+                                            <option value="false_expirada">Fallo: Tarjeta Expirada</option>
+                                            <option value="false_red">Fallo: Error de Conexión del Banco</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Campos ocultos de simulación para enviar al Backend -->
+                                    <input type="hidden" name="simularExito" id="simularExitoInput" value="true" />
+                                    <input type="hidden" name="motivoFallo" id="motivoFalloInput" value="" />
+                                </div>
+
+                                <!-- Botón Pagar -->
+                                <button type="submit" id="submitBtn" class="btn btn-primary btn-lg w-100 py-3 rounded-3 shadow fw-bold border-0" style="background-color: #635bff;">
+                                    <span id="btnText">
+                                        <i class="fa-solid fa-lock me-2"></i>Pagar ₡<span th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 0, 'POINT')}"></span>
+                                    </span>
+                                    <span id="btnSpinner" class="d-none">
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Procesando pago...
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Cancelar / Volver -->
+                    <div class="text-center mt-4">
+                        <a th:href="@{/pago/gateway/{id}(id=${pedido.id})}" class="text-decoration-none text-muted small fw-semibold">
+                            <i class="fa-solid fa-arrow-left me-1"></i>Elegir otro método de pago
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+        <script>
+            // Formatear espaciado del número de tarjeta
+            const cardInput = document.getElementById('cardNumber');
+            if (cardInput) {
+                cardInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                    let matches = value.match(/\d{4,16}/g);
+                    let match = matches && matches[0] || '';
+                    let parts = [];
+
+                    for (let i=0, len=match.length; i<len; i+=4) {
+                        parts.push(match.substring(i, i+4));
+                    }
+
+                    if (parts.length > 0) {
+                        e.target.value = parts.join(' ');
+                    } else {
+                        e.target.value = value;
+                    }
+                });
+            }
+
+            // Formatear Expiración MM/AA
+            const expiryInput = document.getElementById('cardExpiry');
+            if (expiryInput) {
+                expiryInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\//g, '').replace(/[^0-9]/gi, '');
+                    if (value.length >= 2) {
+                        e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    } else {
+                        e.target.value = value;
+                    }
+                });
+            }
+
+            // Lógica de simulación de fallo
+            function toggleFalloInput(value) {
+                const simularExitoInput = document.getElementById('simularExitoInput');
+                const motivoFalloInput = document.getElementById('motivoFalloInput');
+
+                if (value === 'true') {
+                    simularExitoInput.value = 'true';
+                    motivoFalloInput.value = '';
+                } else {
+                    simularExitoInput.value = 'false';
+                    if (value === 'false_insuficientes') {
+                        motivoFalloInput.value = 'Fondos insuficientes';
+                    } else if (value === 'false_expirada') {
+                        motivoFalloInput.value = 'La tarjeta de crédito ha expirado';
+                    } else if (value === 'false_red') {
+                        motivoFalloInput.value = 'Error de conexión con el banco emisor';
+                    }
+                }
+            }
+
+            // Validación y Animación de Carga
+            document.getElementById('stripeForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const form = this;
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    return;
+                }
+
+                // Deshabilitar botón y mostrar spinner
+                const submitBtn = document.getElementById('submitBtn');
+                const btnText = document.getElementById('btnText');
+                const btnSpinner = document.getElementById('btnSpinner');
+
+                submitBtn.disabled = true;
+                btnText.classList.add('d-none');
+                btnSpinner.classList.remove('d-none');
+
+                // Simular retraso de procesamiento de 1.5s
+                setTimeout(function () {
+                    form.submit();
+                }, 1500);
+            });
+        </script>
+    </body>
+</html>

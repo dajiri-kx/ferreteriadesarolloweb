@@ -1,6 +1,6 @@
 <!-- Fragmento #1 — head: CSS y JS para todas las páginas -->
 <head th:fragment="head">
-    <title>ToolboxCR</title>
+    <title th:text="${title ?: 'ToolboxCR'}">ToolboxCR</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"  rel="stylesheet"/>

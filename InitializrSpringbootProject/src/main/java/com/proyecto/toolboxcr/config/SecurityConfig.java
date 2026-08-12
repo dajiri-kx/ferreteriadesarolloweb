@@ -28,7 +28,7 @@ public class SecurityConfig {
     };
 
     public static final String[] CLIENTE_URLS = {
-        "/carrito/**", "/perfil/**", "/pedidos/**"
+        "/carrito/**", "/perfil/**", "/pedidos/**", "/pago/**"
     };
 
     public static final String[] VENDEDOR_URLS = {

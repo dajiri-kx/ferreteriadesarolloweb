@@ -76,4 +76,24 @@ public class Producto {
 
     @jakarta.persistence.OneToMany(mappedBy = "producto", fetch = jakarta.persistence.FetchType.LAZY)
     private java.util.List<ProductoImagen> imagenes;
+
+    @jakarta.persistence.Transient
+    public BigDecimal getPeso() {
+        if (nombre == null) {
+            return new BigDecimal("0.50");
+        }
+        String nombreLower = nombre.toLowerCase();
+        if (nombreLower.contains("taladro") || nombreLower.contains("percutor")) {
+            return new BigDecimal("3.50");
+        } else if (nombreLower.contains("pala") || nombreLower.contains("carretillo")) {
+            return new BigDecimal("5.00");
+        } else if (nombreLower.contains("martillo") || nombreLower.contains("macana") || nombreLower.contains("serrucho") || nombreLower.contains("cerrucho")) {
+            return new BigDecimal("1.00");
+        } else if (nombreLower.contains("destornillador") || nombreLower.contains("cinta") || nombreLower.contains("llave") || nombreLower.contains("alicate") || nombreLower.contains("cuchara")) {
+            return new BigDecimal("0.30");
+        } else if (nombreLower.contains("juego") || nombreLower.contains("kit")) {
+            return new BigDecimal("2.50");
+        }
+        return new BigDecimal("0.50");
+    }
 }

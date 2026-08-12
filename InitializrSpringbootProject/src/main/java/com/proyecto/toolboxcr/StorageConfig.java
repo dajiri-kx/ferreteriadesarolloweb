@@ -29,7 +29,15 @@ public class StorageConfig {
                 return StorageOptions.getDefaultInstance().getService();
             }
 
-            try (InputStream is = new ByteArrayInputStream(firebaseJsonContent.getBytes(StandardCharsets.UTF_8))) {
+            // Sanitizar el contenido JSON eliminando comillas externas si existen
+            String cleanJson = firebaseJsonContent.trim();
+            if (cleanJson.startsWith("'") && cleanJson.endsWith("'")) {
+                cleanJson = cleanJson.substring(1, cleanJson.length() - 1).trim();
+            } else if (cleanJson.startsWith("\"") && cleanJson.endsWith("\"")) {
+                cleanJson = cleanJson.substring(1, cleanJson.length() - 1).trim();
+            }
+
+            try (InputStream is = new ByteArrayInputStream(cleanJson.getBytes(StandardCharsets.UTF_8))) {
                 GoogleCredentials credentials = GoogleCredentials.fromStream(is);
                 return StorageOptions.newBuilder()
                         .setCredentials(credentials)

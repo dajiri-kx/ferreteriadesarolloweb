@@ -85,11 +85,47 @@
                 <!-- Resumen total -->
                 <div class="row justify-content-end mt-3">
                     <div class="col-12 col-md-4">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm border-0 rounded-3">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between fs-5 fw-bold">
-                                    <span>[[#{carrito.total}]]</span>
+                                <!-- Cupón de Descuento -->
+                                <div class="mb-3 border-bottom pb-3">
+                                    <form th:action="@{/carrito/aplicar-cupon}" method="post" class="needs-validation">
+                                        <label for="cuponCodigo" class="form-label small fw-bold text-secondary">¿Tienes un cupón de descuento?</label>
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" id="cuponCodigo" name="cuponCodigo" 
+                                                   class="form-control" placeholder="Ingresa tu código" 
+                                                   th:value="${cuponAplicado != null} ? ${cuponAplicado.codigo} : ''"
+                                                   th:disabled="${cuponAplicado != null}"/>
+                                            <button th:if="${cuponAplicado == null}" class="btn btn-primary" type="submit">Aplicar</button>
+                                            <a th:if="${cuponAplicado != null}" th:href="@{/carrito/remover-cupon}" class="btn btn-outline-danger" type="button">Remover</a>
+                                        </div>
+                                    </form>
+                                    <!-- Alertas o Mensajes de Cupón -->
+                                    <div th:if="${cuponError}" class="alert alert-danger alert-dismissible fade show p-2 mt-2 small" role="alert">
+                                        <i class="fa-solid fa-triangle-exclamation me-1"></i>
+                                        <span th:text="${cuponError}"></span>
+                                    </div>
+                                    <div th:if="${cuponExito}" class="alert alert-success alert-dismissible fade show p-2 mt-2 small" role="alert">
+                                        <i class="fa-solid fa-check-circle me-1"></i>
+                                        <span th:text="${cuponExito}"></span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Subtotal</span>
                                     <span th:text="'₡' + ${#numbers.formatDecimal(subtotal, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </div>
+                                <div th:if="${descuento != null and descuento.compareTo(T(java.math.BigDecimal).ZERO) > 0}" class="d-flex justify-content-between mb-2 text-success fw-semibold">
+                                    <span th:text="'Descuento (' + ${cuponAplicado.codigo} + ')'">Descuento</span>
+                                    <span th:text="'-₡' + ${#numbers.formatDecimal(descuento, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">IVA (13%)</span>
+                                    <span th:text="'₡' + ${#numbers.formatDecimal(iva, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </div>
+                                <div class="d-flex justify-content-between fs-5 fw-bold border-top pt-2">
+                                    <span>[[#{carrito.total}]]</span>
+                                    <span th:text="'₡' + ${#numbers.formatDecimal(totalConDescuento != null ? totalConDescuento : subtotal, 1, 'COMMA', 0, 'POINT')}"></span>
                                 </div>
                                 <p class="text-muted small mt-1 mb-3">[[#{carrito.totalNota}]]</p>
                                 <a th:href="@{/carrito/checkout}" class="btn btn-primary w-100">
