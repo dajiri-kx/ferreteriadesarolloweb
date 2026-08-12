@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head(title='Pago Exitoso - ToolboxCR')}"></head>
+    <body class="d-flex flex-column min-vh-100 bg-light">
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <main class="container my-5 flex-grow-1">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <!-- Tarjeta de Éxito Premium -->
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden bg-white text-center p-5">
+                        <!-- Círculo de check animado/grande -->
+                        <div class="mb-4 d-inline-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success rounded-circle" style="width: 100px; height: 100px; margin: 0 auto;">
+                            <i class="fa-solid fa-circle-check fa-4x"></i>
+                        </div>
+
+                        <h2 class="fw-bold text-dark mb-2">¡Pago Confirmado Exitosamente!</h2>
+                        <p class="text-muted mb-4">Tu transacción ha sido procesada de manera segura. Agradecemos tu compra en ToolboxCR.</p>
+
+                        <!-- Caja de Información de Orden -->
+                        <div class="p-4 bg-light rounded-4 border text-start mb-4">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <span class="text-muted small d-block">Número de Pedido</span>
+                                    <span class="fw-bold text-primary fs-5" th:text="${pedido.numeroOrden}"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span class="text-muted small d-block">Fecha del Pedido</span>
+                                    <span class="fw-semibold text-dark" th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy hh:mm a')}"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span class="text-muted small d-block">Método de Envío</span>
+                                    <span class="fw-semibold text-dark" th:text="${pedido.metodoEnvio.nombre}"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span class="text-muted small d-block">Total Pagado</span>
+                                    <span class="fw-bold text-success fs-5">
+                                        Subtotal + Envío: ₡<span th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 0, 'POINT')}"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info de Notificación de Correo -->
+                        <div class="alert alert-info border-0 shadow-sm d-flex align-items-center justify-content-center p-3 mb-4 rounded-3">
+                            <i class="fa-solid fa-envelope-open-text fs-4 me-3 text-info"></i>
+                            <div class="text-start">
+                                <strong class="d-block text-dark small">Confirmación enviada por correo</strong>
+                                <span class="text-muted small">Se ha enviado el recibo digital con los detalles de tu compra al correo registrado: <strong th:text="${pedido.cliente.correo}"></strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                            <a th:href="@{/perfil/pedidos/{id}(id=${pedido.id})}" class="btn btn-primary btn-lg px-4 py-3 rounded-3 fw-bold">
+                                <i class="fa-solid fa-file-invoice me-2"></i>Ver Detalle del Pedido
+                            </a>
+                            <a th:href="@{/}" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-3 fw-bold">
+                                Seguir Comprando <i class="fa-solid fa-cart-shopping ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

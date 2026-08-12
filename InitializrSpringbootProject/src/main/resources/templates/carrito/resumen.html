@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head(title='Resumen de Pedido - ToolboxCR')}"></head>
+    <body class="d-flex flex-column min-vh-100 bg-light">
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <main class="container my-5 flex-grow-1">
+            <!-- Título de sección -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="fw-bold text-dark">
+                        <i class="fa-solid fa-receipt text-primary me-2"></i>Resumen de tu Pedido
+                    </h2>
+                    <p class="text-muted">Por favor, verifica los detalles de tu compra antes de proceder al pago.</p>
+                </div>
+            </div>
+
+            <!-- Alertas de error/éxito -->
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i><span th:text="${error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="row g-4">
+                <!-- Columna Izquierda: Detalles del pedido -->
+                <div class="col-lg-8">
+                    <!-- Tarjeta: Productos -->
+                    <div class="card shadow-sm border-0 mb-4 rounded-3">
+                        <div class="card-header bg-white py-3 fw-bold border-bottom">
+                            <i class="fa-solid fa-box text-secondary me-2"></i>Artículos a comprar
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-align-middle mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="ps-4">Producto</th>
+                                            <th class="text-center">Cantidad</th>
+                                            <th class="text-end">Precio Unitario</th>
+                                            <th class="text-end pe-4">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="det : ${detalles}">
+                                            <td class="ps-4 py-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <div class="fw-bold text-dark" th:text="${det.producto.nombre}"></div>
+                                                        <small class="text-muted" th:text="${det.producto.categoria.nombre}"></small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center py-3 th-text-muted" th:text="${det.cantidad}"></td>
+                                            <td class="text-end py-3 fw-semibold text-dark">
+                                                ₡<span th:text="${#numbers.formatDecimal(det.precioUnitario, 1, 'COMMA', 0, 'POINT')}"></span>
+                                            </td>
+                                            <td class="text-end py-3 pe-4 fw-bold text-primary">
+                                                ₡<span th:text="${#numbers.formatDecimal(det.precioUnitario * det.cantidad, 1, 'COMMA', 0, 'POINT')}"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta: Envío y Entrega -->
+                    <div class="card shadow-sm border-0 rounded-3">
+                        <div class="card-header bg-white py-3 fw-bold border-bottom">
+                            <i class="fa-solid fa-truck-fast text-secondary me-2"></i>Detalles de Entrega
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <h6 class="fw-bold text-dark mb-2">Método de Envío</h6>
+                                    <div class="p-3 bg-light rounded-3 border">
+                                        <div class="fw-bold text-primary" th:text="${pedido.metodoEnvio.nombre}"></div>
+                                        <div class="text-muted small mt-1" th:text="${pedido.metodoEnvio.descripcion}"></div>
+                                        <div class="mt-2 text-dark small fw-semibold">
+                                            <i class="fa-regular fa-clock me-1"></i>Tiempo estimado: 
+                                            <span th:text="${pedido.metodoEnvio.tiempoEstimadoDias == 0} ? 'Retiro inmediato' : ${pedido.metodoEnvio.tiempoEstimadoDias} + ' día(s)'"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="fw-bold text-dark mb-2">Dirección de Entrega</h6>
+                                    <div class="p-3 bg-light rounded-3 border">
+                                        <div th:if="${pedido.direccionEnvio != null}">
+                                            <div class="fw-bold text-dark" th:text="${(pedido.direccionEnvio.alias != null and !pedido.direccionEnvio.alias.isBlank()) ? pedido.direccionEnvio.alias : 'Dirección Registrada'}"></div>
+                                            <div class="text-muted small mt-1" th:text="${pedido.direccionEnvio.direccion}"></div>
+                                            <div class="text-muted small" th:text="'Código Postal: ' + ${pedido.direccionEnvio.codigoPostal}"></div>
+                                        </div>
+                                        <div th:unless="${pedido.direccionEnvio != null}" class="text-muted py-2">
+                                            <i class="fa-solid fa-store me-1 text-success"></i>Retiro directo en sucursal física.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Totales y Pago -->
+                <div class="col-lg-4">
+                    <div class="card shadow-sm border-0 rounded-3 position-sticky" style="top: 2rem;">
+                        <div class="card-header bg-primary text-white py-3 fw-bold rounded-top-3">
+                            <i class="fa-solid fa-receipt me-2"></i>Totales de la Orden
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Subtotal</span>
+                                <span class="fw-semibold text-dark">
+                                    ₡<span th:text="${#numbers.formatDecimal(pedido.subtotal, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Envío</span>
+                                <span class="fw-semibold text-dark">
+                                    <span th:if="${pedido.costoEnvio.signum() == 0}" class="text-success fw-bold">¡Gratis!</span>
+                                    <span th:unless="${pedido.costoEnvio.signum() == 0}">
+                                        ₡<span th:text="${#numbers.formatDecimal(pedido.costoEnvio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">IVA (13%)</span>
+                                <span class="fw-semibold text-dark">
+                                    ₡<span th:text="${#numbers.formatDecimal(pedido.iva, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
+                                <span class="text-muted">
+                                    Descuento <span th:if="${pedido.cupon != null}" th:text="'(Cupón: ' + ${pedido.cupon.codigo} + ')'"></span>
+                                </span>
+                                <span class="text-success fw-semibold">
+                                    -₡<span th:text="${#numbers.formatDecimal(pedido.descuentoTotal, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <span class="fw-bold text-dark fs-5">Total a Pagar</span>
+                                <span class="fw-bold text-primary fs-4">
+                                    ₡<span th:text="${#numbers.formatDecimal(pedido.total, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </span>
+                            </div>
+
+                            <!-- Botón de Proceder al Pago -->
+                            <a th:href="@{/pago/gateway/{id}(id=${pedido.id})}" class="btn btn-primary btn-lg w-100 py-3 mb-2 rounded-3 shadow fw-bold transition-all hover-grow">
+                                <i class="fa-solid fa-shield-halved me-2"></i>Proceder al Pago Seguro
+                            </a>
+
+                            <!-- Botón de Cancelar / Volver al Carrito -->
+                            <form th:action="@{/carrito/cancelar-pedido/{id}(id=${pedido.id})}" method="post">
+                                <button type="submit" class="btn btn-outline-secondary w-100 py-2 rounded-3 fw-semibold">
+                                    <i class="fa-solid fa-arrow-left me-1"></i>Regresar a Editar Carrito
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

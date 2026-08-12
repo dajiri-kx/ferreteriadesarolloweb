@@ -17,7 +17,7 @@ public class ProductoImagen {
     @JoinColumn(name = "producto_id")
     private Producto producto;
 
-    @Column(name = "url_imagen", nullable = false, length = 255)
+    @Column(name = "url_imagen", nullable = false, length = 1024)
     private String urlImagen;
 
     @Column(name = "orden", nullable = false)

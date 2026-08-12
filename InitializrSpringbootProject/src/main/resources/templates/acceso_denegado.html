@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card shadow-sm border-danger">
+                        <div class="card-header bg-danger text-white text-center py-3">
+                            <h3 class="mb-0"><i class="fa-solid fa-triangle-exclamation me-2"></i>[[#{error.acceso.titulo}]]</h3>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h5 class="text-muted mb-4">[[#{error.acceso.mensaje}]]</h5>
+                            <a th:href="@{/}" class="btn btn-primary px-4">
+                                <i class="fa-solid fa-house me-2"></i>[[#{error.acceso.volver}]]
+                            </a>
+                        </div>
+                    </div>                
+                </div>
+            </div>
+        </div>
+        
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

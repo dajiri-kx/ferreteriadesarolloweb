@@ -15,6 +15,10 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepo;
 
+    @Autowired
+    @org.springframework.context.annotation.Lazy
+    private org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
+
     /* CU-01 — Registrar cuenta */
     public void registrar(String nombre, String correo, String contrasena, String telefono) {
         if (usuarioRepo.existsByCorreo(correo)) {
@@ -23,7 +27,7 @@ public class UsuarioService {
         Usuario nuevo = new Usuario();
         nuevo.setNombre(nombre);
         nuevo.setCorreo(correo);
-        nuevo.setContrasenaHash(hashSHA256(contrasena));
+        nuevo.setContrasenaHash(passwordEncoder.encode(contrasena));
         nuevo.setTelefono(telefono);
         nuevo.setRol("cliente");
         nuevo.setEstado("activo");
@@ -50,7 +54,7 @@ public class UsuarioService {
             throw new IllegalStateException("bloqueado");
         }
 
-        if (!hashSHA256(contrasena).equals(usuario.getContrasenaHash())) {
+        if (!passwordEncoder.matches(contrasena, usuario.getContrasenaHash()) && !hashSHA256(contrasena).equals(usuario.getContrasenaHash())) {
             /* El trigger trg_usuario_bloqueo_intentos bloquea automáticamente al llegar a 5 */
             usuario.setIntentosFallidos(usuario.getIntentosFallidos() + 1);
             usuarioRepo.save(usuario);
@@ -76,5 +80,27 @@ public class UsuarioService {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error al hashear la contraseña", e);
         }
+    }
+
+    public java.util.Optional<Usuario> getUsuarioPorUsername(String username) {
+        return usuarioRepo.findByCorreo(username);
+    }
+
+    public java.util.List<String> getRolesNombres() {
+        return java.util.Arrays.asList("cliente", "administrador", "bodega", "dueño");
+    }
+
+    public void asignarRolPorUsername(String username, String rolNombre) {
+        Usuario usuario = usuarioRepo.findByCorreo(username)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado: " + username));
+        usuario.setRol(rolNombre.toLowerCase());
+        usuarioRepo.save(usuario);
+    }
+
+    public void eliminarRol(String username, Integer idRol) {
+        Usuario usuario = usuarioRepo.findByCorreo(username)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado: " + username));
+        usuario.setRol("cliente");
+        usuarioRepo.save(usuario);
     }
 }

@@ -5,6 +5,7 @@ import com.proyecto.toolboxcr.repositorio.CategoriaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class DataInitializer {
@@ -32,6 +33,18 @@ public class DataInitializer {
                 Categoria c5 = new Categoria();
                 c5.setNombre("Plomería");
                 categoriaRepository.save(c5);
+            }
+        };
+    }
+
+    @Bean
+    CommandLineRunner alterTable(JdbcTemplate jdbcTemplate) {
+        return args -> {
+            try {
+                jdbcTemplate.execute("ALTER TABLE PRODUCTO_IMAGEN MODIFY url_imagen VARCHAR(1024) NOT NULL");
+                System.out.println(">>> ALTER TABLE PRODUCTO_IMAGEN ejecutado exitosamente (1024 caracteres)!");
+            } catch (Exception e) {
+                System.out.println(">>> Error al alterar tabla: " + e.getMessage());
             }
         };
     }

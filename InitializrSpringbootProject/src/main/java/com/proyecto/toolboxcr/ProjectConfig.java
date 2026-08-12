@@ -18,12 +18,10 @@ import org.thymeleaf.templatemode.TemplateMode;
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private LoginInterceptor loginInterceptor;
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
+        registry.addViewController("/acceso_denegado").setViewName("acceso_denegado");
     }
 
     @Bean
@@ -56,7 +54,6 @@ public class ProjectConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/perfil/**", "/carrito/**");
     }
 
     @Bean("messageSource")

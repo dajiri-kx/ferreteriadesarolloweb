@@ -123,6 +123,17 @@
                             <artifactId>opencsv</artifactId>
                             <version>5.9</version>
                         </dependency>
+                        
+                        <!-- Spring Security -->
+                        <dependency>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-starter-security</artifactId>
+                        </dependency>
+                        <!-- Thymeleaf Security Extras -->
+                        <dependency>
+                            <groupId>org.thymeleaf.extras</groupId>
+                            <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+                        </dependency>
 
     </dependencies>
     

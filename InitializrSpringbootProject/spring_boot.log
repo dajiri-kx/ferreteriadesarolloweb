@@ -1,0 +1,4106 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.proyecto:toolboxcr >-----------------------
+[INFO] Building toolboxcr 1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.1.0:run (default-cli) > test-compile @ toolboxcr >>>
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ toolboxcr ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 27 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ toolboxcr ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ toolboxcr ---
+[INFO] skip non existing resourceDirectory /home/ojosblancos/NetBeansProjects/ferreteriadesarollo/ferreteriadesarolloweb_cc/ferreteriadesarolloweb/InitializrSpringbootProject/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ toolboxcr ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.1.0:run (default-cli) < test-compile @ toolboxcr <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.1.0:run (default-cli) @ toolboxcr ---
+[INFO] Attaching agents: []
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : Starting ToolboxcrApplication using Java 21.0.10 with PID 131341 (/home/ojosblancos/NetBeansProjects/ferreteriadesarollo/ferreteriadesarolloweb_cc/ferreteriadesarolloweb/InitializrSpringbootProject/target/classes started by ojosblancos in /home/ojosblancos/NetBeansProjects/ferreteriadesarollo/ferreteriadesarolloweb_cc/ferreteriadesarolloweb/InitializrSpringbootProject)
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : No active profile set, falling back to 1 default profile: "default"
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 14 JPA repository interfaces.
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9202 (http)
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 816 ms
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@577111e1
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+02:57  WARN 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://mysql-1279609f-proyectofinaldesarolloweb-05ae.f.aivencloud.com:20367/ferreteria_web]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.8
+	Default catalog/schema: ferreteria_web/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+>>> BUCKET leído: sin-configurar
+>>> JSON vacío?: true
+02:57  WARN 131341 --- [toolboxcr] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+02:57  WARN 131341 --- [toolboxcr] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9202 (http) with context path '/'
+02:57  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : Started ToolboxcrApplication in 13.521 seconds (process running for 13.793)
+02:57 DEBUG 131341 --- [toolboxcr] [  restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        CATEGORIA c1_0
+02:57  INFO 131341 --- [toolboxcr] [nio-9202-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+02:57  INFO 131341 --- [toolboxcr] [nio-9202-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+02:57  INFO 131341 --- [toolboxcr] [nio-9202-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+02:57 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.correo=? 
+    limit
+        ?
+02:57 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        USUARIO
+        (contraseña_hash, correo, estado, fecha_bloqueo, fecha_registro, intentos_fallidos, nombre, rol, telefono, ultima_sesion) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+02:57 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.correo=?
+02:57 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.correo=?
+02:57 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:57 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    update
+        USUARIO 
+    set
+        contraseña_hash=?,
+        correo=?,
+        estado=?,
+        fecha_bloqueo=?,
+        fecha_registro=?,
+        intentos_fallidos=?,
+        nombre=?,
+        rol=?,
+        telefono=?,
+        ultima_sesion=? 
+    where
+        id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        de1_0.cliente_id,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    where
+        de1_0.cliente_id=? 
+    order by
+        de1_0.es_predeterminada desc
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    UPDATE
+        DIRECCION_ENVIO 
+    SET
+        es_predeterminada = 0 
+    WHERE
+        cliente_id = ?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    insert 
+    into
+        DIRECCION_ENVIO
+        (alias, cliente_id, codigo_postal, direccion, es_predeterminada) 
+    values
+        (?, ?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        de1_0.cliente_id,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    where
+        de1_0.cliente_id=? 
+    order by
+        de1_0.es_predeterminada desc
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        i1_0.id,
+        i1_0.fecha_actualizacion,
+        i1_0.motivo_ajuste,
+        i1_0.producto_id,
+        i1_0.stock_disponible,
+        i1_0.umbral_minimo 
+    from
+        INVENTARIO i1_0 
+    where
+        i1_0.producto_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    insert 
+    into
+        CARRITO
+        (cliente_id) 
+    values
+        (?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=? 
+        and ic1_0.producto_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    insert 
+    into
+        ITEM_CARRITO
+        (cantidad, carrito_id, producto_id) 
+    values
+        (?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        i1_0.id,
+        i1_0.fecha_actualizacion,
+        i1_0.motivo_ajuste,
+        i1_0.producto_id,
+        i1_0.stock_disponible,
+        i1_0.umbral_minimo 
+    from
+        INVENTARIO i1_0 
+    where
+        i1_0.producto_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=? 
+        and ic1_0.producto_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    insert 
+    into
+        ITEM_CARRITO
+        (cantidad, carrito_id, producto_id) 
+    values
+        (?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0 
+    where
+        me1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=de1_0.cliente_id 
+    where
+        de1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0 
+    where
+        me1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        de1_0.cliente_id,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    where
+        de1_0.cliente_id=? 
+    order by
+        de1_0.es_predeterminada desc
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0 
+    where
+        me1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=de1_0.cliente_id 
+    where
+        de1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        PEDIDO
+        (cliente_id, costo_envio, cupon_id, descuento_total, direccion_envio_id, estado, fecha, metodo_envio_id, numero_orden, subtotal, total) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        DETALLE_PEDIDO
+        (cantidad, pedido_id, precio_unitario, producto_id) 
+    values
+        (?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        DETALLE_PEDIDO
+        (cantidad, pedido_id, precio_unitario, producto_id) 
+    values
+        (?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+[DEBUG CONTROLLER] Pedido ID 34 has cupon: null
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        dp1_0.id,
+        dp1_0.cantidad,
+        dp1_0.pedido_id,
+        dp1_0.precio_unitario,
+        dp1_0.producto_id 
+    from
+        DETALLE_PEDIDO dp1_0 
+    where
+        dp1_0.pedido_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    update
+        PEDIDO 
+    set
+        cliente_id=?,
+        costo_envio=?,
+        cupon_id=?,
+        descuento_total=?,
+        direccion_envio_id=?,
+        estado=?,
+        fecha=?,
+        metodo_envio_id=?,
+        numero_orden=?,
+        subtotal=?,
+        total=? 
+    where
+        id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-7] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        de1_0.cliente_id,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    where
+        de1_0.cliente_id=? 
+    order by
+        de1_0.es_predeterminada desc
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0 
+    where
+        me1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=de1_0.cliente_id 
+    where
+        de1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    insert 
+    into
+        PEDIDO
+        (cliente_id, costo_envio, cupon_id, descuento_total, direccion_envio_id, estado, fecha, metodo_envio_id, numero_orden, subtotal, total) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    insert 
+    into
+        DETALLE_PEDIDO
+        (cantidad, pedido_id, precio_unitario, producto_id) 
+    values
+        (?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    insert 
+    into
+        DETALLE_PEDIDO
+        (cantidad, pedido_id, precio_unitario, producto_id) 
+    values
+        (?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+com.stripe.exception.AuthenticationException: Your API key is invalid, as it is an empty string. You can double-check your API key from the Stripe Dashboard. See https://stripe.com/docs/api/authentication for details or contact support at https://support.stripe.com/email if you have any questions.
+	at com.stripe.net.BearerTokenAuthenticator.authenticate(BearerTokenAuthenticator.java:34)
+	at com.stripe.net.StripeRequest.create(StripeRequest.java:160)
+	at com.stripe.net.LiveStripeResponseGetter.toStripeRequest(LiveStripeResponseGetter.java:88)
+	at com.stripe.net.LiveStripeResponseGetter.request(LiveStripeResponseGetter.java:133)
+	at com.stripe.model.checkout.Session.create(Session.java:645)
+	at com.stripe.model.checkout.Session.create(Session.java:630)
+	at com.proyecto.toolboxcr.controller.PagoController.stripeCheckout(PagoController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$2(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:376)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:153)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:131)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:245)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:239)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        PAGO
+        (estado, fecha, metodo, monto, pedido_id, referencia_gateway) 
+    values
+        (?, ?, ?, ?, ?, ?)
+02:58 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+com.stripe.exception.AuthenticationException: Your API key is invalid, as it is an empty string. You can double-check your API key from the Stripe Dashboard. See https://stripe.com/docs/api/authentication for details or contact support at https://support.stripe.com/email if you have any questions.
+	at com.stripe.net.BearerTokenAuthenticator.authenticate(BearerTokenAuthenticator.java:34)
+	at com.stripe.net.StripeRequest.create(StripeRequest.java:160)
+	at com.stripe.net.LiveStripeResponseGetter.toStripeRequest(LiveStripeResponseGetter.java:88)
+	at com.stripe.net.LiveStripeResponseGetter.request(LiveStripeResponseGetter.java:133)
+	at com.stripe.model.checkout.Session.create(Session.java:645)
+	at com.stripe.model.checkout.Session.create(Session.java:630)
+	at com.proyecto.toolboxcr.controller.PagoController.stripeCheckout(PagoController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$2(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:376)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:153)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:131)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:245)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:239)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    insert 
+    into
+        PAGO
+        (estado, fecha, metodo, monto, pedido_id, referencia_gateway) 
+    values
+        (?, ?, ?, ?, ?, ?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        d1_0.pedido_id,
+        d1_0.id,
+        d1_0.cantidad,
+        d1_0.precio_unitario,
+        p2_0.id,
+        p2_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p2_0.descripcion,
+        p2_0.dimensiones,
+        p2_0.fecha_creacion,
+        p2_0.marca,
+        p2_0.material,
+        p2_0.nombre,
+        p2_0.oferta_fecha_fin,
+        p2_0.oferta_fecha_inicio,
+        p2_0.porcentaje_descuento,
+        p2_0.precio,
+        p2_0.precio_oferta,
+        p2_0.sku 
+    from
+        DETALLE_PEDIDO d1_0 
+    left join
+        PRODUCTO p2_0 
+            on p2_0.id=d1_0.producto_id 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p2_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        d1_0.pedido_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        i1_0.id,
+        i1_0.fecha_actualizacion,
+        i1_0.motivo_ajuste,
+        i1_0.producto_id,
+        i1_0.stock_disponible,
+        i1_0.umbral_minimo 
+    from
+        INVENTARIO i1_0 
+    where
+        i1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    update
+        PEDIDO 
+    set
+        cliente_id=?,
+        costo_envio=?,
+        cupon_id=?,
+        descuento_total=?,
+        direccion_envio_id=?,
+        estado=?,
+        fecha=?,
+        metodo_envio_id=?,
+        numero_orden=?,
+        subtotal=?,
+        total=? 
+    where
+        id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    update
+        INVENTARIO 
+    set
+        motivo_ajuste=?,
+        producto_id=?,
+        stock_disponible=?,
+        umbral_minimo=? 
+    where
+        id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        i1_0.id,
+        i1_0.fecha_actualizacion,
+        i1_0.motivo_ajuste,
+        i1_0.producto_id,
+        i1_0.stock_disponible,
+        i1_0.umbral_minimo 
+    from
+        INVENTARIO i1_0 
+    where
+        i1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+================================================================================
+[EMAIL SIMULATION] enviando correo a: test_b6c8f142@toolboxcr.com
+Asunto: ¡Tu pago de la orden ORD-ACA0A8B0 ha sido confirmado!
+Detalle de la Transacción:
+ - Número de orden: ORD-ACA0A8B0
+ - Referencia de Pago: ref_sim_B1CB5766-D24
+ - Método de Pago: STRIPE
+ - Total pagado: ₡22070.00
+ - Envío por método: Estándar
+ - Dirección de envío: 100m norte de la Iglesia de San José
+¡Gracias por comprar en ToolboxCR!
+================================================================================
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    update
+        INVENTARIO 
+    set
+        motivo_ajuste=?,
+        producto_id=?,
+        stock_disponible=?,
+        umbral_minimo=? 
+    where
+        id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    delete 
+    from
+        ITEM_CARRITO 
+    where
+        id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    delete 
+    from
+        ITEM_CARRITO 
+    where
+        id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.correo=? 
+    limit
+        ?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    insert 
+    into
+        USUARIO
+        (contraseña_hash, correo, estado, fecha_bloqueo, fecha_registro, intentos_fallidos, nombre, rol, telefono, ultima_sesion) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.correo=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.correo=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    update
+        USUARIO 
+    set
+        contraseña_hash=?,
+        correo=?,
+        estado=?,
+        fecha_bloqueo=?,
+        fecha_registro=?,
+        intentos_fallidos=?,
+        nombre=?,
+        rol=?,
+        telefono=?,
+        ultima_sesion=? 
+    where
+        id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.categoria_padre_id,
+        c1_0.nombre 
+    from
+        CATEGORIA c1_0 
+    order by
+        c1_0.nombre
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        p1_0.categoria_id,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    where
+        p1_0.activo=true
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        i1_0.producto_id,
+        i1_0.id,
+        i1_0.es_principal,
+        i1_0.orden,
+        i1_0.url_imagen 
+    from
+        PRODUCTO_IMAGEN i1_0 
+    where
+        i1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        i1_0.producto_id,
+        i1_0.id,
+        i1_0.es_principal,
+        i1_0.orden,
+        i1_0.url_imagen 
+    from
+        PRODUCTO_IMAGEN i1_0 
+    where
+        i1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        i1_0.producto_id,
+        i1_0.id,
+        i1_0.es_principal,
+        i1_0.orden,
+        i1_0.url_imagen 
+    from
+        PRODUCTO_IMAGEN i1_0 
+    where
+        i1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        i1_0.id,
+        i1_0.fecha_actualizacion,
+        i1_0.motivo_ajuste,
+        i1_0.producto_id,
+        i1_0.stock_disponible,
+        i1_0.umbral_minimo 
+    from
+        INVENTARIO i1_0 
+    where
+        i1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        CARRITO
+        (cliente_id) 
+    values
+        (?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=? 
+        and ic1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        ITEM_CARRITO
+        (cantidad, carrito_id, producto_id) 
+    values
+        (?, ?, ?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-5] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-6] org.hibernate.SQL                        : 
+    select
+        de1_0.id,
+        de1_0.alias,
+        de1_0.cliente_id,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada 
+    from
+        DIRECCION_ENVIO de1_0 
+    where
+        de1_0.cliente_id=? 
+    order by
+        de1_0.es_predeterminada desc
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-8] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [io-9202-exec-10] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.contraseña_hash,
+        u1_0.correo,
+        u1_0.estado,
+        u1_0.fecha_bloqueo,
+        u1_0.fecha_registro,
+        u1_0.intentos_fallidos,
+        u1_0.nombre,
+        u1_0.rol,
+        u1_0.telefono,
+        u1_0.ultima_sesion 
+    from
+        USUARIO u1_0 
+    where
+        u1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias 
+    from
+        METODO_ENVIO me1_0 
+    where
+        me1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        upper(c1_0.codigo)=upper(?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        PEDIDO
+        (cliente_id, costo_envio, cupon_id, descuento_total, direccion_envio_id, estado, fecha, metodo_envio_id, numero_orden, subtotal, total) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        c1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    UPDATE
+        CUPON 
+    SET
+        usos_actuales = usos_actuales - 1 
+    WHERE
+        id = ?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        DETALLE_PEDIDO
+        (cantidad, pedido_id, precio_unitario, producto_id) 
+    values
+        (?, ?, ?, ?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-1] org.hibernate.SQL                        : 
+    update
+        CUPON 
+    set
+        aplica_a=?,
+        categoria_id=?,
+        codigo=?,
+        fecha_fin=?,
+        fecha_inicio=?,
+        limite_usos=?,
+        producto_id=?,
+        tipo=?,
+        usos_actuales=?,
+        valor=? 
+    where
+        id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.aplica_a,
+        c1_0.categoria_id,
+        c1_0.codigo,
+        c1_0.fecha_fin,
+        c1_0.fecha_inicio,
+        c1_0.limite_usos,
+        c1_0.producto_id,
+        c1_0.tipo,
+        c1_0.usos_actuales,
+        c1_0.valor 
+    from
+        CUPON c1_0 
+    where
+        c1_0.id=?
+[DEBUG CONTROLLER] Pedido ID 36 has cupon: DESCUENTO5000
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        dp1_0.id,
+        dp1_0.cantidad,
+        dp1_0.pedido_id,
+        dp1_0.precio_unitario,
+        dp1_0.producto_id 
+    from
+        DETALLE_PEDIDO dp1_0 
+    where
+        dp1_0.pedido_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-2] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p1_0.descripcion,
+        p1_0.dimensiones,
+        p1_0.fecha_creacion,
+        p1_0.marca,
+        p1_0.material,
+        p1_0.nombre,
+        p1_0.oferta_fecha_fin,
+        p1_0.oferta_fecha_inicio,
+        p1_0.porcentaje_descuento,
+        p1_0.precio,
+        p1_0.precio_oferta,
+        p1_0.sku 
+    from
+        PRODUCTO p1_0 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p1_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        c1_0.id,
+        c1_0.contraseña_hash,
+        c1_0.correo,
+        c1_0.estado,
+        c1_0.fecha_bloqueo,
+        c1_0.fecha_registro,
+        c1_0.intentos_fallidos,
+        c1_0.nombre,
+        c1_0.rol,
+        c1_0.telefono,
+        c1_0.ultima_sesion,
+        p1_0.costo_envio,
+        p1_0.cupon_id,
+        p1_0.descuento_total,
+        de1_0.id,
+        de1_0.alias,
+        c3_0.id,
+        c3_0.contraseña_hash,
+        c3_0.correo,
+        c3_0.estado,
+        c3_0.fecha_bloqueo,
+        c3_0.fecha_registro,
+        c3_0.intentos_fallidos,
+        c3_0.nombre,
+        c3_0.rol,
+        c3_0.telefono,
+        c3_0.ultima_sesion,
+        de1_0.codigo_postal,
+        de1_0.direccion,
+        de1_0.es_predeterminada,
+        p1_0.estado,
+        p1_0.fecha,
+        me1_0.id,
+        me1_0.costo_base,
+        me1_0.descripcion,
+        me1_0.nombre,
+        me1_0.requiere_direccion,
+        me1_0.tiempo_estimado_dias,
+        p1_0.numero_orden,
+        p1_0.subtotal,
+        p1_0.total 
+    from
+        PEDIDO p1_0 
+    left join
+        USUARIO c1_0 
+            on c1_0.id=p1_0.cliente_id 
+    left join
+        DIRECCION_ENVIO de1_0 
+            on de1_0.id=p1_0.direccion_envio_id 
+    left join
+        USUARIO c3_0 
+            on c3_0.id=de1_0.cliente_id 
+    left join
+        METODO_ENVIO me1_0 
+            on me1_0.id=p1_0.metodo_envio_id 
+    where
+        p1_0.id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        PAGO
+        (estado, fecha, metodo, monto, pedido_id, referencia_gateway) 
+    values
+        (?, ?, ?, ?, ?, ?)
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        d1_0.pedido_id,
+        d1_0.id,
+        d1_0.cantidad,
+        d1_0.precio_unitario,
+        p2_0.id,
+        p2_0.activo,
+        c1_0.id,
+        cp1_0.id,
+        cp1_0.categoria_padre_id,
+        cp1_0.nombre,
+        c1_0.nombre,
+        p2_0.descripcion,
+        p2_0.dimensiones,
+        p2_0.fecha_creacion,
+        p2_0.marca,
+        p2_0.material,
+        p2_0.nombre,
+        p2_0.oferta_fecha_fin,
+        p2_0.oferta_fecha_inicio,
+        p2_0.porcentaje_descuento,
+        p2_0.precio,
+        p2_0.precio_oferta,
+        p2_0.sku 
+    from
+        DETALLE_PEDIDO d1_0 
+    left join
+        PRODUCTO p2_0 
+            on p2_0.id=d1_0.producto_id 
+    left join
+        CATEGORIA c1_0 
+            on c1_0.id=p2_0.categoria_id 
+    left join
+        CATEGORIA cp1_0 
+            on cp1_0.id=c1_0.categoria_padre_id 
+    where
+        d1_0.pedido_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        i1_0.id,
+        i1_0.fecha_actualizacion,
+        i1_0.motivo_ajuste,
+        i1_0.producto_id,
+        i1_0.stock_disponible,
+        i1_0.umbral_minimo 
+    from
+        INVENTARIO i1_0 
+    where
+        i1_0.producto_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.cliente_id,
+        c1_0.fecha_creacion 
+    from
+        CARRITO c1_0 
+    where
+        c1_0.cliente_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    select
+        ic1_0.id,
+        ic1_0.cantidad,
+        ic1_0.carrito_id,
+        ic1_0.producto_id 
+    from
+        ITEM_CARRITO ic1_0 
+    where
+        ic1_0.carrito_id=?
+02:59 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    update
+        PEDIDO 
+    set
+        cliente_id=?,
+        costo_envio=?,
+        cupon_id=?,
+        descuento_total=?,
+        direccion_envio_id=?,
+        estado=?,
+        fecha=?,
+        metodo_envio_id=?,
+        numero_orden=?,
+        subtotal=?,
+        total=? 
+    where
+        id=?
+03:00 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    update
+        INVENTARIO 
+    set
+        motivo_ajuste=?,
+        producto_id=?,
+        stock_disponible=?,
+        umbral_minimo=? 
+    where
+        id=?
+03:00 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    delete 
+    from
+        ITEM_CARRITO 
+    where
+        id=?
+03:00 DEBUG 131341 --- [toolboxcr] [nio-9202-exec-3] org.hibernate.SQL                        : 
+    UPDATE
+        CUPON 
+    SET
+        usos_actuales = usos_actuales + 1 
+    WHERE
+        id = ?
+================================================================================
+[EMAIL SIMULATION] enviando correo a: coupon_test_5e2f8c52@toolboxcr.com
+Asunto: ¡Tu pago de la orden ORD-8D430F01 ha sido confirmado!
+Detalle de la Transacción:
+ - Número de orden: ORD-8D430F01
+ - Referencia de Pago: ref_sim_19EBB2D7-800
+ - Método de Pago: STRIPE
+ - Total pagado: ₡0.00
+ - Envío por método: Retiro en tienda
+ - Entrega: Retiro en tienda
+¡Gracias por comprar en ToolboxCR!
+================================================================================
+03:56  INFO 131341 --- [toolboxcr] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 87 class path changes (0 additions, 59 deletions, 28 modifications)
+03:56  INFO 131341 --- [toolboxcr] [       Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+03:56  INFO 131341 --- [toolboxcr] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+03:56  INFO 131341 --- [toolboxcr] [       Thread-1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+03:56  INFO 131341 --- [toolboxcr] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+03:56  INFO 131341 --- [toolboxcr] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : Starting ToolboxcrApplication using Java 21.0.10 with PID 131341 (/home/ojosblancos/NetBeansProjects/ferreteriadesarollo/ferreteriadesarolloweb_cc/ferreteriadesarolloweb/InitializrSpringbootProject/target/classes started by ojosblancos in /home/ojosblancos/NetBeansProjects/ferreteriadesarollo/ferreteriadesarolloweb_cc/ferreteriadesarolloweb/InitializrSpringbootProject)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : No active profile set, falling back to 1 default profile: "default"
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 14 JPA repository interfaces.
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9202 (http)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 262 ms
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56516f51
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+03:56  WARN 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://mysql-1279609f-proyectofinaldesarolloweb-05ae.f.aivencloud.com:20367/ferreteria_web]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.8
+	Default catalog/schema: ferreteria_web/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+>>> BUCKET leído: sin-configurar
+>>> JSON vacío?: true
+03:56  WARN 131341 --- [toolboxcr] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+03:56  WARN 131341 --- [toolboxcr] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9202 (http) with context path '/'
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : Started ToolboxcrApplication in 8.288 seconds (process running for 3541.626)
+03:56  INFO 131341 --- [toolboxcr] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 59 class path changes (59 additions, 0 deletions, 0 modifications)
+03:56  INFO 131341 --- [toolboxcr] [       Thread-5] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+03:56  INFO 131341 --- [toolboxcr] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+03:56  INFO 131341 --- [toolboxcr] [       Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+03:56  INFO 131341 --- [toolboxcr] [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+03:56 ERROR 131341 --- [toolboxcr] [  restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:457) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:532) ~[spring-tx-7.0.8.jar:7.0.8]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:405) ~[spring-tx-7.0.8.jar:7.0.8]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:628) ~[spring-tx-7.0.8.jar:7.0.8]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:365) ~[spring-tx-7.0.8.jar:7.0.8]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.8.jar:7.0.8]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar:7.0.8]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.8.jar:7.0.8]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar:7.0.8]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:166) ~[spring-data-jpa-4.1.0.jar:4.1.0]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar:7.0.8]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.8.jar:7.0.8]
+	at jdk.proxy5/jdk.proxy5.$Proxy185.count(Unknown Source) ~[na:na]
+	at com.proyecto.toolboxcr.DataInitializer.lambda$initCategorias$0(DataInitializer.java:15) ~[classes/:na]
+	at org.springframework.boot.SpringApplication.lambda$callRunner$1(SpringApplication.java:792) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:82) ~[spring-core-7.0.8.jar:7.0.8]
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60) ~[spring-core-7.0.8.jar:7.0.8]
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:86) ~[spring-core-7.0.8.jar:7.0.8]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:800) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:791) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.lambda$callRunners$0(SpringApplication.java:776) ~[spring-boot-4.1.0.jar:4.1.0]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[na:na]
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:776) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:328) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
+	at com.proyecto.toolboxcr.ToolboxcrApplication.main(ToolboxcrApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+Caused by: java.lang.IllegalStateException: Session/EntityManager is closed
+	at org.hibernate.internal.AbstractSharedSessionContract.checkOpen(AbstractSharedSessionContract.java:614) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionImpl.checkOpen(SessionImpl.java:158) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.engine.spi.SharedSessionContractImplementor.checkOpen(SharedSessionContractImplementor.java:192) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionImpl.checkOpenOrWaitingForAutoClose(SessionImpl.java:603) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionImpl.startTransactionBoundary(SessionImpl.java:2072) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.resource.transaction.spi.TransactionCoordinatorOwner.startTransactionBoundary(TransactionCoordinatorOwner.java:36) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.afterBeginCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:151) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.begin(JdbcResourceLocalTransactionCoordinatorImpl.java:227) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.begin(TransactionImpl.java:75) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.beginTransaction(HibernateJpaDialect.java:147) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:411) ~[spring-orm-7.0.8.jar:7.0.8]
+	... 36 common frames omitted
+
+03:56  WARN 131341 --- [toolboxcr] [  restartedMain] o.s.boot.SpringApplication               : Unable to close ApplicationContext
+
+java.lang.IllegalStateException: Cannot unregister active application context
+	at org.springframework.util.Assert.state(Assert.java:80) ~[spring-core-7.0.8.jar:7.0.8]
+	at org.springframework.boot.SpringApplicationShutdownHook.deregisterFailedApplicationContext(SpringApplicationShutdownHook.java:99) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:819) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:331) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
+	at com.proyecto.toolboxcr.ToolboxcrApplication.main(ToolboxcrApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+
+03:56  INFO 131341 --- [toolboxcr] [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : Starting ToolboxcrApplication using Java 21.0.10 with PID 131341 (/home/ojosblancos/NetBeansProjects/ferreteriadesarollo/ferreteriadesarolloweb_cc/ferreteriadesarolloweb/InitializrSpringbootProject/target/classes started by ojosblancos in /home/ojosblancos/NetBeansProjects/ferreteriadesarollo/ferreteriadesarolloweb_cc/ferreteriadesarolloweb/InitializrSpringbootProject)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : No active profile set, falling back to 1 default profile: "default"
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 14 JPA repository interfaces.
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9202 (http)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 249 ms
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d7971bd
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+03:56  WARN 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://mysql-1279609f-proyectofinaldesarolloweb-05ae.f.aivencloud.com:20367/ferreteria_web]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.8
+	Default catalog/schema: ferreteria_web/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+>>> BUCKET leído: sin-configurar
+>>> JSON vacío?: true
+03:56  WARN 131341 --- [toolboxcr] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+03:56  WARN 131341 --- [toolboxcr] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9202 (http) with context path '/'
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] c.p.toolboxcr.ToolboxcrApplication       : Started ToolboxcrApplication in 7.159 seconds (process running for 3553.252)
+03:56 DEBUG 131341 --- [toolboxcr] [  restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        CATEGORIA c1_0
+03:56  INFO 131341 --- [toolboxcr] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+03:57  INFO 131341 --- [toolboxcr] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+03:57  INFO 131341 --- [toolboxcr] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+03:57  INFO 131341 --- [toolboxcr] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+03:57  INFO 131341 --- [toolboxcr] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+03:57  INFO 131341 --- [toolboxcr] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:00 h
+[INFO] Finished at: 2026-08-11T15:57:38-06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.1.0:run (default-cli) on project toolboxcr: Process terminated with exit code: 143 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
