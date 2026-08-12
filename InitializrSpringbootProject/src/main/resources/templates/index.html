@@ -63,6 +63,17 @@
                 <div class="row g-4" th:unless="${resultados.empty}">
                     <div class="col-12 col-sm-6 col-lg-4" th:each="p : ${resultados}">
                         <div class="card-producto">
+                            <!-- Botón Favorito Absoluto -->
+                            <th:block th:if="${session.usuarioLogueado != null}">
+                                <form th:action="@{/perfil/favoritos/toggle}" method="post">
+                                    <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                    <button type="submit" class="btn-favorito-absoluto"
+                                            th:classappend="${session.favoritosIds != null and session.favoritosIds.contains(p.id)} ? 'activo' : 'inactivo'"
+                                            title="Favorito">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                </form>
+                            </th:block>
                             <div class="placeholder-img">
                                 <img th:if="${p.imagenes != null and !p.imagenes.empty}"
                                      th:src="${p.imagenes[0].urlImagen}"
@@ -95,10 +106,10 @@
                                        class="btn btn-outline-primary btn-sm flex-grow-1">
                                         <i class="fa-solid fa-eye"></i> Ver ficha
                                     </a>
-                                    <form th:action="@{/carrito/agregar}" method="post" class="d-inline">
+                                    <form th:action="@{/carrito/agregar}" method="post" class="d-inline flex-grow-1">
                                         <input type="hidden" name="productoId" th:value="${p.id}"/>
                                         <input type="hidden" name="cantidad" value="1"/>
-                                        <button type="submit" class="btn btn-primary btn-sm"
+                                        <button type="submit" class="btn btn-primary btn-sm w-100"
                                                 th:disabled="${!p.activo}">
                                             <i class="fa-solid fa-cart-plus"></i>
                                         </button>
@@ -147,6 +158,17 @@
                 <div class="row g-4" th:if="${ofertas != null and !ofertas.empty}">
                     <div class="col-12 col-sm-6 col-lg-4" th:each="p : ${ofertas}">
                         <div class="card-producto">
+                            <!-- Botón Favorito Absoluto -->
+                            <th:block th:if="${session.usuarioLogueado != null}">
+                                <form th:action="@{/perfil/favoritos/toggle}" method="post">
+                                    <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                    <button type="submit" class="btn-favorito-absoluto"
+                                            th:classappend="${session.favoritosIds != null and session.favoritosIds.contains(p.id)} ? 'activo' : 'inactivo'"
+                                            title="Favorito">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                </form>
+                            </th:block>
                             <div class="placeholder-img">
                                 <img th:if="${p.imagenes != null and !p.imagenes.empty}"
                                      th:src="${p.imagenes[0].urlImagen}"
@@ -171,10 +193,10 @@
                                        class="btn btn-outline-primary btn-sm flex-grow-1">
                                         <i class="fa-solid fa-eye"></i> Ver ficha
                                     </a>
-                                    <form th:action="@{/carrito/agregar}" method="post" class="d-inline">
+                                    <form th:action="@{/carrito/agregar}" method="post" class="d-inline flex-grow-1">
                                         <input type="hidden" name="productoId" th:value="${p.id}"/>
                                         <input type="hidden" name="cantidad" value="1"/>
-                                        <button type="submit" class="btn btn-primary btn-sm" th:disabled="${!p.activo}">
+                                        <button type="submit" class="btn btn-primary btn-sm w-100" th:disabled="${!p.activo}">
                                             <i class="fa-solid fa-cart-plus"></i>
                                         </button>
                                     </form>
@@ -210,6 +232,15 @@
                             <div>
                                 <div class="fw-semibold">[[#{index.verPedidos}]]</div>
                                 <div class="text-muted small">[[#{plantilla.pedidos}]]</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <a th:href="@{/perfil/favoritos}" class="cuenta-card card p-3 d-flex flex-row align-items-center gap-3">
+                            <div class="cuenta-icon"><i class="fa-solid fa-heart text-danger"></i></div>
+                            <div>
+                                <div class="fw-semibold">[[#{plantilla.favoritos}]]</div>
+                                <div class="text-muted small">[[#{plantilla.favoritos.desc}]]</div>
                             </div>
                         </a>
                     </div>

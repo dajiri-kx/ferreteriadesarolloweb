@@ -211,6 +211,7 @@ footer {
     border-radius: 10px;
     overflow: hidden;
     transition: box-shadow .2s;
+    position: relative;
 }
 .card-producto:hover {
     box-shadow: 0 4px 18px rgba(232, 100, 26, 0.18);
@@ -290,4 +291,33 @@ footer {
     align-items: center;
     justify-content: center;
     line-height: 1;
+}
+
+/* ===== BOTÓN FAVORITO ABSOLUTO ===== */
+.btn-favorito-absoluto {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+.btn-favorito-absoluto:hover {
+    background: #ffffff;
+    transform: scale(1.1);
+}
+.btn-favorito-absoluto.activo {
+    color: #dc3545;
+}
+.btn-favorito-absoluto.inactivo {
+    color: #a0a0a0;
 }

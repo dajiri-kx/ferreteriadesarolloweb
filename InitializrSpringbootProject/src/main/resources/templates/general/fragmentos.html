@@ -90,6 +90,11 @@
                                     <i class="fa-solid fa-box-open"></i> [[#{plantilla.pedidos}]]
                                 </a>
                             </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/perfil/favoritos}">
+                                    <i class="fa-solid fa-heart text-danger"></i> [[#{plantilla.favoritos}]]
+                                </a>
+                            </li>
                             <li><hr class="dropdown-divider"/></li>
                             <li>
                                 <a class="dropdown-item text-danger" th:href="@{/logout}">

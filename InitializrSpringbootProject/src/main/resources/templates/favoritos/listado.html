@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+            <!-- Barra superior -->
+            <div class="row py-3 mb-3 bg-light rounded align-items-center">
+                <div class="col-md-12">
+                    <h3 class="mb-0">
+                        <i class="fa-solid fa-heart text-danger"></i>
+                        [[#{favorito.titulo}]]
+                    </h3>
+                </div>
+            </div>
+
+            <!-- Sin favoritos -->
+            <div th:if="${#lists.isEmpty(favoritos)}" class="alert alert-info">
+                <i class="fa-solid fa-circle-info"></i>
+                [[#{favorito.vacio}]]
+            </div>
+
+            <!-- Grid de favoritos -->
+            <div class="row g-4" th:unless="${#lists.isEmpty(favoritos)}">
+                <div class="col-12 col-sm-6 col-lg-4" th:each="fav : ${favoritos}">
+                    <div class="card-producto">
+                        <div class="placeholder-img">
+                            <img th:if="${fav.producto.imagenes != null and !fav.producto.imagenes.empty}"
+                                 th:src="${fav.producto.imagenes[0].urlImagen}"
+                                 style="width: 100%; height: 100%; object-fit: cover;"
+                                 th:alt="${fav.producto.nombre}"/>
+                            <i th:if="${fav.producto.imagenes == null or fav.producto.imagenes.empty}"
+                               class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <div class="p-3">
+                            <span class="badge bg-secondary mb-1" th:text="${fav.producto.sku}"></span>
+                            <h6 class="mt-1 mb-1 fw-semibold" th:text="${fav.producto.nombre}"></h6>
+                            <p class="text-muted small mb-2 text-truncate" th:text="${fav.producto.descripcion}"></p>
+                            
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <th:block th:if="${fav.producto.precioOferta != null}">
+                                    <span class="precio-original text-decoration-line-through text-muted small"
+                                          th:text="'₡' + ${#numbers.formatDecimal(fav.producto.precio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                    <span class="precio-oferta fw-bold text-danger"
+                                          th:text="'₡' + ${#numbers.formatDecimal(fav.producto.precioOferta, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </th:block>
+                                <th:block th:unless="${fav.producto.precioOferta != null}">
+                                    <span class="precio-oferta"
+                                          th:text="'₡' + ${#numbers.formatDecimal(fav.producto.precio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                </th:block>
+                            </div>
+                            
+                            <!-- Acciones -->
+                            <div class="d-flex gap-2 mt-3">
+                                <!-- Mover al carrito -->
+                                <form th:action="@{/perfil/favoritos/mover}" method="post" class="flex-grow-1">
+                                    <input type="hidden" name="productoId" th:value="${fav.producto.id}"/>
+                                    <button type="submit" class="btn btn-primary btn-sm w-100"
+                                            th:disabled="${!fav.producto.activo}">
+                                        <i class="fa-solid fa-cart-shopping me-1"></i> [[#{favorito.moverCarrito}]]
+                                    </button>
+                                </form>
+                                <!-- Quitar -->
+                                <form th:action="@{/perfil/favoritos/toggle}" method="post">
+                                    <input type="hidden" name="productoId" th:value="${fav.producto.id}"/>
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"
+                                            title="Eliminar de favoritos">
+                                        <i class="fa-solid fa-heart-crack"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
