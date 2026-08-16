@@ -5,6 +5,8 @@ import com.proyecto.toolboxcr.domain.Pedido;
 import com.proyecto.toolboxcr.domain.Usuario;
 import com.proyecto.toolboxcr.repositorio.DetallePedidoRepository;
 import com.proyecto.toolboxcr.repositorio.PedidoRepository;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +48,59 @@ public class PedidoService {
             pedido.setEstado("cancelado");
             pedidoRepo.save(pedido);
         }
+    }
+
+    /* A-03 — Listado administrativo con filtros por estado y fecha */
+    public List<Pedido> getPedidosAdministracion(String estado, LocalDate fechaInicio, LocalDate fechaFin) {
+        boolean tieneEstado = estado != null && !estado.isBlank();
+        boolean tieneFechas = fechaInicio != null && fechaFin != null;
+
+        if (tieneEstado && tieneFechas) {
+            return pedidoRepo.findByEstadoAndFechaBetweenOrderByFechaDesc(
+                    estado,
+                    fechaInicio.atStartOfDay(),
+                    fechaFin.atTime(LocalTime.MAX)
+            );
+        }
+
+        if (tieneEstado) {
+            return pedidoRepo.findByEstadoOrderByFechaDesc(estado);
+        }
+
+        if (tieneFechas) {
+            return pedidoRepo.findByFechaBetweenOrderByFechaDesc(
+                    fechaInicio.atStartOfDay(),
+                    fechaFin.atTime(LocalTime.MAX)
+            );
+        }
+
+        return pedidoRepo.findAllByOrderByFechaDesc();
+    }
+
+    /* A-03 — Detalle administrativo de pedido */
+    public Pedido getPedidoAdministracion(Long idPedido) {
+        return pedidoRepo.findById(idPedido)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado."));
+    }
+
+    /* A-03 — Actualización administrativa del estado */
+    @org.springframework.transaction.annotation.Transactional
+    public void actualizarEstadoAdministracion(Long idPedido, String nuevoEstado) {
+        if (!esEstadoValido(nuevoEstado)) {
+            throw new IllegalArgumentException("Estado de pedido no válido.");
+        }
+
+        Pedido pedido = getPedidoAdministracion(idPedido);
+        pedido.setEstado(nuevoEstado);
+        pedidoRepo.save(pedido);
+    }
+
+    /* A-03 — Estados permitidos*/
+    public List<String> getEstadosAdministracion() {
+        return List.of("pendiente", "preparando", "enviado", "entregado");
+    }
+
+    private boolean esEstadoValido(String estado) {
+        return getEstadosAdministracion().contains(estado);
     }
 }

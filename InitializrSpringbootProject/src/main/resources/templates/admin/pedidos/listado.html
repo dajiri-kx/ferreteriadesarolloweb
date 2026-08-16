@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+            <div class="row py-3 mb-3 bg-light rounded align-items-center">
+                <div class="col">
+                    <h3 class="mb-0">
+                        <i class="fa-solid fa-clipboard-list" style="color: #E8641A;"></i>
+                        Administración de Pedidos
+                    </h3>
+                </div>
+            </div>
+
+            <form th:action="@{/admin/pedidos}" method="get" class="card mb-4">
+                <div class="card-header card-header-naranja">
+                    <i class="fa-solid fa-filter"></i> Filtros
+                </div>
+                <div class="card-body">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select id="estado" name="estado" class="form-select">
+                                <option value="">Todos</option>
+                                <option th:each="estadoItem : ${estados}"
+                                        th:value="${estadoItem}"
+                                        th:text="${estadoItem}"
+                                        th:selected="${estadoItem == estadoSeleccionado}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="fechaInicio" class="form-label">Fecha inicio</label>
+                            <input id="fechaInicio"
+                                   name="fechaInicio"
+                                   type="date"
+                                   class="form-control"
+                                   th:value="${fechaInicio}" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="fechaFin" class="form-label">Fecha fin</label>
+                            <input id="fechaFin"
+                                   name="fechaFin"
+                                   type="date"
+                                   class="form-control"
+                                   th:value="${fechaFin}" />
+                        </div>
+
+                        <div class="col-md-2 d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-magnifying-glass"></i> Filtrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:if="${#lists.isEmpty(pedidos)}" class="alert alert-info">
+                <i class="fa-solid fa-circle-info"></i>
+                No hay pedidos registrados con los filtros seleccionados.
+            </div>
+
+            <div class="table-responsive" th:unless="${#lists.isEmpty(pedidos)}">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Nº Orden</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pedido : ${pedidos}">
+                            <td>
+                                <strong th:text="${pedido.numeroOrden}"></strong>
+                            </td>
+                            <td th:text="${pedido.cliente != null ? pedido.cliente.nombre : 'Sin cliente'}"></td>
+                            <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></td>
+                            <td>
+                                <span class="badge bg-secondary" th:text="${pedido.estado}"></span>
+                            </td>
+                            <td class="text-end fw-bold"
+                                th:text="${'₡ ' + #numbers.formatDecimal(pedido.total, 1, 'COMMA', 2, 'POINT')}">
+                            </td>
+                            <td class="text-center">
+                                <a th:href="@{/admin/pedidos/{id}(id=${pedido.id})}"
+                                   class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-eye"></i> Ver detalle
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

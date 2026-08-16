@@ -17,7 +17,7 @@ public class SecurityConfig {
     private final CustomAuthenticationFailureHandler failureHandler;
 
     public SecurityConfig(CustomAuthenticationSuccessHandler successHandler,
-                          CustomAuthenticationFailureHandler failureHandler) {
+            CustomAuthenticationFailureHandler failureHandler) {
         this.successHandler = successHandler;
         this.failureHandler = failureHandler;
     }
@@ -36,7 +36,7 @@ public class SecurityConfig {
     };
 
     public static final String[] ADMIN_URLS = {
-        "/producto/**", "/usuario_rol/**"
+        "/producto/**", "/usuario_rol/**", "/admin/pedidos/**"
     };
 
     @Bean
@@ -79,8 +79,8 @@ public class SecurityConfig {
 
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build,
-                                 @Lazy PasswordEncoder passwordEncoder,
-                                 @Lazy UserDetailsService userDetailsService) throws Exception {
+            @Lazy PasswordEncoder passwordEncoder,
+            @Lazy UserDetailsService userDetailsService) throws Exception {
         build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 }
