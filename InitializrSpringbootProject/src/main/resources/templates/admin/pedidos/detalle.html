@@ -14,11 +14,19 @@
                         Pedido <strong th:text="${pedido.numeroOrden}"></strong>
                     </h3>
                 </div>
+                
                 <div class="col-md-4 text-end">
+                    <a th:href="@{/admin/pedidos/{id}/factura(id=${pedido.id})}"
+                       class="btn btn-outline-primary btn-sm"
+                       target="_blank">
+                        <i class="fa-solid fa-file-invoice"></i> Factura
+                    </a>
+
                     <a th:href="@{/admin/pedidos}" class="btn btn-outline-secondary btn-sm">
                         <i class="fa-solid fa-arrow-left"></i> Volver al listado
                     </a>
                 </div>
+                
             </div>
 
             <div class="row mb-4">

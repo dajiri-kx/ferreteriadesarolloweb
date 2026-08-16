@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <main class="container mt-4 mb-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-4 no-print">
+                <a th:href="@{/admin/pedidos/{id}(id=${pedido.id})}" class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al pedido
+                </a>
+
+                <button type="button" class="btn btn-primary" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
+                </button>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body p-5">
+
+                    <div class="row mb-4">
+                        <div class="col-md-7">
+                            <h2 class="fw-bold mb-1">
+                                <i class="fa-solid fa-toolbox" style="color: #E8641A;"></i>
+                                ToolboxCR
+                            </h2>
+                            <p class="text-muted mb-0">Factura de pedido</p>
+                        </div>
+
+                        <div class="col-md-5 text-md-end">
+                            <h4 class="fw-bold mb-1">FACTURA</h4>
+                            <p class="mb-1">
+                                <strong>Nº Orden:</strong>
+                                <span th:text="${pedido.numeroOrden}"></span>
+                            </p>
+                            <p class="mb-0">
+                                <strong>Fecha:</strong>
+                                <span th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="fw-bold">Cliente</h5>
+                            <p class="mb-1">
+                                <strong>Nombre:</strong>
+                                <span th:text="${pedido.cliente != null ? pedido.cliente.nombre : 'Sin cliente'}"></span>
+                            </p>
+                            <p class="mb-1" th:if="${pedido.cliente != null}">
+                                <strong>Correo:</strong>
+                                <span th:text="${pedido.cliente.correo}"></span>
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 text-md-end">
+                            <h5 class="fw-bold">Estado del pedido</h5>
+                            <span class="badge bg-secondary fs-6" th:text="${pedido.estado}"></span>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-end">Precio unitario</th>
+                                    <th class="text-end">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item : ${detalles}">
+                                    <td th:text="${item.producto.nombre}"></td>
+                                    <td class="text-center" th:text="${item.cantidad}"></td>
+                                    <td class="text-end"
+                                        th:text="${'₡ ' + #numbers.formatDecimal(item.precioUnitario, 1, 'COMMA', 2, 'POINT')}">
+                                    </td>
+                                    <td class="text-end fw-bold"
+                                        th:text="${'₡ ' + #numbers.formatDecimal(item.subtotal, 1, 'COMMA', 2, 'POINT')}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row justify-content-end">
+                        <div class="col-md-5">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Subtotal</th>
+                                        <td class="text-end"
+                                            th:text="${'₡ ' + #numbers.formatDecimal(pedido.subtotal, 1, 'COMMA', 2, 'POINT')}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Envío</th>
+                                        <td class="text-end"
+                                            th:text="${'₡ ' + #numbers.formatDecimal(pedido.costoEnvio, 1, 'COMMA', 2, 'POINT')}">
+                                        </td>
+                                    </tr>
+                                    <tr th:if="${pedido.descuentoTotal != null and pedido.descuentoTotal.compareTo(T(java.math.BigDecimal).ZERO) > 0}">
+                                        <th>Descuento</th>
+                                        <td class="text-end text-success"
+                                            th:text="${'-₡ ' + #numbers.formatDecimal(pedido.descuentoTotal, 1, 'COMMA', 2, 'POINT')}">
+                                        </td>
+                                    </tr>
+                                    <tr class="table-dark">
+                                        <th>Total</th>
+                                        <td class="text-end fw-bold"
+                                            th:text="${'₡ ' + #numbers.formatDecimal(pedido.total, 1, 'COMMA', 2, 'POINT')}">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <p class="text-muted mb-0">
+                        Esta factura corresponde al pedido registrado en el sistema ToolboxCR.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <style>
+            @media print {
+                .no-print {
+                    display: none !important;
+                }
+
+                body {
+                    background: white !important;
+                }
+
+                .card {
+                    border: none !important;
+                    box-shadow: none !important;
+                }
+
+                main {
+                    margin: 0 !important;
+                    max-width: 100% !important;
+                }
+            }
+        </style>
+    </body>
+</html>

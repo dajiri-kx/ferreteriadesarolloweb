@@ -58,6 +58,23 @@ public class AdminPedidoController {
         }
     }
 
+    /* A-03 — Factura imprimible de un pedido */
+    @GetMapping("/{id}/factura")
+    public String factura(@PathVariable Long id, Model model, RedirectAttributes redirectAttrs) {
+        try {
+            Pedido pedido = pedidoService.getPedidoAdministracion(id);
+            List<DetallePedido> detalles = pedidoService.getDetalles(pedido);
+
+            model.addAttribute("pedido", pedido);
+            model.addAttribute("detalles", detalles);
+
+            return "admin/pedidos/factura";
+        } catch (IllegalArgumentException e) {
+            redirectAttrs.addFlashAttribute("error", e.getMessage());
+            return "redirect:/admin/pedidos";
+        }
+    }
+
     /* A-03 — Cambio de estado del pedido */
     @PostMapping("/{id}/estado")
     public String actualizarEstado(
