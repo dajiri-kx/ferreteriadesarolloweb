@@ -16,6 +16,8 @@ public class CuponService {
 
     @Autowired
     private CuponRepository cuponRepo;
+    private static final int CANTIDAD_MINIMA_DESCUENTO = 3;
+    private static final BigDecimal PORCENTAJE_DESCUENTO_CANTIDAD = new BigDecimal("5.00");
     @Autowired
     private ProductoRepository productoRepo;
     @Autowired
@@ -231,4 +233,31 @@ public class CuponService {
             throw new IllegalArgumentException("Ya existe un cupón con ese código.");
         }
     }
+
+    /* A-04 — Descuento automático por cantidad comprada */
+    public BigDecimal calcularDescuentoAutomaticoPorCantidad(List<ItemCarrito> items) {
+        if (items == null || items.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+
+        BigDecimal descuento = BigDecimal.ZERO;
+
+        for (ItemCarrito item : items) {
+            if (item.getCantidad() != null && item.getCantidad() >= CANTIDAD_MINIMA_DESCUENTO) {
+                BigDecimal descuentoItem = item.getSubtotal()
+                        .multiply(PORCENTAJE_DESCUENTO_CANTIDAD)
+                        .divide(new BigDecimal("100.00"));
+
+                descuento = descuento.add(descuentoItem);
+            }
+        }
+
+        return descuento;
+    }
+
+    /* A-04 — Mensaje informativo del descuento automático */
+    public String getMensajeDescuentoAutomaticoPorCantidad() {
+        return "Descuento automático aplicado: 5% al comprar 3 o más unidades de un mismo producto.";
+    }
+
 }

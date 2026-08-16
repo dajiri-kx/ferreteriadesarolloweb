@@ -35,13 +35,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/carrito")
 public class CarritoController {
 
-    @Autowired private CarritoService carritoService;
-    @Autowired private MetodoEnvioRepository metodoEnvioRepo;
-    @Autowired private DireccionService direccionService;
-    @Autowired private DireccionEnvioRepository direccionEnvioRepo;
-    @Autowired private PedidoService pedidoService;
-    @Autowired private CuponRepository cuponRepo;
-    @Autowired private CuponService cuponService;
+    @Autowired
+    private CarritoService carritoService;
+    @Autowired
+    private MetodoEnvioRepository metodoEnvioRepo;
+    @Autowired
+    private DireccionService direccionService;
+    @Autowired
+    private DireccionEnvioRepository direccionEnvioRepo;
+    @Autowired
+    private PedidoService pedidoService;
+    @Autowired
+    private CuponRepository cuponRepo;
+    @Autowired
+    private CuponService cuponService;
 
     private Usuario getUsuario(HttpSession session) {
         return (Usuario) session.getAttribute("usuarioLogueado");
@@ -64,6 +71,7 @@ public class CarritoController {
         BigDecimal descuento = BigDecimal.ZERO;
         String cuponCodigo = (String) session.getAttribute("cuponAplicado");
         Cupon cupon = null;
+
         if (cuponCodigo != null) {
             try {
                 cupon = cuponRepo.findByCodigoIgnoreCase(cuponCodigo.trim()).orElse(null);
@@ -80,16 +88,27 @@ public class CarritoController {
             }
         }
 
+        // A-04 — Descuento automático por cantidad comprada
+        BigDecimal descuentoAutomatico = cuponService.calcularDescuentoAutomaticoPorCantidad(items);
+        descuento = descuento.add(descuentoAutomatico);
+
+        if (descuento.compareTo(subtotal) > 0) {
+            descuento = subtotal;
+        }
+
         BigDecimal baseImponible = subtotal.subtract(descuento);
         if (baseImponible.compareTo(BigDecimal.ZERO) < 0) {
             baseImponible = BigDecimal.ZERO;
         }
+
         BigDecimal iva = baseImponible.multiply(new BigDecimal("0.13")).setScale(2, java.math.RoundingMode.HALF_UP);
         BigDecimal totalConDescuento = baseImponible.add(iva);
 
         model.addAttribute("items", items);
         model.addAttribute("subtotal", subtotal);
         model.addAttribute("descuento", descuento);
+        model.addAttribute("descuentoAutomatico", descuentoAutomatico);
+        model.addAttribute("mensajeDescuentoAutomatico", cuponService.getMensajeDescuentoAutomaticoPorCantidad());
         model.addAttribute("iva", iva);
         model.addAttribute("cuponAplicado", cupon);
         model.addAttribute("totalConDescuento", totalConDescuento);
@@ -101,10 +120,10 @@ public class CarritoController {
     /* CC-01 — Agregar producto al carrito */
     @PostMapping("/agregar")
     public String agregar(@RequestParam Long productoId,
-                          @RequestParam(defaultValue = "1") int cantidad,
-                          HttpSession session,
-                          HttpServletRequest request,
-                          RedirectAttributes redirectAttrs) {
+            @RequestParam(defaultValue = "1") int cantidad,
+            HttpSession session,
+            HttpServletRequest request,
+            RedirectAttributes redirectAttrs) {
         try {
             carritoService.agregarItem(getUsuario(session), productoId, cantidad);
             actualizarBadge(session, getUsuario(session));
@@ -119,9 +138,9 @@ public class CarritoController {
     /* CC-01 — Actualizar cantidad de un ítem */
     @PostMapping("/actualizar")
     public String actualizar(@RequestParam Long itemId,
-                             @RequestParam int cantidad,
-                             HttpSession session,
-                             RedirectAttributes redirectAttrs) {
+            @RequestParam int cantidad,
+            HttpSession session,
+            RedirectAttributes redirectAttrs) {
         try {
             carritoService.actualizarCantidad(getUsuario(session), itemId, cantidad);
             actualizarBadge(session, getUsuario(session));
@@ -134,8 +153,8 @@ public class CarritoController {
     /* CC-01 — Eliminar ítem */
     @PostMapping("/eliminar")
     public String eliminar(@RequestParam Long itemId,
-                           HttpSession session,
-                           RedirectAttributes redirectAttrs) {
+            HttpSession session,
+            RedirectAttributes redirectAttrs) {
         try {
             carritoService.eliminarItem(getUsuario(session), itemId);
             actualizarBadge(session, getUsuario(session));
@@ -197,6 +216,15 @@ public class CarritoController {
                 session.removeAttribute("cuponAplicado");
             }
         }
+        BigDecimal descuentoAutomatico = cuponService.calcularDescuentoAutomaticoPorCantidad(items);
+        descuento = descuento.add(descuentoAutomatico);
+
+        if (descuento.compareTo(subtotal) > 0) {
+            descuento = subtotal;
+        }
+
+        model.addAttribute("descuentoAutomatico", descuentoAutomatico);
+        model.addAttribute("mensajeDescuentoAutomatico", cuponService.getMensajeDescuentoAutomaticoPorCantidad());
 
         BigDecimal baseImponible = subtotal.subtract(descuento);
         if (baseImponible.compareTo(BigDecimal.ZERO) < 0) {
@@ -217,16 +245,16 @@ public class CarritoController {
     /* CC-03 — Confirmar pedido */
     @PostMapping("/confirmar")
     public String confirmar(@RequestParam Long metodoEnvioId,
-                            @RequestParam(required = false) Long direccionId,
-                            HttpSession session,
-                            RedirectAttributes redirectAttrs) {
+            @RequestParam(required = false) Long direccionId,
+            HttpSession session,
+            RedirectAttributes redirectAttrs) {
         try {
             String cuponCodigo = (String) session.getAttribute("cuponAplicado");
             Pedido pedido = carritoService.crearPedido(getUsuario(session), metodoEnvioId, direccionId, cuponCodigo);
-            
+
             // Remover el cupón de la sesión ya que el pedido ya fue creado y lo incluye
             session.removeAttribute("cuponAplicado");
-            
+
             return "redirect:/carrito/resumen/" + pedido.getId();
         } catch (IllegalArgumentException e) {
             redirectAttrs.addFlashAttribute("error", e.getMessage());
@@ -238,9 +266,11 @@ public class CarritoController {
     @GetMapping("/calcular-envio")
     @ResponseBody
     public Map<String, Object> calcularEnvio(@RequestParam Long metodoEnvioId,
-                                             @RequestParam(required = false) Long direccionId,
-                                             HttpSession session) {
+            @RequestParam(required = false) Long direccionId,
+            HttpSession session) {
+
         Map<String, Object> response = new HashMap<>();
+
         try {
             Usuario usuario = getUsuario(session);
             Carrito carrito = carritoService.obtenerOCrearCarrito(usuario);
@@ -251,15 +281,17 @@ public class CarritoController {
 
             MetodoEnvio metodo = metodoEnvioRepo.findById(metodoEnvioId).orElse(null);
             DireccionEnvio direccion = null;
+
             if (direccionId != null) {
                 direccion = direccionEnvioRepo.findById(direccionId).orElse(null);
             }
 
             BigDecimal costoEnvio = carritoService.calcularCostoEnvio(metodo, direccion, items);
-            
+
             // Calcular descuento si hay cupón en sesión
             BigDecimal descuento = BigDecimal.ZERO;
             String cuponCodigo = (String) session.getAttribute("cuponAplicado");
+
             if (cuponCodigo != null) {
                 try {
                     Cupon cupon = cuponRepo.findByCodigoIgnoreCase(cuponCodigo.trim()).orElse(null);
@@ -272,25 +304,37 @@ public class CarritoController {
                 }
             }
 
+            // A-04 — Descuento automático por cantidad comprada
+            BigDecimal descuentoAutomatico = cuponService.calcularDescuentoAutomaticoPorCantidad(items);
+            descuento = descuento.add(descuentoAutomatico);
+
+            if (descuento.compareTo(subtotal) > 0) {
+                descuento = subtotal;
+            }
+
             BigDecimal baseImponible = subtotal.subtract(descuento);
             if (baseImponible.compareTo(BigDecimal.ZERO) < 0) {
                 baseImponible = BigDecimal.ZERO;
             }
+
             BigDecimal iva = baseImponible.multiply(new BigDecimal("0.13")).setScale(2, java.math.RoundingMode.HALF_UP);
             BigDecimal total = subtotal.add(costoEnvio).subtract(descuento).add(iva);
 
             response.put("success", true);
             response.put("subtotal", subtotal);
             response.put("descuento", descuento);
+            response.put("descuentoAutomatico", descuentoAutomatico);
             response.put("iva", iva);
             response.put("pesoTotal", pesoTotal);
             response.put("costoEnvio", costoEnvio);
             response.put("total", total);
             response.put("requiereDireccion", metodo != null && metodo.getRequiereDireccion());
+
         } catch (Exception e) {
             response.put("success", false);
             response.put("message", e.getMessage());
         }
+
         return response;
     }
 
