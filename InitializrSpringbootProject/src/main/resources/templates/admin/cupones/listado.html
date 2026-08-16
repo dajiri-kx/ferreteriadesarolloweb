@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+            <div class="row py-3 mb-3 bg-light rounded align-items-center">
+                <div class="col">
+                    <h3 class="mb-0">
+                        <i class="fa-solid fa-tags" style="color: #E8641A;"></i>
+                        Administración de Cupones y Descuentos
+                    </h3>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header card-header-naranja">
+                    <i class="fa-solid fa-plus"></i> Crear cupón
+                </div>
+
+                <div class="card-body">
+                    <form th:action="@{/admin/cupones/guardar}" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label" for="codigo">Código</label>
+                                <input id="codigo" name="codigo" type="text" class="form-control"
+                                       placeholder="Ej: TALADRO10" required />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label" for="tipo">Tipo</label>
+                                <select id="tipo" name="tipo" class="form-select" required>
+                                    <option th:each="tipoItem : ${tipos}"
+                                            th:value="${tipoItem}"
+                                            th:text="${tipoItem}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-label" for="valor">Valor</label>
+                                <input id="valor" name="valor" type="number" step="0.01" min="0.01"
+                                       class="form-control" required />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-label" for="fechaInicio">Inicio</label>
+                                <input id="fechaInicio" name="fechaInicio" type="date" class="form-control" required />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-label" for="fechaFin">Fin</label>
+                                <input id="fechaFin" name="fechaFin" type="date" class="form-control" required />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="form-label" for="limiteUsos">Límite usos</label>
+                                <input id="limiteUsos" name="limiteUsos" type="number" min="1"
+                                       class="form-control" required />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label" for="aplicaA">Aplica a</label>
+                                <select id="aplicaA" name="aplicaA" class="form-select" required>
+                                    <option th:each="aplicacion : ${aplicaciones}"
+                                            th:value="${aplicacion}"
+                                            th:text="${aplicacion}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label" for="productoId">Producto</label>
+                                <select id="productoId" name="productoId" class="form-select">
+                                    <option value="">No aplica</option>
+                                    <option th:each="producto : ${productos}"
+                                            th:value="${producto.id}"
+                                            th:text="${producto.nombre}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label" for="categoriaId">Categoría</label>
+                                <select id="categoriaId" name="categoriaId" class="form-select">
+                                    <option value="">No aplica</option>
+                                    <option th:each="categoria : ${categorias}"
+                                            th:value="${categoria.id}"
+                                            th:text="${categoria.nombre}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-1 d-grid align-items-end">
+                                <label class="form-label">&nbsp;</label>
+                                <button type="submit" class="btn btn-primary">
+                                    Guardar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <small class="text-muted d-block mt-3">
+                        Para cupones de producto selecciona un producto. Para cupones de categoría selecciona una categoría.
+                        Para carrito completo no selecciones producto ni categoría.
+                    </small>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header card-header-naranja">
+                    <i class="fa-solid fa-chart-simple"></i> Reporte de cupones utilizados
+                </div>
+
+                <div class="card-body p-0">
+                    <div th:if="${#lists.isEmpty(cupones)}" class="alert alert-info m-3">
+                        No hay cupones registrados.
+                    </div>
+
+                    <div class="table-responsive" th:unless="${#lists.isEmpty(cupones)}">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Tipo</th>
+                                    <th>Valor</th>
+                                    <th>Aplica a</th>
+                                    <th>Producto/Categoría</th>
+                                    <th>Vigencia</th>
+                                    <th class="text-center">Usos</th>
+                                    <th class="text-center">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cupon : ${cupones}">
+                                    <td>
+                                        <strong th:text="${cupon.codigo}"></strong>
+                                    </td>
+
+                                    <td th:text="${cupon.tipo}"></td>
+
+                                    <td>
+                                        <span th:if="${cupon.tipo == 'porcentaje'}"
+                                              th:text="${#numbers.formatDecimal(cupon.valor, 1, 'COMMA', 2, 'POINT') + '%'}">
+                                        </span>
+                                        <span th:if="${cupon.tipo == 'monto_fijo'}"
+                                              th:text="${'₡ ' + #numbers.formatDecimal(cupon.valor, 1, 'COMMA', 2, 'POINT')}">
+                                        </span>
+                                    </td>
+
+                                    <td th:text="${cupon.aplicaA}"></td>
+
+                                    <td>
+                                        <span th:if="${cupon.aplicaA == 'producto' and cupon.producto != null}"
+                                              th:text="${cupon.producto.nombre}">
+                                        </span>
+                                        <span th:if="${cupon.aplicaA == 'categoria' and cupon.categoria != null}"
+                                              th:text="${cupon.categoria.nombre}">
+                                        </span>
+                                        <span th:if="${cupon.aplicaA == 'carrito'}">Carrito completo</span>
+                                    </td>
+
+                                    <td>
+                                        <span th:text="${#temporals.format(cupon.fechaInicio, 'dd/MM/yyyy')}"></span>
+                                        -
+                                        <span th:text="${#temporals.format(cupon.fechaFin, 'dd/MM/yyyy')}"></span>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <span th:text="${cupon.usosActuales}"></span>
+                                        /
+                                        <span th:text="${cupon.limiteUsos}"></span>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <span th:if="${cupon.usosActuales < cupon.limiteUsos}"
+                                              class="badge bg-success">
+                                            Disponible
+                                        </span>
+                                        <span th:if="${cupon.usosActuales >= cupon.limiteUsos}"
+                                              class="badge bg-danger">
+                                            Agotado
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
