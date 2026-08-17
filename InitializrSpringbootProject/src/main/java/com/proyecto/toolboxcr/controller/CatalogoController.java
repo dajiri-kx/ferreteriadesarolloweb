@@ -52,21 +52,26 @@ public class CatalogoController {
 
     /* Catálogo general, con filtro opcional por categoría (?categoria=herramientas) */
     @GetMapping("/catalogo")
-    public String catalogo(@RequestParam(required = false) String categoria, Model model) {
-        List<Producto> resultados;
-        if (categoria != null && !categoria.isBlank()) {
-            String norm = normalizar(categoria);
-            resultados = productoService.listarProductosActivos().stream()
-                    .filter(p -> p.getCategoria() != null
-                    && normalizar(p.getCategoria().getNombre()).contains(norm))
-                    .collect(Collectors.toList());
-        } else {
-            resultados = productoService.listarProductosActivos();
-        }
+    public String catalogo(@RequestParam(required = false) String categoria,
+            @RequestParam(required = false) java.math.BigDecimal precioMin,
+            @RequestParam(required = false) java.math.BigDecimal precioMax,
+            @RequestParam(required = false) Boolean soloDisponibles,
+            Model model) {
+        List<Producto> resultados = productoService.listarProductosActivos().stream()
+                .filter(p -> categoria == null || categoria.isBlank()
+                || (p.getCategoria() != null
+                && normalizar(p.getCategoria().getNombre()).contains(normalizar(categoria))))
+                .filter(p -> precioMin == null || p.getPrecio().compareTo(precioMin) >= 0)
+                .filter(p -> precioMax == null || p.getPrecio().compareTo(precioMax) <= 0)
+                .collect(Collectors.toList());
+
         model.addAttribute("resultados", resultados);
         model.addAttribute("totalResultados", resultados.size());
-        model.addAttribute("q", categoria);
-        return "index";
+        model.addAttribute("categoriaActual", categoria);
+        model.addAttribute("precioMin", precioMin);
+        model.addAttribute("precioMax", precioMax);
+        model.addAttribute("soloDisponibles", soloDisponibles);
+        return "catalogo/catalogo";
     }
 
     private String normalizar(String s) {
@@ -125,5 +130,4 @@ public class CatalogoController {
         return "catalogo/detalle";
     }
 
- 
 }
