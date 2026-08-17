@@ -58,7 +58,7 @@ public class CatalogoController {
             String norm = normalizar(categoria);
             resultados = productoService.listarProductosActivos().stream()
                     .filter(p -> p.getCategoria() != null
-                            && normalizar(p.getCategoria().getNombre()).contains(norm))
+                    && normalizar(p.getCategoria().getNombre()).contains(norm))
                     .collect(Collectors.toList());
         } else {
             resultados = productoService.listarProductosActivos();
@@ -86,6 +86,7 @@ public class CatalogoController {
         return "index";
     }
 
+    //CB-05 Ofertas
     @GetMapping("/catalogo/ofertas")
     public String ofertas(Model model) {
         List<Producto> resultados = productoService.listarProductosActivos().stream()
@@ -93,8 +94,7 @@ public class CatalogoController {
                 .collect(Collectors.toList());
         model.addAttribute("resultados", resultados);
         model.addAttribute("totalResultados", resultados.size());
-        model.addAttribute("q", "Ofertas");
-        return "index";
+        return "catalogo/ofertas";
     }
 
     @GetMapping("/catalogo/producto/{id}")
@@ -124,4 +124,6 @@ public class CatalogoController {
 
         return "catalogo/detalle";
     }
+
+ 
 }
