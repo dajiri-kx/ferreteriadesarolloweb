@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4 mb-5">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Inicio</a></li>
+                    <li class="breadcrumb-item">
+                        <a th:href="@{/catalogo}">Catálogo</a>
+                    </li>
+                    <li class="breadcrumb-item active">Comparar productos</li>
+                </ol>
+            </nav>
+
+            <!-- Encabezado -->
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h2 class="fw-bold mb-0">
+                    <i class="fa-solid fa-scale-balanced me-2"></i>Comparar productos
+                </h2>
+                <a th:href="@{/catalogo/comparar/limpiar}" class="btn btn-outline-danger btn-sm">
+                    <i class="fa-solid fa-xmark me-1"></i>Limpiar comparación
+                </a>
+            </div>
+
+            <!-- Sin productos -->
+            <div class="alert alert-info text-center"
+                 th:if="${productos == null or productos.empty}">
+                <i class="fa-solid fa-circle-info me-2"></i>
+                No has seleccionado productos para comparar.
+                <a th:href="@{/catalogo}" class="alert-link ms-2">Ir al catálogo</a>
+            </div>
+
+            <!-- Tabla comparación -->
+            <div th:unless="${productos == null or productos.empty}" class="table-responsive">
+                <table class="table table-bordered text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th class="bg-light text-start" style="width:180px">Atributo</th>
+                            <th th:each="p : ${productos}" class="position-relative">
+                                <!-- Imagen -->
+                                <div class="placeholder-img mx-auto mb-2"
+                                     style="width:120px; height:120px; border-radius:8px; overflow:hidden;">
+                                    <img th:if="${p.imagenes != null and !p.imagenes.empty}"
+                                         th:src="${p.imagenes[0].urlImagen}"
+                                         style="width:100%; height:100%; object-fit:cover;"
+                                         th:alt="${p.nombre}"/>
+                                    <i th:if="${p.imagenes == null or p.imagenes.empty}"
+                                       class="fa-solid fa-screwdriver-wrench fa-2x text-muted"
+                                       style="line-height:120px;"></i>
+                                </div>
+                                <span class="badge bg-secondary mb-1" th:text="${p.sku}"></span>
+                                <div class="fw-bold" th:text="${p.nombre}"></div>
+                                <!-- Botón quitar -->
+                                <a th:href="@{/catalogo/comparar/quitar(id=${p.id})}"
+                                   class="btn btn-outline-danger btn-sm mt-2">
+                                    <i class="fa-solid fa-xmark"></i> Quitar
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Precio -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Precio</td>
+                            <td th:each="p : ${productos}">
+                                <th:block th:if="${p.precioOferta != null}">
+                                    <span class="text-decoration-line-through text-muted small"
+                                          th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}">
+                                    </span><br/>
+                                    <span class="fw-bold text-danger"
+                                          th:text="'₡' + ${#numbers.formatDecimal(p.precioOferta, 1, 'COMMA', 0, 'POINT')}">
+                                    </span>
+                                </th:block>
+                                <th:block th:unless="${p.precioOferta != null}">
+                                    <span class="fw-bold"
+                                          th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}">
+                                    </span>
+                                </th:block>
+                            </td>
+                        </tr>
+                        <!-- Categoría -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Categoría</td>
+                            <td th:each="p : ${productos}"
+                                th:text="${p.categoria != null ? p.categoria.nombre : '-'}">
+                            </td>
+                        </tr>
+                        <!-- Marca -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Marca</td>
+                            <td th:each="p : ${productos}"
+                                th:text="${p.marca != null ? p.marca : '-'}">
+                            </td>
+                        </tr>
+                        <!-- Material -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Material</td>
+                            <td th:each="p : ${productos}"
+                                th:text="${p.material != null ? p.material : '-'}">
+                            </td>
+                        </tr>
+                        <!-- Dimensiones -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Dimensiones</td>
+                            <td th:each="p : ${productos}"
+                                th:text="${p.dimensiones != null ? p.dimensiones : '-'}">
+                            </td>
+                        </tr>
+                        <!-- Disponibilidad -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Disponibilidad</td>
+                            <td th:each="p : ${productos}">
+                                <span th:if="${p.activo}" class="badge bg-success">Disponible</span>
+                                <span th:unless="${p.activo}" class="badge bg-danger">No disponible</span>
+                            </td>
+                        </tr>
+                        <!-- Descuento -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Descuento</td>
+                            <td th:each="p : ${productos}">
+                                <span th:if="${p.porcentajeDescuento != null}"
+                                      class="badge bg-warning text-dark"
+                                      th:text="'-' + ${#numbers.formatDecimal(p.porcentajeDescuento, 0, 0)} + '%'">
+                                </span>
+                                <span th:unless="${p.porcentajeDescuento != null}">-</span>
+                            </td>
+                        </tr>
+                        <!-- Acciones -->
+                        <tr>
+                            <td class="text-start fw-semibold bg-light">Acciones</td>
+                            <td th:each="p : ${productos}">
+                                <div class="d-flex flex-column gap-2 align-items-center">
+                                    <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
+                                       class="btn btn-outline-primary btn-sm w-100">
+                                        <i class="fa-solid fa-eye"></i> Ver ficha
+                                    </a>
+                                    <form th:action="@{/carrito/agregar}" method="post" class="w-100">
+                                        <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                        <input type="hidden" name="cantidad" value="1"/>
+                                        <button type="submit" class="btn btn-primary btn-sm w-100"
+                                                th:disabled="${!p.activo}">
+                                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

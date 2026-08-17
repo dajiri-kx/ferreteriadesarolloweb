@@ -164,6 +164,15 @@
                                            class="btn btn-outline-primary btn-sm flex-grow-1">
                                             <i class="fa-solid fa-eye"></i> Ver ficha
                                         </a>
+                                        <!-- Botón comparar -->
+                                        <form th:action="@{/catalogo/comparar/agregar}" method="post" class="d-inline">
+                                            <input type="hidden" name="id" th:value="${p.id}"/>
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm"
+                                                    title="Agregar a comparar"
+                                                    th:disabled="${session.compararIds != null and session.compararIds.contains(p.id)}">
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                            </button>
+                                        </form>
                                         <form th:action="@{/carrito/agregar}" method="post" class="d-inline flex-grow-1">
                                             <input type="hidden" name="productoId" th:value="${p.id}"/>
                                             <input type="hidden" name="cantidad" value="1"/>
