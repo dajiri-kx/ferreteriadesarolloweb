@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4 mb-5">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Inicio</a></li>
+                    <li class="breadcrumb-item active"
+                        th:text="${categoriaActual != null ? categoriaActual : 'Catálogo'}">
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="row g-4">
+
+                <!-- Columna izquierda: filtros -->
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                        <div class="card-header fw-bold">
+                            <i class="fa-solid fa-filter me-2"></i>Filtros
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/catalogo}" method="get" id="formFiltros">
+
+                                <!-- Categoría -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Categoría</label>
+                                    <select name="categoria" class="form-select" id="filtroCat">
+                                        <option value="">Todas</option>
+                                        <option th:each="cat : ${categorias}"
+                                                th:value="${cat.nombre}"
+                                                th:text="${cat.nombre}"
+                                                th:selected="${categoriaActual != null and categoriaActual == cat.nombre}">
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <!-- Precio mínimo -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">
+                                        Precio mínimo: <span id="lblMin">₡<span th:text="${precioMin != null ? precioMin : 0}"></span></span>
+                                    </label>
+                                    <input type="range" class="form-range" id="rangeMin"
+                                           name="precioMin" min="0" max="100000" step="500"
+                                           th:value="${precioMin != null ? precioMin : 0}"/>
+                                </div>
+
+                                <!-- Precio máximo -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">
+                                        Precio máximo: <span id="lblMax">₡<span th:text="${precioMax != null ? precioMax : 100000}"></span></span>
+                                    </label>
+                                    <input type="range" class="form-range" id="rangeMax"
+                                           name="precioMax" min="0" max="100000" step="500"
+                                           th:value="${precioMax != null ? precioMax : 100000}"/>
+                                </div>
+
+                                <!-- Disponibilidad -->
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input"
+                                           id="filtroDisponible" name="soloDisponibles" value="true"
+                                           th:checked="${soloDisponibles}"/>
+                                    <label class="form-check-label fw-semibold" for="filtroDisponible">
+                                        Solo disponibles
+                                    </label>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-solid fa-magnifying-glass me-1"></i>Aplicar
+                                    </button>
+                                    <a th:href="@{/catalogo}" class="btn btn-outline-secondary btn-sm">
+                                        <i class="fa-solid fa-xmark me-1"></i>Limpiar
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: productos -->
+                <div class="col-md-9">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="fw-bold mb-0"
+                            th:text="${categoriaActual != null ? categoriaActual : 'Todos los productos'}">
+                        </h4>
+                        <span class="text-muted">
+                            <span id="contadorProductos" th:text="${totalResultados}"></span> producto(s)
+                        </span>
+                    </div>
+
+                    <!-- Sin resultados -->
+                    <div class="alert alert-info" id="sinResultados"
+                         th:if="${resultados == null or resultados.empty}">
+                        <i class="fa-solid fa-circle-info me-2"></i>
+                        No se encontraron productos con los filtros aplicados.
+                    </div>
+
+                    <!-- Grid de productos -->
+                    <div class="row g-4" id="gridProductos">
+                        <div class="col-12 col-sm-6 col-lg-4 tarjeta-producto"
+                             th:each="p : ${resultados}"
+                             th:data-precio="${p.precioOferta != null ? p.precioOferta : p.precio}"
+                             th:data-disponible="${p.activo}">
+                            <div class="card-producto">
+
+                                <!-- Favorito -->
+                                <th:block th:if="${session.usuarioLogueado != null}">
+                                    <form th:action="@{/perfil/favoritos/toggle}" method="post">
+                                        <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                        <button type="submit" class="btn-favorito-absoluto"
+                                                th:classappend="${session.favoritosIds != null and session.favoritosIds.contains(p.id)} ? 'activo' : 'inactivo'"
+                                                title="Favorito">
+                                            <i class="fa-solid fa-heart"></i>
+                                        </button>
+                                    </form>
+                                </th:block>
+
+                                <!-- Imagen -->
+                                <div class="placeholder-img">
+                                    <img th:if="${p.imagenes != null and !p.imagenes.empty}"
+                                         th:src="${p.imagenes[0].urlImagen}"
+                                         style="width:100%; height:100%; object-fit:cover;"
+                                         th:alt="${p.nombre}"/>
+                                    <i th:if="${p.imagenes == null or p.imagenes.empty}"
+                                       class="fa-solid fa-screwdriver-wrench"></i>
+                                </div>
+
+                                <div class="p-3">
+                                    <span class="oferta-badge"
+                                          th:if="${p.porcentajeDescuento != null}"
+                                          th:text="'-' + ${#numbers.formatDecimal(p.porcentajeDescuento, 0, 0)} + '%'">
+                                    </span>
+                                    <span class="badge bg-secondary mb-1" th:text="${p.sku}"></span>
+                                    <h6 class="mt-1 mb-1 fw-semibold" th:text="${p.nombre}"></h6>
+                                    <p class="text-muted small mb-2" th:text="${p.descripcion}"></p>
+
+                                    <!-- Precios -->
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <th:block th:if="${p.precioOferta != null}">
+                                            <span class="precio-original text-decoration-line-through text-muted small"
+                                                  th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                            <span class="precio-oferta fw-bold text-danger"
+                                                  th:text="'₡' + ${#numbers.formatDecimal(p.precioOferta, 1, 'COMMA', 0, 'POINT')}"></span>
+                                        </th:block>
+                                        <th:block th:unless="${p.precioOferta != null}">
+                                            <span class="precio-oferta"
+                                                  th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}"></span>
+                                        </th:block>
+                                    </div>
+
+                                    <span th:if="${p.activo}" class="badge bg-success mb-2">Disponible</span>
+                                    <span th:unless="${p.activo}" class="badge bg-danger mb-2">No disponible</span>
+
+                                    <div class="d-flex gap-2 mt-2">
+                                        <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
+                                           class="btn btn-outline-primary btn-sm flex-grow-1">
+                                            <i class="fa-solid fa-eye"></i> Ver ficha
+                                        </a>
+                                        <!-- Botón comparar -->
+                                        <form th:action="@{/catalogo/comparar/agregar}" method="post" class="d-inline">
+                                            <input type="hidden" name="id" th:value="${p.id}"/>
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm"
+                                                    title="Agregar a comparar"
+                                                    th:disabled="${session.compararIds != null and session.compararIds.contains(p.id)}">
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                            </button>
+                                        </form>
+                                        <form th:action="@{/carrito/agregar}" method="post" class="d-inline flex-grow-1">
+                                            <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                            <input type="hidden" name="cantidad" value="1"/>
+                                            <button type="submit" class="btn btn-primary btn-sm w-100"
+                                                    th:disabled="${!p.activo}">
+                                                <i class="fa-solid fa-cart-plus"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

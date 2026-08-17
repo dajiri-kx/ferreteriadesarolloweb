@@ -167,6 +167,15 @@
                         <a th:href="@{/}" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-arrow-left me-1"></i>Volver al inicio
                         </a>
+                        <!-- Botón Agregar a comparar -->
+                        <form th:action="@{/catalogo/comparar/agregar}" method="post">
+                            <input type="hidden" name="id" th:value="${producto.id}"/>
+                            <button type="submit" class="btn btn-outline-secondary w-100"
+                                    th:disabled="${session.compararIds != null and session.compararIds.contains(producto.id)}">
+                                <i class="fa-solid fa-scale-balanced me-2"></i>
+                                Agregar a comparar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

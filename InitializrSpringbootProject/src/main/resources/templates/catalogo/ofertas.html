@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4 mb-5">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a th:href="@{/}">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Ofertas</li>
+                </ol>
+            </nav>
+
+            <!-- Encabezado -->
+            <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+                <div>
+                    <h2 class="fw-bold mb-0">
+                        <i class="fa-solid fa-tag me-2 text-danger"></i>[[#{index.ofertas}]]
+                    </h2>
+                    <p class="text-muted mt-1">
+                        <span th:text="${totalResultados}"></span> producto(s) en oferta
+                    </p>
+                </div>
+                <a th:href="@{/}" class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Volver al inicio
+                </a>
+            </div>
+
+            <!-- Sin ofertas -->
+            <div class="alert alert-info text-center"
+                 th:if="${resultados == null or resultados.empty}">
+                <i class="fa-solid fa-circle-info me-2"></i>
+                No hay ofertas disponibles en este momento.
+            </div>
+
+            <!-- Listado de ofertas -->
+            <div class="row g-4" th:unless="${resultados == null or resultados.empty}">
+                <div class="col-12 col-sm-6 col-lg-4" th:each="p : ${resultados}">
+                    <div class="card-producto">
+
+                        <!-- Botón Favorito -->
+                        <th:block th:if="${session.usuarioLogueado != null}">
+                            <form th:action="@{/perfil/favoritos/toggle}" method="post">
+                                <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                <button type="submit" class="btn-favorito-absoluto"
+                                        th:classappend="${session.favoritosIds != null and session.favoritosIds.contains(p.id)} ? 'activo' : 'inactivo'"
+                                        title="Favorito">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+                            </form>
+                        </th:block>
+
+                        <!-- Imagen -->
+                        <div class="placeholder-img">
+                            <img th:if="${p.imagenes != null and !p.imagenes.empty}"
+                                 th:src="${p.imagenes[0].urlImagen}"
+                                 style="width:100%; height:100%; object-fit:cover;"
+                                 th:alt="${p.nombre}"/>
+                            <i th:if="${p.imagenes == null or p.imagenes.empty}"
+                               class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+
+                        <div class="p-3">
+                            <!-- Badge descuento -->
+                            <span class="oferta-badge"
+                                  th:if="${p.porcentajeDescuento != null}"
+                                  th:text="'-' + ${#numbers.formatDecimal(p.porcentajeDescuento, 0, 0)} + '%'">
+                            </span>
+
+                            <span class="badge bg-secondary mb-1" th:text="${p.sku}"></span>
+                            <h6 class="mt-1 mb-1 fw-semibold" th:text="${p.nombre}"></h6>
+                            <p class="text-muted small mb-2" th:text="${p.descripcion}"></p>
+
+                            <!-- Precios -->
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="precio-original text-decoration-line-through text-muted"
+                                      th:text="'₡' + ${#numbers.formatDecimal(p.precio, 1, 'COMMA', 0, 'POINT')}">
+                                </span>
+                                <span class="precio-oferta fw-bold text-danger"
+                                      th:text="'₡' + ${#numbers.formatDecimal(p.precioOferta, 1, 'COMMA', 0, 'POINT')}">
+                                </span>
+                            </div>
+
+                            <!-- Disponibilidad -->
+                            <span th:if="${p.activo}" class="badge bg-success mb-2">Disponible</span>
+                            <span th:unless="${p.activo}" class="badge bg-danger mb-2">No disponible</span>
+
+                            <!-- Acciones -->
+                            <div class="d-flex gap-2 mt-2">
+                                <a th:href="@{/catalogo/producto/{id}(id=${p.id})}"
+                                   class="btn btn-outline-primary btn-sm flex-grow-1">
+                                    <i class="fa-solid fa-eye"></i> Ver ficha
+                                </a>
+                                <form th:action="@{/carrito/agregar}" method="post"
+                                      class="d-inline flex-grow-1">
+                                    <input type="hidden" name="productoId" th:value="${p.id}"/>
+                                    <input type="hidden" name="cantidad" value="1"/>
+                                    <button type="submit" class="btn btn-primary btn-sm w-100"
+                                            th:disabled="${!p.activo}">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>
