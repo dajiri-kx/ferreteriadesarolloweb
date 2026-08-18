@@ -28,7 +28,6 @@
                         <a class="nav-link" th:href="@{/catalogo}">
                             <i class="fa-solid fa-layer-group"></i> [[#{nav.catalogo}]]
                         </a>
-                        
                     </li>
                     <li class="nav-item px-2" sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_BODEGA', 'ROLE_DUEÑO')">
                         <a class="nav-link" th:href="@{/producto/listado}">
@@ -45,7 +44,6 @@
                             <i class="fa-solid fa-users-cog"></i> [[#{nav.roles}]]
                         </a>
                     </li>
-                    
                     <li class="nav-item px-2">
                         <a class="nav-link" th:href="@{/catalogo/productos}">
                             <i class="fa-solid fa-boxes-stacked"></i> [[#{nav.productos}]]
@@ -59,6 +57,13 @@
                         <a class="btn btn-primary btn-nav-carrito position-relative" th:href="@{/carrito}">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="nav-cart-badge" th:text="${session.carritoCount ?: 0}">0</span>
+                        </a>
+                    </li>
+                    <!-- Botón comparar -->
+                    <li class="nav-item px-1" th:if="${session.compararCount != null and session.compararCount > 0}">
+                        <a class="btn btn-outline-primary btn-nav-carrito position-relative" th:href="@{/catalogo/comparar}">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            <span class="nav-cart-badge" th:text="${session.compararCount}">0</span>
                         </a>
                     </li>
                     <!-- Sin sesión -->
