@@ -36,7 +36,7 @@ public class SecurityConfig {
     };
 
     public static final String[] ADMIN_URLS = {
-        "/producto/**", "/usuario_rol/**", "/admin/pedidos/**", "/admin/cupones/**"
+        "/producto/**", "/usuario_rol/**", "/admin/pedidos/**", "/admin/cupones/**", "/admin/reportes/**"
     };
 
     @Bean
