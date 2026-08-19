@@ -15,20 +15,29 @@ import com.proyecto.toolboxcr.service.CuponService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-
 @Service
 public class CarritoService {
 
-    @Autowired private CarritoRepository carritoRepo;
-    @Autowired private ItemCarritoRepository itemRepo;
-    @Autowired private MetodoEnvioRepository metodoEnvioRepo;
-    @Autowired private DireccionEnvioRepository direccionRepo;
-    @Autowired private PedidoRepository pedidoRepo;
-    @Autowired private DetallePedidoRepository detalleRepo;
-    @Autowired private ProductoRepository productoRepo;
-    @Autowired private InventarioRepository inventarioRepo;
-    @Autowired private CuponRepository cuponRepo;
-    @Autowired private CuponService cuponService;
+    @Autowired
+    private CarritoRepository carritoRepo;
+    @Autowired
+    private ItemCarritoRepository itemRepo;
+    @Autowired
+    private MetodoEnvioRepository metodoEnvioRepo;
+    @Autowired
+    private DireccionEnvioRepository direccionRepo;
+    @Autowired
+    private PedidoRepository pedidoRepo;
+    @Autowired
+    private DetallePedidoRepository detalleRepo;
+    @Autowired
+    private ProductoRepository productoRepo;
+    @Autowired
+    private InventarioRepository inventarioRepo;
+    @Autowired
+    private CuponRepository cuponRepo;
+    @Autowired
+    private CuponService cuponService;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -148,7 +157,9 @@ public class CarritoService {
     }
 
     public BigDecimal calcularCostoEnvio(MetodoEnvio metodo, DireccionEnvio direccion, List<ItemCarrito> items) {
-        if (metodo == null) return BigDecimal.ZERO;
+        if (metodo == null) {
+            return BigDecimal.ZERO;
+        }
         if (!Boolean.TRUE.equals(metodo.getRequiereDireccion())) {
             return BigDecimal.ZERO;
         }
@@ -161,14 +172,30 @@ public class CarritoService {
         if (direccion != null && direccion.getCodigoPostal() != null && !direccion.getCodigoPostal().trim().isEmpty()) {
             char primerDigito = direccion.getCodigoPostal().trim().charAt(0);
             switch (primerDigito) {
-                case '1': costoDireccion = new BigDecimal("1000.00"); break; // San José
-                case '2': costoDireccion = new BigDecimal("1500.00"); break; // Alajuela
-                case '3': costoDireccion = new BigDecimal("1500.00"); break; // Cartago
-                case '4': costoDireccion = new BigDecimal("1200.00"); break; // Heredia
-                case '5': costoDireccion = new BigDecimal("2500.00"); break; // Guanacaste
-                case '6': costoDireccion = new BigDecimal("2500.00"); break; // Puntarenas
-                case '7': costoDireccion = new BigDecimal("2500.00"); break; // Limón
-                default: costoDireccion = new BigDecimal("1500.00"); break;
+                case '1':
+                    costoDireccion = new BigDecimal("1000.00");
+                    break; // San José
+                case '2':
+                    costoDireccion = new BigDecimal("1500.00");
+                    break; // Alajuela
+                case '3':
+                    costoDireccion = new BigDecimal("1500.00");
+                    break; // Cartago
+                case '4':
+                    costoDireccion = new BigDecimal("1200.00");
+                    break; // Heredia
+                case '5':
+                    costoDireccion = new BigDecimal("2500.00");
+                    break; // Guanacaste
+                case '6':
+                    costoDireccion = new BigDecimal("2500.00");
+                    break; // Puntarenas
+                case '7':
+                    costoDireccion = new BigDecimal("2500.00");
+                    break; // Limón
+                default:
+                    costoDireccion = new BigDecimal("1500.00");
+                    break;
             }
         }
 
@@ -217,6 +244,13 @@ public class CarritoService {
             // Validar cupón
             cupon = cuponService.validarCupon(cuponCodigo, items);
             descuento = cuponService.calcularDescuento(cupon, items);
+
+            BigDecimal descuentoAutomatico = cuponService.calcularDescuentoAutomaticoPorCantidad(items);
+            descuento = descuento.add(descuentoAutomatico);
+
+            if (descuento.compareTo(subtotal) > 0) {
+                descuento = subtotal;
+            }
         }
 
         Pedido pedido = new Pedido();
@@ -227,6 +261,14 @@ public class CarritoService {
         pedido.setSubtotal(subtotal);
         pedido.setCostoEnvio(costoEnvio);
         pedido.setDescuentoTotal(descuento);
+
+        BigDecimal descuentoAutomatico = cuponService.calcularDescuentoAutomaticoPorCantidad(items);
+        descuento = descuento.add(descuentoAutomatico);
+
+        if (descuento.compareTo(subtotal) > 0) {
+            descuento = subtotal;
+        }
+
         BigDecimal baseImponible = subtotal.subtract(descuento);
         if (baseImponible.compareTo(BigDecimal.ZERO) < 0) {
             baseImponible = BigDecimal.ZERO;
@@ -243,15 +285,15 @@ public class CarritoService {
             int usosAntes = cupon.getUsosActuales();
             entityManager.flush(); // Forzar el INSERT del PEDIDO en la BD
             entityManager.refresh(cupon); // Recargar el cupón de la base de datos
-            
+
             if (cupon.getUsosActuales() > usosAntes) {
                 // El trigger de BD incrementó los usos automáticamente, por lo tanto lo decrementamos
                 entityManager.createNativeQuery(
-                    "UPDATE CUPON SET usos_actuales = usos_actuales - 1 WHERE id = :cuponId"
+                        "UPDATE CUPON SET usos_actuales = usos_actuales - 1 WHERE id = :cuponId"
                 )
-                .setParameter("cuponId", cupon.getId())
-                .executeUpdate();
-                
+                        .setParameter("cuponId", cupon.getId())
+                        .executeUpdate();
+
                 // Actualizar la entidad en memoria
                 cupon.setUsosActuales(usosAntes);
             }
