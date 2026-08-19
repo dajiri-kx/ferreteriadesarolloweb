@@ -50,8 +50,18 @@
                         </a>
                     </li>
                 </ul>
-                <!-- Derecha: carrito + sesión -->
+                <!-- Derecha: idioma + carrito + sesión -->
                 <ul class="navbar-nav">
+                    <!-- Selector de Idioma (i18n) -->
+                    <li class="nav-item dropdown px-1">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            <i class="fa-solid fa-globe"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" style="min-width: 120px;">
+                            <li><a class="dropdown-item" th:href="@{/(lang=es)}">ES (Español)</a></li>
+                            <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN (English)</a></li>
+                        </ul>
+                    </li>
                     <!-- Carrito -->
                     <li class="nav-item px-2 ms-1">
                         <a class="btn btn-primary btn-nav-carrito position-relative" th:href="@{/carrito}">
