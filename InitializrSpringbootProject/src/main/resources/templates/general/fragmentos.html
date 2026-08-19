@@ -38,6 +38,16 @@
                         <a class="nav-link" th:href="@{/inventario/listado}">
                             <i class="fa-solid fa-warehouse"></i> [[#{nav.inventario}]]
                         </a>
+                    <li class="nav-item px-2" sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_DUEÑO')">
+                        <a class="nav-link" th:href="@{/admin/pedidos}">
+                            <i class="fa-solid fa-clipboard-list"></i> Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item px-2" sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_DUEÑO')">
+                        <a class="nav-link" th:href="@{/admin/cupones}">
+                            <i class="fa-solid fa-tags"></i> Cupones
+                        </a>
+                    </li>
                     </li>
                     <li class="nav-item px-2" sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_DUEÑO')">
                         <a class="nav-link" th:href="@{/usuario_rol/mantenimiento}">
