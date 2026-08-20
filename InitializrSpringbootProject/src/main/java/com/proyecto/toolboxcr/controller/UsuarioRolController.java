@@ -30,26 +30,41 @@ public class UsuarioRolController {
 
     // 2. Endpoint para buscar y mostrar roles
     @GetMapping("/buscar")
-    public String buscarUsuario(@RequestParam("username") String username, Model model) {
-        Usuario usuario = usuarioService.getUsuarioPorUsername(username).orElse(null);
-        
-        model.addAttribute("usuario", usuario);
-
-        if (usuario != null) {
-            // Obtener todos los nombres de roles
-            List<String> todosRolesNombres = usuarioService.getRolesNombres();
-            
-            // Filtrar los roles disponibles (los que no tiene el usuario)
-            List<String> rolesDisponibles = todosRolesNombres.stream()
-                .filter(rolNombre -> usuario.getRoles().stream()
-                        .noneMatch(rolAsignado -> rolAsignado.getRol().equalsIgnoreCase(rolNombre)))
-                .toList();
-            
-            model.addAttribute("rolesAsignados", usuario.getRoles());
-            model.addAttribute("rolesDisponibles", rolesDisponibles);
+    public String buscarUsuario(@RequestParam(value = "username", required = false) String username, Model model) {
+        if (username == null || username.isBlank() || !username.contains("@") || !username.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+            model.addAttribute("usuario", new Usuario());
+            model.addAttribute("rolesAsignados", Collections.emptySet());
+            model.addAttribute("rolesDisponibles", Collections.emptyList());
+            model.addAttribute("error", "Debe ingresar un correo electrónico válido (ejemplo: usuario@dominio.com).");
+            return "usuario_rol/mantenimiento";
         }
 
-        return "usuario_rol/mantenimiento"; // Vuelve a la misma página
+        try {
+            Usuario usuario = usuarioService.getUsuarioPorUsername(username.trim()).orElse(null);
+            model.addAttribute("usuario", usuario);
+
+            if (usuario != null) {
+                List<String> todosRolesNombres = usuarioService.getRolesNombres();
+                List<String> rolesDisponibles = todosRolesNombres.stream()
+                    .filter(rolNombre -> usuario.getRoles().stream()
+                            .noneMatch(rolAsignado -> rolAsignado.getRol().equalsIgnoreCase(rolNombre)))
+                    .toList();
+
+                model.addAttribute("rolesAsignados", usuario.getRoles());
+                model.addAttribute("rolesDisponibles", rolesDisponibles);
+            } else {
+                model.addAttribute("rolesAsignados", Collections.emptySet());
+                model.addAttribute("rolesDisponibles", Collections.emptyList());
+                model.addAttribute("error", "No se encontró ningún usuario con el correo " + username);
+            }
+        } catch (Exception e) {
+            model.addAttribute("usuario", new Usuario());
+            model.addAttribute("rolesAsignados", Collections.emptySet());
+            model.addAttribute("rolesDisponibles", Collections.emptyList());
+            model.addAttribute("error", "Error al procesar la búsqueda.");
+        }
+
+        return "usuario_rol/mantenimiento";
     }
 
     // 3. Endpoint para agregar un rol (o cambiar el rol actual)

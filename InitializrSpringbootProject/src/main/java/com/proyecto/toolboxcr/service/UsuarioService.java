@@ -24,6 +24,13 @@ public class UsuarioService {
         if (usuarioRepo.existsByCorreo(correo)) {
             throw new IllegalArgumentException("El correo ya está registrado.");
         }
+        if (telefono != null && !telefono.isBlank()) {
+            String telLimpio = telefono.replaceAll("\\D", "");
+            if (telLimpio.length() > 8) {
+                throw new IllegalArgumentException("El número de teléfono no puede tener más de 8 dígitos.");
+            }
+            telefono = telLimpio;
+        }
         Usuario nuevo = new Usuario();
         nuevo.setNombre(nombre);
         nuevo.setCorreo(correo);

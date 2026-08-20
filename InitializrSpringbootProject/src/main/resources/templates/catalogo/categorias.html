@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4 mb-5">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Inicio</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/catalogo}">Catálogo</a></li>
+                    <li class="breadcrumb-item active">Categorías</li>
+                </ol>
+            </nav>
+
+            <!-- Encabezado -->
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">
+                    <i class="fa-solid fa-layer-group text-primary me-2"></i>Categorías de Productos
+                </h2>
+                <p class="text-muted">Explora todas nuestras categorías y encuentra las herramientas y materiales que necesitas.</p>
+            </div>
+
+            <!-- Grid de Categorías -->
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3" th:each="cat : ${categorias}">
+                    <a th:href="@{/catalogo(categoria=${cat.nombre})}" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 cat-card-full text-center p-4">
+                            <div class="cat-icon-lg mb-3">
+                                <i th:class="${'fa-solid fa-3x text-primary ' + (
+                                    cat.nombre == 'Herramientas' ? 'fa-wrench' : 
+                                    cat.nombre == 'Plomería' ? 'fa-faucet' : 
+                                    cat.nombre == 'Eléctrico' ? 'fa-bolt' : 
+                                    cat.nombre == 'Pinturas' ? 'fa-paint-roller' : 
+                                    cat.nombre == 'Jardinería' ? 'fa-seedling' : 
+                                    cat.nombre == 'Seguridad' ? 'fa-shield-halved' : 
+                                    cat.nombre == 'Tornillería' ? 'fa-screwdriver' : 'fa-screwdriver-wrench'
+                                    )}"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-2" th:text="${cat.nombre}"></h5>
+                            <span class="btn btn-outline-primary btn-sm rounded-pill mt-2">
+                                Ver Productos <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+    </body>
+</html>

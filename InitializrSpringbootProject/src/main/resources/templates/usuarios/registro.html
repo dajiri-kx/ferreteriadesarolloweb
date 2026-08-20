@@ -38,7 +38,7 @@
                             <div class="invalid-feedback">Ingrese un correo válido.</div>
                         </div>
                         <!-- Contraseña + barra de fuerza -->
-                        <div class="mb-1">
+                        <div class="mb-3">
                             <label for="contrasena" class="form-label fw-semibold">
                                 [[#{registro.contrasena}]]
                             </label>
@@ -49,16 +49,30 @@
                             </div>
                             <small id="contrasena-feedback" class="form-text"></small>
                             <div class="invalid-feedback">
-                                La contraseña debe tener mínimo 8 caracteres, un número y un símbolo.
+                                La contraseña debe tener mínimo 8 caracteres.
                             </div>
                         </div>
-                        <!-- Teléfono -->
-                        <div class="mb-3 mt-3">
+                        <!-- Confirmar Contraseña -->
+                        <div class="mb-3">
+                            <label for="confirmarContrasena" class="form-label fw-semibold">
+                                [[#{registro.confirmarContrasena}]]
+                            </label>
+                            <input type="password" class="form-control" id="confirmarContrasena"
+                                   name="confirmarContrasena" required minlength="8"/>
+                            <div class="invalid-feedback">
+                                Por favor confirme su contraseña.
+                            </div>
+                        </div>
+                        <!-- Teléfono (Estándar Costa Rica 8 dígitos) -->
+                        <div class="mb-3">
                             <label for="telefono" class="form-label fw-semibold">
                                 [[#{registro.telefono}]]
                             </label>
                             <input type="tel" class="form-control" id="telefono" name="telefono"
-                                   maxlength="20" placeholder="8888-8888"/>
+                                   maxlength="8" pattern="[0-9]{8}" placeholder="88888888"
+                                   title="Debe tener exactamente 8 dígitos numéricos (estándar Costa Rica)"/>
+                            <small class="form-text text-muted">Máximo 8 dígitos numéricos (estándar CR).</small>
+                            <div class="invalid-feedback">El teléfono debe contener exactamente 8 números.</div>
                         </div>
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-primary btn-lg">

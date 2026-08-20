@@ -41,8 +41,14 @@ public class AuthController {
     public String procesarRegistro(@RequestParam String nombre,
                                    @RequestParam String correo,
                                    @RequestParam String contrasena,
+                                   @RequestParam(required = false) String confirmarContrasena,
                                    @RequestParam(required = false) String telefono,
                                    RedirectAttributes redirectAttrs) {
+        if (confirmarContrasena != null && !contrasena.equals(confirmarContrasena)) {
+            redirectAttrs.addFlashAttribute("error", "Las contraseñas no coinciden.");
+            return "redirect:/registro";
+        }
+
         try {
             usuarioService.registrar(nombre, correo, contrasena, telefono);
             redirectAttrs.addFlashAttribute("todoOk",

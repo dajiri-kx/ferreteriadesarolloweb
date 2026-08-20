@@ -102,6 +102,20 @@ public class CatalogoController {
         return "catalogo/ofertas";
     }
 
+    @GetMapping("/catalogo/categorias")
+    public String categorias(Model model) {
+        model.addAttribute("categorias", categoriaService.listarCategorias());
+        return "catalogo/categorias";
+    }
+
+    @GetMapping("/catalogo/productos")
+    public String productos(Model model) {
+        List<Producto> resultados = productoService.listarProductosActivos();
+        model.addAttribute("resultados", resultados);
+        model.addAttribute("totalResultados", resultados.size());
+        return "catalogo/catalogo";
+    }
+
     @GetMapping("/catalogo/producto/{id}")
     public String detalle(@PathVariable Long id, Model model) {
         var productoOpt = productoService.obtenerProducto(id);

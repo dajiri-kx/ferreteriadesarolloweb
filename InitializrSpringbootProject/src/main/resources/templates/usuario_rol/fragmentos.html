@@ -16,11 +16,12 @@
                   class="row g-3 align-items-end">
                 <div class="col-md-4">
                     <label for="usernameInput" class="form-label">[[#{usuario.username}]]</label>
-                    <input type="text" 
+                    <input type="email" 
                            id="usernameInput"
                            name="username" 
                            th:field="*{username}"
                            class="form-control"
+                           placeholder="ejemplo@correo.com"
                            required/>
                 </div>
                 <div class="col-md-auto">

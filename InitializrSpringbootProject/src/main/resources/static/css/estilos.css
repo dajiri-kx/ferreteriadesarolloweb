@@ -321,3 +321,19 @@ footer {
 .btn-favorito-absoluto.inactivo {
     color: #a0a0a0;
 }
+
+/* ===== TARJETAS DE CATEGORÍAS COMPLETAS ===== */
+.cat-card-full {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    background: #ffffff;
+    border-radius: 12px;
+}
+.cat-card-full:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(232, 100, 26, 0.18) !important;
+    border-color: var(--naranja) !important;
+}
+.cat-card-full .cat-icon-lg {
+    color: var(--naranja);
+}
+

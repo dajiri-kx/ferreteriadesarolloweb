@@ -25,8 +25,13 @@
                 <!-- Izquierda: navegación principal -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/catalogo}">
-                            <i class="fa-solid fa-layer-group"></i> [[#{nav.catalogo}]]
+                        <a class="nav-link" th:href="@{/catalogo/productos}">
+                            <i class="fa-solid fa-boxes-stacked"></i> [[#{nav.productos}]]
+                        </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" th:href="@{/catalogo/categorias}">
+                            <i class="fa-solid fa-layer-group"></i> [[#{nav.categorias}]]
                         </a>
                     </li>
                     <li class="nav-item px-2" sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_BODEGA', 'ROLE_DUEÑO')">
@@ -42,11 +47,6 @@
                     <li class="nav-item px-2" sec:authorize="hasAnyRole('ROLE_ADMINISTRADOR', 'ROLE_DUEÑO')">
                         <a class="nav-link" th:href="@{/usuario_rol/mantenimiento}">
                             <i class="fa-solid fa-users-cog"></i> [[#{nav.roles}]]
-                        </a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/catalogo/productos}">
-                            <i class="fa-solid fa-boxes-stacked"></i> [[#{nav.productos}]]
                         </a>
                     </li>
                 </ul>
