@@ -22,6 +22,10 @@
                 <i class="fa-solid fa-circle-info"></i>
                 No tienes pedidos registrados aún.
             </div>
+            <div th:unless="${#lists.isEmpty(pedidos)}" class="alert alert-warning">
+                <i class="fa-solid fa-bell"></i>
+                Revisa el estado de tus pedidos. Si el administrador actualiza un pedido, el cambio se mostrará automáticamente en esta sección.
+            </div>
 
             <!-- Tabla de pedidos -->
             <div class="table-responsive" th:unless="${#lists.isEmpty(pedidos)}">

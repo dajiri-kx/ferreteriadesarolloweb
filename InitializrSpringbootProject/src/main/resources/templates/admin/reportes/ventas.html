@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"></head>
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"></header>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+        <main class="container mt-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0">
+                    <i class="fa-solid fa-chart-line" style="color: #E8641A;"></i>
+                    Reporte de Ventas
+                </h3>
+
+                <div class="no-print">
+                    <button type="button" class="btn btn-outline-primary" onclick="window.print()">
+                        <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
+                    </button>
+                    <a class="btn btn-success"
+                       th:href="@{/admin/reportes/ventas/excel(fechaInicio=${fechaInicio}, fechaFin=${fechaFin})}">
+                        <i class="fa-solid fa-file-excel"></i> Exportar Excel
+                    </a>
+                </div>
+            </div>
+
+            <form th:action="@{/admin/reportes/ventas}" method="get" class="card mb-4 no-print">
+                <div class="card-header card-header-naranja">
+                    <i class="fa-solid fa-filter"></i> Filtro de periodo
+                </div>
+                <div class="card-body">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label for="fechaInicio" class="form-label">Fecha inicio</label>
+                            <input id="fechaInicio" name="fechaInicio" type="date"
+                                   class="form-control" th:value="${fechaInicio}" required />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="fechaFin" class="form-label">Fecha fin</label>
+                            <input id="fechaFin" name="fechaFin" type="date"
+                                   class="form-control" th:value="${fechaFin}" required />
+                        </div>
+
+                        <div class="col-md-4 d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-magnifying-glass"></i> Generar reporte
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-muted">Ventas del día</h6>
+                            <h4 th:text="${'₡ ' + #numbers.formatDecimal(ventasDia, 1, 'COMMA', 2, 'POINT')}"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-muted">Ventas de la semana</h6>
+                            <h4 th:text="${'₡ ' + #numbers.formatDecimal(ventasSemana, 1, 'COMMA', 2, 'POINT')}"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-muted">Ventas del mes</h6>
+                            <h4 th:text="${'₡ ' + #numbers.formatDecimal(ventasMes, 1, 'COMMA', 2, 'POINT')}"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-muted">Ticket promedio</h6>
+                            <h4 th:text="${'₡ ' + #numbers.formatDecimal(ticketPromedio, 1, 'COMMA', 2, 'POINT')}"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header card-header-naranja">
+                    <i class="fa-solid fa-ranking-star"></i> Ranking de productos más vendidos
+                </div>
+
+                <div class="card-body p-0">
+                    <div th:if="${#lists.isEmpty(rankingProductos)}" class="alert alert-info m-3">
+                        No hay productos vendidos en el periodo seleccionado.
+                    </div>
+
+                    <div class="table-responsive" th:unless="${#lists.isEmpty(rankingProductos)}">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="text-center">Cantidad vendida</th>
+                                    <th class="text-end">Ingresos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="fila : ${rankingProductos}">
+                                    <td th:text="${fila[0]}"></td>
+                                    <td class="text-center" th:text="${fila[1]}"></td>
+                                    <td class="text-end fw-bold"
+                                        th:text="${'₡ ' + #numbers.formatDecimal(fila[2], 1, 'COMMA', 2, 'POINT')}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header card-header-naranja">
+                    <i class="fa-solid fa-receipt"></i> Pedidos del periodo
+                </div>
+
+                <div class="card-body p-0">
+                    <div th:if="${#lists.isEmpty(pedidos)}" class="alert alert-info m-3">
+                        No hay pedidos en el periodo seleccionado.
+                    </div>
+
+                    <div class="table-responsive" th:unless="${#lists.isEmpty(pedidos)}">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Orden</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th class="text-end">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="pedido : ${pedidos}">
+                                    <td>
+                                        <strong th:text="${pedido.numeroOrden}"></strong>
+                                    </td>
+                                    <td th:text="${pedido.cliente != null ? pedido.cliente.nombre : 'Sin cliente'}"></td>
+                                    <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></td>
+                                    <td>
+                                        <span class="badge bg-secondary" th:text="${pedido.estado}"></span>
+                                    </td>
+                                    <td class="text-end fw-bold"
+                                        th:text="${'₡ ' + #numbers.formatDecimal(pedido.total, 1, 'COMMA', 2, 'POINT')}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+        <style>
+            @media print {
+                .no-print {
+                    display: none !important;
+                }
+
+                .navbar,
+                footer {
+                    display: none !important;
+                }
+
+                body {
+                    background: white !important;
+                }
+
+                .card {
+                    box-shadow: none !important;
+                    border: 1px solid #ddd !important;
+                }
+            }
+        </style>
+    </body>
+</html>

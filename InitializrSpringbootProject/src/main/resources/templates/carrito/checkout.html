@@ -39,13 +39,13 @@
                                             <div class="d-flex gap-3 mt-1">
                                                 <span class="badge bg-primary"
                                                       th:text="${m.costoBase.signum() == 0}
-                                                               ? '¡Gratis!'
-                                                               : '₡' + ${#numbers.formatDecimal(m.costoBase, 1, 'COMMA', 0, 'POINT')}">
+                                                      ? '¡Gratis!'
+                                                      : '₡' + ${#numbers.formatDecimal(m.costoBase, 1, 'COMMA', 0, 'POINT')}">
                                                 </span>
                                                 <span class="badge bg-secondary"
                                                       th:text="${m.tiempoEstimadoDias == 0}
-                                                               ? 'Retiro inmediato'
-                                                               : ${m.tiempoEstimadoDias} + ' día(s)'">
+                                                      ? 'Retiro inmediato'
+                                                      : ${m.tiempoEstimadoDias} + ' día(s)'">
                                                 </span>
                                             </div>
                                         </div>
@@ -96,6 +96,13 @@
                             </div>
                             <div class="card-body">
 
+                                <div th:if="${descuentoAutomatico != null and descuentoAutomatico.compareTo(T(java.math.BigDecimal).ZERO) > 0}"
+                                     class="alert alert-success p-2 small"
+                                     role="alert">
+                                    <i class="fa-solid fa-tags"></i>
+                                    <span th:text="${mensajeDescuentoAutomatico}"></span>
+                                </div>
+
                                 <!-- Ítems -->
                                 <ul class="list-group list-group-flush mb-3">
                                     <li class="list-group-item px-0 d-flex justify-content-between"
@@ -115,7 +122,7 @@
                                 </div>
                                 <div th:if="${descuento != null and descuento.compareTo(T(java.math.BigDecimal).ZERO) > 0}" 
                                      class="d-flex justify-content-between mb-1 text-success fw-semibold">
-                                    <span th:text="'Descuento (Cupón: ' + ${cuponAplicado.codigo} + ')'">Descuento</span>
+                                    <span>Descuento aplicado</span>
                                     <span th:text="'-₡' + ${#numbers.formatDecimal(descuento, 1, 'COMMA', 0, 'POINT')}"></span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-2">
@@ -171,7 +178,8 @@
 
             function recalcularEnvioYTotal() {
                 const metodoId = obtenerEnvioId();
-                if (!metodoId) return;
+                if (!metodoId)
+                    return;
 
                 const checkedRadio = document.querySelector('.metodo-envio-radio:checked');
                 const requiere = checkedRadio.dataset.requiere === 'true';
@@ -187,21 +195,21 @@
                 }
 
                 fetch(`/carrito/calcular-envio?metodoEnvioId=${metodoId}&direccionId=${direccionId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            const costo = data.costoEnvio;
-                            const total = data.total;
-                            const iva = data.iva;
-                            document.getElementById('costo-envio-display').textContent =
-                                parseFloat(costo) === 0 ? '¡Gratis!' : formatColones(costo);
-                            document.getElementById('iva-display').textContent = formatColones(iva);
-                            document.getElementById('total-display').textContent = formatColones(total);
-                        } else {
-                            console.error('Error calculando envío:', data.message);
-                        }
-                    })
-                    .catch(err => console.error('Error de red:', err));
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                const costo = data.costoEnvio;
+                                const total = data.total;
+                                const iva = data.iva;
+                                document.getElementById('costo-envio-display').textContent =
+                                        parseFloat(costo) === 0 ? '¡Gratis!' : formatColones(costo);
+                                document.getElementById('iva-display').textContent = formatColones(iva);
+                                document.getElementById('total-display').textContent = formatColones(total);
+                            } else {
+                                console.error('Error calculando envío:', data.message);
+                            }
+                        })
+                        .catch(err => console.error('Error de red:', err));
             }
 
             document.querySelectorAll('.metodo-envio-radio').forEach(function (radio) {

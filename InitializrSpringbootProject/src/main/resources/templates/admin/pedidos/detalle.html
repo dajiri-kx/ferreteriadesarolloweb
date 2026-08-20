@@ -7,28 +7,29 @@
         <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
 
         <main class="container mt-4">
-            <div class="alert alert-info">
-                <i class="fa-solid fa-bell"></i>
-                El estado actual de tu pedido es:
-                <strong th:text="${pedido.estado}"></strong>.
-            </div>
-            <!-- Encabezado -->
             <div class="row mb-4 align-items-center">
                 <div class="col-md-8">
                     <h3 class="mb-0">
                         <i class="fa-solid fa-receipt" style="color: #E8641A;"></i>
-                        Pedido&nbsp;<strong th:text="${pedido.numeroOrden}"></strong>
+                        Pedido <strong th:text="${pedido.numeroOrden}"></strong>
                     </h3>
                 </div>
+                
                 <div class="col-md-4 text-end">
-                    <a th:href="@{/perfil/pedidos}" class="btn btn-outline-secondary btn-sm">
-                        <i class="fa-solid fa-arrow-left"></i> [[#{pedido.volver}]]
+                    <a th:href="@{/admin/pedidos/{id}/factura(id=${pedido.id})}"
+                       class="btn btn-outline-primary btn-sm"
+                       target="_blank">
+                        <i class="fa-solid fa-file-invoice"></i> Factura
+                    </a>
+
+                    <a th:href="@{/admin/pedidos}" class="btn btn-outline-secondary btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Volver al listado
                     </a>
                 </div>
+                
             </div>
 
             <div class="row mb-4">
-                <!-- Info del pedido -->
                 <div class="col-md-6 mb-3">
                     <div class="card h-100">
                         <div class="card-header card-header-naranja">
@@ -36,17 +37,53 @@
                         </div>
                         <div class="card-body">
                             <p class="mb-2">
-                                <strong>[[#{pedido.fecha}]]:</strong>
+                                <strong>Cliente:</strong>
+                                <span th:text="${pedido.cliente != null ? pedido.cliente.nombre : 'Sin cliente'}"></span>
+                            </p>
+                            <p class="mb-2">
+                                <strong>Fecha:</strong>
                                 <span th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}"></span>
                             </p>
                             <p class="mb-0">
-                                <strong>[[#{pedido.estado}]]:</strong>&nbsp;
-                                <section th:replace="~{pedidos/fragmentos :: badgeEstado(${pedido.estado})}"></section>
+                                <strong>Estado actual:</strong>
+                                <span class="badge bg-secondary" th:text="${pedido.estado}"></span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <!-- Resumen de totales -->
+
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header card-header-naranja">
+                            <i class="fa-solid fa-pen-to-square"></i> Actualizar estado
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/admin/pedidos/{id}/estado(id=${pedido.id})}" method="post">
+                                <div class="mb-3">
+                                    <label for="estado" class="form-label">Nuevo estado</label>
+                                    <select id="estado" name="estado" class="form-select" required>
+                                        <option th:each="estadoItem : ${estados}"
+                                                th:value="${estadoItem}"
+                                                th:text="${estadoItem}"
+                                                th:selected="${estadoItem == pedido.estado}">
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa-solid fa-floppy-disk"></i> Guardar estado
+                                </button>
+                            </form>
+
+                            <small class="text-muted d-block mt-3">
+                                Estados permitidos: pendiente, preparando, enviado y entregado.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
                 <div class="col-md-6 mb-3">
                     <div class="card h-100">
                         <div class="card-header card-header-naranja">
@@ -84,7 +121,6 @@
                 </div>
             </div>
 
-            <!-- Tabla de productos -->
             <div class="card">
                 <div class="card-header card-header-naranja">
                     <i class="fa-solid fa-list"></i> Productos del Pedido
@@ -94,10 +130,10 @@
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr>
-                                    <th>[[#{pedido.producto}]]</th>
-                                    <th class="text-center">[[#{pedido.cantidad}]]</th>
-                                    <th class="text-end">[[#{pedido.precioUnitario}]]</th>
-                                    <th class="text-end">[[#{pedido.subtotalItem}]]</th>
+                                    <th>Producto</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-end">Precio Unit.</th>
+                                    <th class="text-end">Subtotal</th>
                                 </tr>
                             </thead>
                             <tbody>
