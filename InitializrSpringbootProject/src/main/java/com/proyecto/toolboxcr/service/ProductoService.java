@@ -2,9 +2,11 @@ package com.proyecto.toolboxcr.service;
 
 import com.opencsv.CSVReader;
 import com.proyecto.toolboxcr.domain.Categoria;
+import com.proyecto.toolboxcr.domain.Inventario;
 import com.proyecto.toolboxcr.domain.Producto;
 import com.proyecto.toolboxcr.domain.ProductoImagen;
 import com.proyecto.toolboxcr.repositorio.CategoriaRepository;
+import com.proyecto.toolboxcr.repositorio.InventarioRepository;
 import com.proyecto.toolboxcr.repositorio.ProductoImagenRepository;
 import com.proyecto.toolboxcr.repositorio.ProductoRepository;
 import java.io.IOException;
@@ -26,15 +28,18 @@ public class ProductoService {
     private final ProductoImagenRepository productoImagenRepository;
     private final CategoriaRepository categoriaRepository;
     private final FirebaseStorageService firebaseStorageService;
+    private final InventarioRepository inventarioRepository;
 
     public ProductoService(ProductoRepository productoRepository,
             ProductoImagenRepository productoImagenRepository,
             CategoriaRepository categoriaRepository,
-            FirebaseStorageService firebaseStorageService) {
+            FirebaseStorageService firebaseStorageService,
+            InventarioRepository inventarioRepository) {
         this.productoRepository = productoRepository;
         this.productoImagenRepository = productoImagenRepository;
         this.categoriaRepository = categoriaRepository;
         this.firebaseStorageService = firebaseStorageService;
+        this.inventarioRepository = inventarioRepository;
     }
 
     @Transactional(readOnly = true)
@@ -164,6 +169,13 @@ public class ProductoService {
                     p.setDimensiones(dimensiones);
                     p.setActivo(true);
                     productoRepository.save(p);
+
+                    Inventario inv = new Inventario();
+                    inv.setProducto(p);
+                    inv.setStockDisponible(0);
+                    inv.setUmbralMinimo(5);
+                    inventarioRepository.save(inv);
+
                     exitosos++;
                 } catch (Exception e) {
                     errores.add("Fila " + numeroFila + ": " + e.getMessage());

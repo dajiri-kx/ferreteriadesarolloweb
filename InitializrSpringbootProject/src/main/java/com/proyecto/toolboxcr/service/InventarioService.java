@@ -27,9 +27,24 @@ public class InventarioService {
     }
 
     // A-02: "El encargado de bodega quiere ver... el stock de cada producto"
-    @Transactional(readOnly = true)
+    @Transactional
     public List<Inventario> listarInventario() {
+        sincronizarProductosSinInventario();
         return inventarioRepository.findAll();
+    }
+
+    @Transactional
+    public void sincronizarProductosSinInventario() {
+        List<Producto> productos = productoRepository.findAll();
+        for (Producto p : productos) {
+            if (inventarioRepository.findByProducto(p).isEmpty()) {
+                Inventario inv = new Inventario();
+                inv.setProducto(p);
+                inv.setStockDisponible(0);
+                inv.setUmbralMinimo(5);
+                inventarioRepository.save(inv);
+            }
+        }
     }
 
     @Transactional(readOnly = true)

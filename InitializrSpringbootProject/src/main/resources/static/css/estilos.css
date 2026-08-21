@@ -178,7 +178,7 @@ footer {
 }
 .cat-card .cat-icon {
     font-size: 2.4rem;
-    color: var(--naranja);
+    color: #6c757d;
     margin-bottom: .6rem;
 }
 .cat-card .cat-label {
@@ -334,6 +334,6 @@ footer {
     border-color: var(--naranja) !important;
 }
 .cat-card-full .cat-icon-lg {
-    color: var(--naranja);
+    color: #6c757d;
 }
 
