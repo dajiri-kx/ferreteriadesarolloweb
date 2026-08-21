@@ -80,7 +80,6 @@ El sistema cuenta con un control de acceso basado en roles (**RBAC**) gestionado
 | Rol | Correo de Ejemplo | Contraseña | Permisos y Accesos |
 | :--- | :--- | :--- | :--- |
 | **Administrador / Dueño** | `admin@ferreteria.cr` | `Admin123!` | Acceso total: gestión de catálogo, carga masiva CSV, gestión de roles, reportes de ventas, cupones e inventario. |
-| **Bodega** | `bodega@ferreteria.cr` | `Bodega123!` | Gestión de inventario, ajuste de stock y lista de productos. |
 | **Cliente** | `cliente@ferreteria.cr` | `Cliente123!` | Navegación de catálogo, carrito de compras, direcciones de envío, pedidos y lista de favoritos. |
 
 > **Nota**: Puedes registrar nuevos usuarios directamente desde la pantalla de **Registro** (`/registro`). Por defecto, los usuarios recién registrados adquieren el rol `cliente`. Un usuario con rol `administrador` o `dueño` puede cambiar el rol de cualquier usuario en el módulo **Gestión de Roles** (`/usuario_rol/mantenimiento`).
