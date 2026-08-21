@@ -47,7 +47,7 @@ cd ferreteriadesarolloweb/InitializrSpringbootProject
    spring.datasource.password=tu_contraseña_mysql
    ```
 
-### 3. Variables de Entorno (Opcional)
+### 3. Variables de Entorno
 Para la integración con **Firebase Storage** (imágenes) y **Stripe** (pagos), puedes configurar las siguientes variables de entorno:
 - `FIREBASE_BUCKET_NAME`
 - `FIREBASE_STORAGE_PATH`
